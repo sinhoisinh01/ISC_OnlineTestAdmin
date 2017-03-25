@@ -38,4 +38,9 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl: "views/forms.html"
 		})*/
 	});
-;
+app.run(initDT);
+function initDT(DTLoadingTemplate){
+	DTLoadingTemplate.html=DTLoadingTemplate.html.replace("Loading...","<img src='./images/Preloader_2.gif' />");
+	// DTLoadingTemplate.setLoadingTemplate("<img src='./images/Preloader_2.gif' />");
+	// DTDefaultOptions.setLoadingTemplate("<img src='./images/Preloader_2.gif' />");
+}

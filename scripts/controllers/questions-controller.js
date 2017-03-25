@@ -1,4 +1,4 @@
-app.controller("QuestionsController",function($scope,$http,DTOptionsBuilder){
+app.controller("QuestionsController",function($scope,$http,$route,DTOptionsBuilder){
   $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
@@ -48,5 +48,5 @@ app.controller("QuestionsController",function($scope,$http,DTOptionsBuilder){
         "content":"Tại sao nước biển lại mặn",
         "level":7
     }
-  ]
+  ];
 });

@@ -22,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-ng-repeat="question in questions | limitTo : 10">
+              <tr data-ng-repeat="question in questions">
                 <td data-ng-bind="($index+1)"></td>
                 <td data-ng-bind="question.content"></td>
                 <td data-ng-bind="question.level"></td>
