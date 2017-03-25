@@ -1,0 +1,40 @@
+<section class="content-header">
+  <h1>Questions</h1>
+  <ol class="breadcrumb">
+    <li><a><i class="fa fa-question"></i>Questions</a></li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Questions List</h3>
+        </div>
+        <div class="box-body">
+          <table id="questions-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Question content</th>
+                <th>Question Level</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="question in questions | limitTo : 10">
+                <td data-ng-bind="($index+1)"></td>
+                <td data-ng-bind="question.content"></td>
+                <td data-ng-bind="question.level"></td>
+                <td>
+                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                  <button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
