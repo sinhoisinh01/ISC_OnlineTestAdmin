@@ -1,0 +1,86 @@
+<div class="container-fluid">
+	<section class="content-header">
+      <h1>
+        Tests
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Tests</li>
+      </ol>
+    </section>
+    <!--main content-->
+	<section class="content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header col-xs-6">
+						<h3 class="box-title">List Of Tests</h3>
+					</div>
+					<div class="box-header col-xs-6">
+						<div class="form-group pull-right">
+						  	<div class="input-group">
+							    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+							    <span class="fa fa-search form-control-feedback"></span>
+						    </div>
+						</div><!-- /input-group -->
+					</div>
+					<!--box header-->
+					<div class="box-body table-responsive">
+						<table id = "example1" class="table table-bordered table-striped table-hover">
+							<thead>
+							<tr>
+								<th>#</th>
+								<th>Test Number</th>
+								<th>Title</th>
+								<th>Version</th>
+								<th>Date</th>
+								<th>Test Time</th>
+								<th>Test Language</th>
+								<th>Max Score</th>
+								<th>Note</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat = "test in dataTest">
+								<td ng-bind="index + 1"></td>
+								<td ng-bind="test.TES_CODE"></td>
+								<td ng-bind="test.TES_CODE"></td>
+								<td ng-bind="test.TESTITLE"></td>
+								<td ng-bind="test.TESVERSION"></td>
+								<td ng-bind="test.TESDATE"></td>
+								<td ng-bind="test.TESTIME"></td>
+								<td ng-bind="test.TESMAX_SCORE"></td>
+								<td ng-bind="test.TESNOTE"></td>
+								<th>
+									<button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                  					<button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+								</th>
+							</tr>
+						</tbody>
+						</table>
+						<center>
+						  	<ul class="pagination">
+							    <li>
+							      <a href="#" aria-label="Previous">
+							        <span aria-hidden="true">&laquo;</span>
+							      </a>
+							    </li>
+							    <li><a href="#">1</a></li>
+							    <li><a href="#">2</a></li>
+							    <li><a href="#">3</a></li>
+							    <li><a href="#">4</a></li>
+							    <li><a href="#">5</a></li>
+							    <li>
+							      <a href="#" aria-label="Next">
+							        <span aria-hidden="true">&raquo;</span>
+							      </a>
+							    </li>
+					  		</ul>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</section>
+</div>
