@@ -1,4 +1,4 @@
-app.controller("TestController", function($scope,DTOptionsBuilder) {
+app.controller("TestController", function($scope,$http,$route,DTOptionsBuilder) {
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
