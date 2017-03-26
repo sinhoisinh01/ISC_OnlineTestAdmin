@@ -4,6 +4,22 @@ app.config(function($routeProvider) {
 		.when("/", {
 			templateUrl: "views/index.html"
 		})
+		.when("/parts",{
+			templateUrl : "views/Parts/index.html",
+			controller : "partsController"
+		})
+		.when("/updateParts",{
+			templateUrl : "views/Parts/updateParts.html",
+			controller : "partsController"
+		})
+		.when("/deleteParts",{
+			
+			controller : "partsController"
+		})
+		.when("/addParts",{
+			templateUrl : "views/Parts/addParts.html",
+			controller : "partsController"
+		})
 		/*.when("/calendar", {
 			templateUrl: "views/calendar.html"
 		})
