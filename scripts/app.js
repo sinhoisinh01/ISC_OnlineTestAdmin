@@ -21,6 +21,17 @@ app.config(function($locationProvider,$routeProvider) {
 		}).when("/tests",{
 			templateUrl : "views/tests/tests-index.html",
 			controller : "TestController"
+		}).when("/tests/add",{
+			templateUrl: "views/tests/tests-add.html",
+			controller: "TestController"
+		}).when("/tests/edit",{
+			templateUrl: "views/tests/tests-edit.html",
+			controller: "TestController"
+		}).when("/tests/:id",{
+			templateUrl: "views/tests/tests-detail.html",
+			controller: "TestController"
+		}).when("/tests/delete",{
+			controller: "TestController"
 		});
 		/*.when("/calendar", {
 			templateUrl: "views/calendar.html"
