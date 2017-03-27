@@ -4,6 +4,18 @@ app.config(function($routeProvider) {
 		.when("/", {
 			templateUrl: "views/index.html"
 		})
+		.when("/user", {
+			templateUrl: "views/user/usermanager.html",
+			controller: "UserController"
+		})
+		.when("/user/add", {
+			templateUrl: "views/user/adduser.html",
+			controller: "UserController"
+		})
+		.when("/user/edit", {
+			templateUrl: "views/user/edituser.html",
+			controller: "UserController"
+		})
 		/*.when("/calendar", {
 			templateUrl: "views/calendar.html"
 		})
