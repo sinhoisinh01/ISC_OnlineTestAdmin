@@ -5,11 +5,11 @@ app.config(function($locationProvider,$routeProvider) {
 		.when("/", {
 			templateUrl: "views/index.html"
 		})
-		.when("/user", {
+		.when("/users", {
 			templateUrl: "views/user/usermanager.html",
 			controller: "UserController"
 		})
-		.when("/user/add", {
+		.when("/users/add", {
 			templateUrl: "views/user/adduser.html",
 			controller: "UserController"
 		})
