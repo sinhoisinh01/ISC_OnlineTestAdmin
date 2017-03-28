@@ -17,6 +17,14 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl: "views/user/edituser.html",
 			controller: "UserController"
 		})
+		.when("/subjects", {
+			templateUrl: "views/subjects/subjects.html",
+			controller: "SubjectsController"
+		})
+		.when("/addsubject", {
+			templateUrl: "views/subjects/subjectAdd.html",
+			controller: "SubjectsController"
+		})
 		.when("/parts",{
 			templateUrl : "views/Parts/index.html",
 			controller : "partsController"
