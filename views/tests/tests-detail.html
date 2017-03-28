@@ -18,27 +18,68 @@
 					<h3 class="box-title" style="font-size: 20px; padding-left: 10px;">TEST0001</h3>
 					<!--box header-->
 					<div class="box-body">
-						<div class="form-group">
-							<div class="row">
-								<div class="col-md-3">
-									<label>Subject:</label>
-								</div>
-								<div class="col-md-9">
-								English
-			                	</div>
-								<!-- Select multiple-->
-			                	<div class="col-md-3">
-			                		<label>Part:</label>
-			                	</div>
-			                	<div class="col-md-9" style="width: 50%">
-			                		<select multiple class="form-control">
-				                    <option>Listening</option>
-				                    <option>Writing</option>
-				                    <option>Reading</option>
-				                    <option>Speaking</option>
-			                  		</select>
-			                	</div>
-							</div>
+						<div class="col-md-12">
+							<label>User : </label>
+							Ngô Đông Hồng
+						</div>
+						<div class="col-md-12">
+							<label>Subject : </label>
+							English
+						</div>
+						<div class="col-md-12">
+							<label>Class : </label>
+							Toeic
+						</div>
+						<div class="col-md-12">
+							<label>Number Of Question : </label>
+							200
+						</div>
+						<div class="col-md-12">
+							<form role="form" style="width: 50%">
+								<div class="form-group">
+				                  <label>Part: </label>
+				                  <select multiple class="form-control" disabled>
+				                    <option>Reading (100)</option>
+				                    <option>Listening (100)</option>
+				                  </select>
+				                </div>
+			              	</form>
+						</div>
+						<div class="col-md-12">
+							<label>Answer Type : </label>
+							Multiple Choice
+						</div>
+						<div class="col-md-12">
+							<label>Question Level : </label>
+							<span class="progress-number"><b>5</b>/10</span>
+							<div class="progress sm">
+		                      <div class="progress-bar progress-bar-green" style="width: 50%"></div>
+		                    </div>
+						</div>
+						<div class="col-md-12">
+							<h4 class="text-center">
+								<label>Tester</label>
+							</h4>
+							<table id="Tester-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
+								<thead>
+								<tr>
+									<th>#</th>
+									<th>Tester Code</th>
+									<th>Tester Name</th>
+									<th>Correct Answers</th>
+									<th>Score</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat = "tester in Exam_Takers">
+									<td ng-bind="$index + 1"></td>
+									<td ng-bind="tester.EXATID"></td>
+									<td ng-bind="tester.EXTFIRSTNAME + tester.EXTLASTNAME"></td>
+									<td ng-bind="tester.ANSCORRECT"></td>
+									<td ng-bind="tester.ANSSCORE"></td>
+								</tr>
+							</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
