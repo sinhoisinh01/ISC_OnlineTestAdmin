@@ -1,11 +1,13 @@
 <div class="container-fluid">
 	<section class="content-header">
       <h1>
-        Tests
+        Tests 
+        <button class="btn btn-default" type="button">Add Test</button>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Tests</li>
+        <li>Tests</li>
+        <li class="active">All Tests</li>
       </ol>
     </section>
     <!--main content-->
@@ -15,12 +17,12 @@
 				<div class="box">
 					<h3 class="box-title" style="font-size: 20px; padding-left: 10px;">List Of Tests</h3>
 					<!--box header-->
-					<div class="box-body table-responsive">
+					<div class="box-body">
 						<table id="questions-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
 							<thead>
 							<tr>
 								<th>#</th>
-								<th>Test Number</th>
+								<th>Test Code</th>
 								<th>Title</th>
 								<th>Version</th>
 								<th>Date</th>
@@ -33,18 +35,22 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat = "test in dataTest">
-								<td ng-bind="index + 1"></td>
-								<td ng-bind="test.TES_CODE"></td>
-								<td ng-bind="test.TES_CODE"></td>
+								<td ng-bind="$index + 1"></td>
+								<td><a href="#!/tests/{{$index}}">{{test.TES_CODE}}</a></td>
 								<td ng-bind="test.TESTITLE"></td>
 								<td ng-bind="test.TESVERSION"></td>
 								<td ng-bind="test.TESDATE"></td>
 								<td ng-bind="test.TESTIME"></td>
+								<td ng-bind="test.TESLANGUAGE"></td>
 								<td ng-bind="test.TESMAX_SCORE"></td>
 								<td ng-bind="test.TESNOTE"></td>
 								<th>
-									<button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                  					<button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+									<a class="btn btn-app" href="#!/updateParts">
+			  		                	<i class="fa fa-wrench"></i> Update
+			  		              	</a>
+			  		              	<a class="btn btn-app" ng-click='Delete(x.PARID)'>
+			  		                	<i class="fa fa-trash"></i> Delete
+			  		              	</a>
 								</th>
 							</tr>
 						</tbody>

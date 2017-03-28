@@ -13,9 +13,17 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl: "views/user/adduser.html",
 			controller: "UserController"
 		})
-		.when("/user/edit", {
+		.when("/users/edit", {
 			templateUrl: "views/user/edituser.html",
 			controller: "UserController"
+		})
+		.when("/subjects", {
+			templateUrl: "views/subjects/subjects.html",
+			controller: "SubjectsController"
+		})
+		.when("/addsubject", {
+			templateUrl: "views/subjects/subjectAdd.html",
+			controller: "SubjectsController"
 		})
 		.when("/parts",{
 			templateUrl : "views/Parts/index.html",
@@ -66,10 +74,14 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/tests/:id",{
 			templateUrl: "views/tests/tests-detail.html",
-			controller: "TestController"
+			controller: "TestDetailController"
 		})
 		.when("/tests/delete",{
 			controller: "TestController"
+		})
+		.when("/subjects",{
+			templateUrl: "views/subjects/subjects.html",
+			controller: "SubjectsController"
 		});
 		/*.when("/calendar", {
 			templateUrl: "views/calendar.html"
