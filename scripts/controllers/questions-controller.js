@@ -1,4 +1,5 @@
-app.controller("QuestionsController",function($scope,$http,$route,DTOptionsBuilder){
+app.controller("QuestionsController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
+  $scope.question = null;
   $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
@@ -49,4 +50,15 @@ app.controller("QuestionsController",function($scope,$http,$route,DTOptionsBuild
         "level":7
     }
   ];
+  if($routeParams && $routeParams.id){
+    for(var i = 0; i<$scope.questions.length;i++)
+    {
+      if($scope.questions[i].id === Number($routeParams.id))
+      {
+        $scope.question = $scope.questions[i];
+        break;
+      }
+    }
+    console.log($scope.question);
+  }
 });

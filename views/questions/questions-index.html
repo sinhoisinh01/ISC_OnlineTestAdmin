@@ -18,13 +18,13 @@
                 <th>No.</th>
                 <th>Question content</th>
                 <th>Question Level</th>
-                <th>Option</th>
+                <th class="admin-option">Option</th>
               </tr>
             </thead>
             <tbody>
               <tr data-ng-repeat="question in questions">
                 <td data-ng-bind="($index+1)"></td>
-                <td data-ng-bind="question.content"></td>
+                <td><a href="#!/questions/{{question.id}}" data-ng-bind="question.content"></a></td>
                 <td data-ng-bind="question.level"></td>
                 <td>
                   <a class="btn btn-app"><i class="fa fa-wrench"></i>Update</a>
