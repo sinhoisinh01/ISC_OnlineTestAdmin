@@ -66,7 +66,7 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/tests/:id",{
 			templateUrl: "views/tests/tests-detail.html",
-			controller: "TestController"
+			controller: "TestDetailController"
 		})
 		.when("/tests/delete",{
 			controller: "TestController"

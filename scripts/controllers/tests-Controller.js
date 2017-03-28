@@ -2,6 +2,7 @@ app.controller("TestController", function($scope,$http,$route,DTOptionsBuilder) 
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
+
 	$scope.dataTest = [
 		{
 			TES_ID : 1,
@@ -80,4 +81,8 @@ app.controller("TestController", function($scope,$http,$route,DTOptionsBuilder) 
 			TESNOTE : ""
 		}
 	];
+});
+
+app.controller("TestDetailController", function($scope,$http,$route) {
+	
 });
