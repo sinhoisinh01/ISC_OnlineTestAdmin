@@ -13,7 +13,7 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl: "views/user/adduser.html",
 			controller: "UserController"
 		})
-		.when("/user/edit", {
+		.when("/users/edit", {
 			templateUrl: "views/user/edituser.html",
 			controller: "UserController"
 		})

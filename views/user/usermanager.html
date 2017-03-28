@@ -1,22 +1,17 @@
 <section class="content-header">
-	<div class="row">
-		<div class="col-xs-2">
-	     	<h1>User Manager</h1>
-	     	<a href="#!/users/add" type="button" name="" class="btn btn-info">Add New</a>
-	    </div>
-      	<div class="col-xs-3 col-xs-offset-5">
-      		<ol class="breadcrumb">
-		        <li><a href="#!/"><i class="fa fa-dashboard"></i> Admin</a></li>
-		        <li><a href="#!/users">User</a></li>
-      		</ol>
-      	</div>
-      
-    </div>
+	<h1>Users<small><a class="btn btn-default" href="#!/users/add">Add User</a></small></h1>
+  <ol class="breadcrumb">
+        <li><a href="#!"><i class="fa fa-dashboard"></i> Admin</a></li>
+        <li><a href="#!/users">User</a></li>
+      </ol>
 </section>
 <section class="content">
 <div class="row">
 	<div class="col-xs-12">
     	<div class="box">
+	    	<div class="box-header">
+	          <h3 class="box-title">Users List</h3>
+	        </div>
 		    <div class="box-body no-padding">
 				<table id="user-table" datatable="ng" dt-options="dtOptions" class="table table-hover table-striped text-center table-bordered">
 					<thead>
@@ -39,7 +34,7 @@
 							<td><span ng-bind="x.email"></span></td>
 							<td><span ng-bind="x.phone"></span></td>
 							<td>
-								<a class="btn btn-app" href="#!/updateParts">
+								<a class="btn btn-app" href="#!/users/edit">
 				                	<i class="fa fa-wrench"></i> Update
 				              	</a>
 				              	<a class="btn btn-app" ng-click='Delete(x.PARID)'>
