@@ -6,9 +6,6 @@
   <title>ISC Test | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <script id="onInit">
-    document.write("<base href='"+window.location.origin+"/onlinetest/'>")
-  </script>
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -34,6 +31,7 @@
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- DataTable -->
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
+  <link rel="stylesheet" href="css/styles.css" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -104,9 +102,5 @@
 <!--script src="scripts/controllers/controller.js"></script-->
 <script type="text/javascript" src="scripts/controllers/partsController.js"></script>
 
-<script id="afterInit">
-  $('script#onInit').remove();
-  $('script#afterInit').remove();
-</script>
 </body>
 </html>

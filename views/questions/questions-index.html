@@ -1,5 +1,5 @@
 <section class="content-header">
-  <h1>Questions</h1>
+  <h1>Questions<small><a class="btn btn-default" href="#!/questions/add">Add question</a></small></h1>
   <ol class="breadcrumb">
     <li><a><i class="fa fa-question"></i>Questions</a></li>
   </ol>
@@ -27,8 +27,8 @@
                 <td data-ng-bind="question.content"></td>
                 <td data-ng-bind="question.level"></td>
                 <td>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                  <button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                  <a class="btn btn-app"><i class="fa fa-wrench"></i>Update</a>
+                  <a class="btn btn-app"><i class="fa fa-trash"></i>Delete</a>
                 </td>
               </tr>
             </tbody>
