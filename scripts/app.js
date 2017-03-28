@@ -70,6 +70,10 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/tests/delete",{
 			controller: "TestController"
+		})
+		.when("/subjects",{
+			templateUrl: "views/subjects/subjects.html",
+			controller: "SubjectsController"
 		});
 		/*.when("/calendar", {
 			templateUrl: "views/calendar.html"
