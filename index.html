@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- DataTable -->
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
+  <!--CK Editor-->
+  <link rel="stylesheet" type="text/css" href="plugins/ckeditor/skins/contents.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -92,7 +94,19 @@
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
-
+<!--CK Editor-->
+<script src="plugins/ckeditor/skins/jquery.js"></script>
+<script src="plugins/ckeditor/skins/ckeditor.js"></script>
+<script src="plugins/ckeditor/skins/styles.js"></script>
+<script>
+    jQuery(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1');
+    //bootstrap WYSIHTML5 - text editor
+    jQuery(".textarea").wysihtml5();
+    });
+</script>
 <!-- Angular JS -->
 <script src="js/angular.min.js"></script>
 <script src="js/angular-datatables.min.js"></script>

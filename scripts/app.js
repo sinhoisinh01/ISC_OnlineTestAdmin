@@ -59,6 +59,10 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/questions/delete",{
 			controller: "QuestionsController"
+		}).
+		when("/questions/add/questions-MTPC", {
+			templateUrl : "views/questions/questions-MTPC.html",
+			//controller : "QuestionsController"
 		})
 		.when("/tests",{
 			templateUrl : "views/tests/tests-index.html",
