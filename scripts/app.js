@@ -29,7 +29,7 @@ app.config(function($locationProvider,$routeProvider) {
 			
 			controller : "partsController"
 		})
-		.when("/addParts",{
+		.when("/addpart",{
 			templateUrl : "views/Parts/addParts.html",
 			controller : "partsController"
 		})
