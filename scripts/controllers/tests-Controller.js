@@ -1,12 +1,7 @@
 app.controller("TestController", function($scope,$http,$route,DTOptionsBuilder) {
-<<<<<<< HEAD
-	
-=======
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
-
->>>>>>> 151f6b024cca4ef3cc7577dd250966f5d5af7bcc
 	$scope.dataTest = [
 		{
 			TES_ID : 1,
