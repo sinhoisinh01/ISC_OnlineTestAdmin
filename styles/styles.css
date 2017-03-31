@@ -7,3 +7,8 @@ table th.admin-option,table td.admin-option{
 textarea.not-resizable{
   resize:none;
 }
+@media screen and (min-width: 1024px){
+	table th.admin-option, table td.admin-option{
+		width:20%;
+	}
+}
