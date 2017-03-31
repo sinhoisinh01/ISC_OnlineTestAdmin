@@ -1,5 +1,6 @@
 app.controller("QuestionsController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
   $scope.question = null;
+  $scope.singleOrPassage = 'single';
   $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
@@ -7,47 +8,47 @@ app.controller("QuestionsController",function($scope,$http,$routeParams,$route,D
     {
       "id":1,
       "content":"Tại sao nước biển lại mặn ?",
-      "level":7
+      "type": 'Passage - True/False'
     },{
         "id":2,
         "content":"Tại sao nước biển lại mặn ?",
-        "level":7
+        "type": 'Multiple Choice'
     },{
         "id":3,
         "content":"Tại sao nước biển lại mặn ?",
-        "level":7
+        "type": 'True/False'
     },{
         "id":4,
         "content":"Tại sao nước biển lại mặn ?",
-        "level":7
+        "type": 'Text In The Blank'
     },{
         "id":5,
         "content":"Tại sao nước biển lại mặn ",
-        "level":7
+        "type": 'Passage - Multiple Choice'
     },{
         "id":6,
         "content":"Tại sao nước biển lại mặn",
-        "level":7
+        "type": 'Multiple Choice'
     },{
         "id":7,
         "content":"Tại sao nước biển lại mặn",
-        "level":7
+        "type": 'Multiple Choice'
     },{
         "id":8,
         "content":"Tại sao nước biển lại mặn",
-        "level":7
+        "type": 'Multiple Choice'
     },{
         "id":9,
         "content":"Tại sao nước biển lại mặn",
-        "level":7
+        "type": 'Multiple Choice'
     },{
         "id":10,
         "content":"Tại sao nước biển lại mặn",
-        "level":7
+        "type": 'Multiple Choice'
     },{
         "id":11,
         "content":"Tại sao nước biển lại mặn",
-        "level":7
+        "type": 'Multiple Choice'
     }
   ];
   if($routeParams && $routeParams.id){
