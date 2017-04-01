@@ -34,7 +34,6 @@ app.config(function($locationProvider,$routeProvider) {
 			controller : "partsController"
 		})
 		.when("/deleteParts",{
-			
 			controller : "partsController"
 		})
 		.when("/addpart",{
@@ -59,14 +58,18 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/questions/delete",{
 			controller: "QuestionsController"
-		}).
-		when("/questions/add/questions-mtpc", {
-			templateUrl : "views/questions/questions-mtpc.html",
-			controller : "QuestionsMTPCController"
-		})
+
 		.when("/questions/add/questions-tf", {
 			templateUrl : "views/questions/questions-tf.html",
 			controller : "QuestionsTFController"
+		})
+		.when("/questions/add/questions-mtpc", {
+			templateUrl : "views/questions/questions-mtpc.html",
+			controller : "QuestionsMTPCController"
+		})
+		.when("/questions/add/questions-mtpcp", {
+			templateUrl : "views/questions/questions-mtpcp.html",
+			controller : "QuestionsMTPCController"
 		})
 		.when("/tests",{
 			templateUrl : "views/tests/tests-index.html",

@@ -27,6 +27,6 @@ app.controller("QuestionsTFController",function($scope,$http,$routeParams,$route
 
 	};
 	$scope.back = function(){
-
+						
 	};
 });
