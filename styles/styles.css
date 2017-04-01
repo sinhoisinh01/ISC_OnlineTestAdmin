@@ -22,4 +22,9 @@ textarea.not-resizable{
 
 .box-body>.col-md-12>.col-md-12{
 	padding-top: 10px;
+
+@media screen and (min-width: 1024px){
+	table th.admin-option, table td.admin-option{
+		width:20%;
+	}
 }

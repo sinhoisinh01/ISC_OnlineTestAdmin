@@ -1,7 +1,7 @@
 <section class="content-header">
   <h1>Questions<small>Add question</small></h1>
   <ol class="breadcrumb">
-    <li><a href="#!/questions"><i class="fa fa-question"></i>Questions</a></li>
+    <li><a href="#!/questions"><i class="fa fa-graduation-cap"></i>Questions</a></li>
     <li class="active">Add question</li>
   </ol>
 </section>
@@ -10,33 +10,39 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Add Question Form</h3>
+          <h3 class="box-title">Please Choose Your Type Of Question</h3>
         </div>
         <div class="box-body">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="form-group">
-                <label>Question content</label>
-                <textarea class="form-control not-resizable"></textarea>
-              </div>
-            </div>
-          </div>
           <div class="row">
             <div class="col-xs-6">
               <div class="form-group">
                 <label>Question Type</label>
+                </br>
+                <label class="radio-inline">
+                  <input type="radio" name="singleOrPassage"
+                   value="single" ng-model="singleOrPassage">
+                  Single Question
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="singleOrPassage"
+                   ng-model="singleOrPassage" value="passage">
+                  Passage Questions
+                </label>
+                </br>
+                </br>
                 <select class="form-control" id="question-type-selector" value="">
-                  <option selected="selected" disabled="disabled"></option>
+                  <option selected="selected" disabled="disabled">Choose Question Type</option>
                   <option>Multiple choice</option>
-                  <option>Fill blank</option>
-                  <option>Single choice</option>
+                  <option>Fill in the blank</option>
+                  <option>True/False</option>
+                  <option ng-if="singleOrPassage == 'single'">Text in the blank</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <button class="btn btn-info btn-lg btn-flat">Save</button>
+              <button class="btn btn-info btn-flat">Create New Question(s)</button>
             </div>
           </div>
         </div>
