@@ -60,9 +60,9 @@ app.config(function($locationProvider,$routeProvider) {
 		.when("/questions/delete",{
 			controller: "QuestionsController"
 		}).
-		when("/questions/add/questions-MTPC", {
-			templateUrl : "views/questions/questions-MTPC.html",
-			//controller : "QuestionsController"
+		when("/questions/add/questions-mtpc", {
+			templateUrl : "views/questions/questions-mtpc.html",
+			controller : "QuestionsMTPCController"
 		})
 		.when("/tests",{
 			templateUrl : "views/tests/tests-index.html",
