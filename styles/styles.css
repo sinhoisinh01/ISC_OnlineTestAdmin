@@ -1,0 +1,30 @@
+.content-header>h1>small>a.btn,.content-header>h1>small>button.btn{
+  margin-top:-10px;
+}
+table th.admin-option,table td.admin-option{
+  width:13%;
+}
+textarea.not-resizable{
+  resize:none;
+}
+
+.box-body>.col-md-12, .box-body>.col-md-12>.col-md-6, .box-body>.col-md-12>.col-md-6>.col-md-6, .box-body>.col-md-12>.col-md-6>.col-md-6>.col-md-6, .box-body>.col-md-12>.col-md-12>.col-md-3{
+	padding-left: 0px;
+}
+
+#select {
+	margin-top: 10px;
+}
+
+.box-body>.col-md-12>.col-md-12>.col-md-9 {
+	padding-right: 0px;
+}
+
+.box-body>.col-md-12>.col-md-12{
+	padding-top: 10px;
+
+@media screen and (min-width: 1024px){
+	table th.admin-option, table td.admin-option{
+		width:20%;
+	}
+}

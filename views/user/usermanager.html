@@ -1,0 +1,52 @@
+<section class="content-header">
+	<h1>Users<small><a class="btn btn-default" href="#!/users/add">Add User</a></small></h1>
+  <ol class="breadcrumb">
+        <li><a href="#!"><i class="fa fa-dashboard"></i> Admin</a></li>
+        <li><a href="#!/users">User</a></li>
+      </ol>
+</section>
+<section class="content">
+<div class="row">
+	<div class="col-xs-12">
+    	<div class="box">
+	    	<div class="box-header">
+	          <h3 class="box-title">Users List</h3>
+	        </div>
+		    <div class="box-body no-padding">
+				<table id="user-table" datatable="ng" dt-options="dtOptions" class="table table-hover table-striped text-center table-bordered">
+					<thead>
+						<th>UserID</th>
+						<th>FirstName</th>
+						<th>LastName</th>
+						<th>DOB</th>
+						<th>Gender</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th class="admin-option">Options</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in Users">
+							<td><span ng-bind="x.ID"></span></td>
+							<td><span ng-bind="x.firstName"></span></td>
+							<td><span ng-bind="x.lastName"></span></td>
+							<td><span ng-bind="x.dob"></span></td>
+							<td><span ng-bind="x.gender"></span></td>
+							<td><span ng-bind="x.email"></span></td>
+							<td><span ng-bind="x.phone"></span></td>
+							<td>
+								<a class="btn btn-app" href="#!/users/edit">
+				                	<i class="fa fa-wrench"></i> Update
+				              	</a>
+				              	<a class="btn btn-app" ng-click='Delete(x.PARID)'>
+				                	<i class="fa fa-trash"></i> Delete
+				              	</a>
+				            </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+    	</div>
+	</div>
+</div>
+
+</section>

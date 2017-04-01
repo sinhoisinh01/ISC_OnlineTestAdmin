@@ -1,0 +1,52 @@
+<section class="content-header">
+  <h1>Questions {{question.id}}<small>Question detail</small></h1>
+  <ol class="breadcrumb">
+    <li><a href="#!/questions"><i class="fa fa-graduation-cap"></i>Questions</a></li>
+    <li class="active">Question {{question.id}}</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Add Question Form</h3>
+        </div>
+        <div class="box-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label>Question content</label>
+                <textarea class="form-control not-resizable" value="{{question.content}}" data-ng-bind="question.content"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label>Question Type</label>
+                <select class="form-control" id="question-type-selector" value="">
+                  <option selected="selected" disabled="disabled"></option>
+                  <option>Multiple choice</option>
+                  <option>Fill blank</option>
+                  <option>Single choice</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button class="btn btn-info btn-lg btn-flat">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  $(function(){
+    //Initialize Select2 Elements
+    $("#question-type-selector").select2();
+  });
+</script>
