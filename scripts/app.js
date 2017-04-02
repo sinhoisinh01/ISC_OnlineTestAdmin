@@ -36,7 +36,7 @@ app.config(function($locationProvider,$routeProvider) {
 		.when("/deleteParts",{
 			controller : "partsController"
 		})
-		.when("/addpart",{
+		.when("/addParts",{
 			templateUrl : "views/Parts/addParts.html",
 			controller : "partsController"
 		})
@@ -58,13 +58,17 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/questions/delete",{
 			controller: "QuestionsController"
-
+		})
 		.when("/questions/add/questions-tf", {
 			templateUrl : "views/questions/questions-tf.html",
 			controller : "QuestionsTFController"
 		})
 		.when("/questions/add/questions-mtpc", {
 			templateUrl : "views/questions/questions-mtpc.html",
+			controller : "QuestionsMTPCController"
+		})
+		.when("/questions/add/questions-mttf", {
+			templateUrl : "views/questions/question-MTTF.html",
 			controller : "QuestionsMTPCController"
 		})
 		.when("/questions/add/questions-mtpcp", {
@@ -113,7 +117,9 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl: "views/forms.html"
 		})*/
 	});
+
 app.run(initDT);
+
 function initDT(DTLoadingTemplate){
 	DTLoadingTemplate.html=DTLoadingTemplate.html.replace("Loading...","<img src='./images/Preloader_2.gif' />");
 	// DTLoadingTemplate.setLoadingTemplate("<img src='./images/Preloader_2.gif' />");
