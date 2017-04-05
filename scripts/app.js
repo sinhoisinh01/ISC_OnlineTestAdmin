@@ -75,6 +75,10 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl : "views/questions/questions-mtpcp.html",
 			controller : "QuestionsMTPCController"
 		})
+		.when("/questions/add/text", {
+			templateUrl : "views/questions/text.html",
+			controller : "TextController"
+		})
 		.when("/tests",{
 			templateUrl : "views/tests/tests-index.html",
 			controller : "TestController"
