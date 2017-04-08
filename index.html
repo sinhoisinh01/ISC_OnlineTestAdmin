@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="css/ionicons.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="plugins/iCheck/all.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="plugins/select2/select2.min.css">
   <!-- Morris chart -->
@@ -28,6 +30,8 @@
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- DataTable -->
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
+  <!--CK Editor-->
+  <link rel="stylesheet" type="text/css" href="plugins/ckeditor2/contents.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -67,7 +71,7 @@
 <!-- Select2 -->
 <script src="plugins/select2/select2.full.min.js"></script>
 <!-- Morris.js charts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="js/raphael-min.js"></script>
 <script src="plugins/morris/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -92,7 +96,11 @@
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
-
+<!--CK Editor-->
+<script src="plugins/ckeditor2/ckeditor.js"></script>
+<script src="plugins/ckeditor2/adapters/jquery.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="plugins/iCheck/icheck.min.js"></script>
 <!-- Angular JS -->
 <script src="js/angular.min.js"></script>
 <script src="js/angular-datatables.min.js"></script>
@@ -101,10 +109,12 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/UserController.js"></script>
 <script src="scripts/controllers/questions-controller.js"></script>
+<script src="scripts/controllers/add-questions/questions-mtpc.js"></script>
+<script src="scripts/controllers/add-questions/questions-tf.js"></script>
+<script src="scripts/controllers/add-questions/textController.js"></script>
 <script src="scripts/controllers/subjectsController.js"></script>
 <script src="scripts/controllers/tests-controller.js"></script>
 <!--script src="scripts/controllers/controller.js"></script-->
 <script type="text/javascript" src="scripts/controllers/partsController.js"></script>
-
 </body>
 </html>

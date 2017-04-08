@@ -1,31 +1,44 @@
+body{
+  margin:0;
+}
 .content-header>h1>small>a.btn,.content-header>h1>small>button.btn{
   margin-top:-10px;
 }
 textarea.not-resizable{
   resize:none;
 }
-@media all and (max-device-width:2560px){
-  table th.admin-option,table td.admin-option{
-    width:9%;
-  }
+.box-body>.col-md-12, .box-body>.col-md-12>.col-md-6, .box-body>.col-md-12>.col-md-6>.col-md-6, .box-body>.col-md-12>.col-md-6>.col-md-6>.col-md-6, .box-body>.col-md-12>.col-md-12>.col-md-3{
+	padding-left: 0px;
 }
-@media all and (max-device-width:1920px){
-  table th.admin-option,table td.admin-option{
-    width:13%;
-  }
+#select {
+	margin-top: 10px;
 }
-@media all and (max-device-width : 1440px){
-  table th.admin-option,table td.admin-option{
-    width:18%;
-  }
+#choice span.input-group-addon{
+  text-align: center;
+  min-width:45px;
 }
-@media all and (max-device-width:1024px){
-  table th.admin-option,table td.admin-option{
-    width:28%;
-  }
+.table-bordered,.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{
+  border-color:black;
 }
-@media all and (max-device-width:768px){
-  table th.admin-option,table td.admin-option{
-    width:24%;
-  }
+.box-body>.col-md-12>.col-md-12>.col-md-9 {
+	padding-right: 0px;
+}
+
+.box-body>.col-md-12>.col-md-12{
+	padding-top: 10px;
+}
+@media screen and (min-width: 1024px){
+	table th.admin-option, table td.admin-option{
+		width:27%;
+	}
+}
+@media screen and (min-width: 1440px){
+	table th.admin-option, table td.admin-option{
+		width:18%;
+	}
+}
+@media screen and (min-width: 2560px){
+	table th.admin-option, table td.admin-option{
+		width:9%;
+	}
 }
