@@ -1,9 +1,31 @@
 .content-header>h1>small>a.btn,.content-header>h1>small>button.btn{
   margin-top:-10px;
 }
-table th.admin-option,table td.admin-option{
-  width:13%;
-}
 textarea.not-resizable{
   resize:none;
+}
+@media all and (max-device-width:2560px){
+  table th.admin-option,table td.admin-option{
+    width:9%;
+  }
+}
+@media all and (max-device-width:1920px){
+  table th.admin-option,table td.admin-option{
+    width:13%;
+  }
+}
+@media all and (max-device-width : 1440px){
+  table th.admin-option,table td.admin-option{
+    width:18%;
+  }
+}
+@media all and (max-device-width:1024px){
+  table th.admin-option,table td.admin-option{
+    width:28%;
+  }
+}
+@media all and (max-device-width:768px){
+  table th.admin-option,table td.admin-option{
+    width:24%;
+  }
 }

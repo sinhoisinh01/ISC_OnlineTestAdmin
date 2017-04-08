@@ -11,7 +11,7 @@
         <div class="box-header">
           <h3 class="box-title">Questions List</h3>
         </div>
-        <div class="box-body">
+        <div class="box-body table-responsive">
           <table id="questions-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
             <thead>
               <tr>
@@ -26,7 +26,7 @@
                 <td data-ng-bind="($index+1)"></td>
                 <td><a href="#!/questions/{{question.id}}" data-ng-bind="question.content"></a></td>
                 <td data-ng-bind="question.level"></td>
-                <td class="admin-options">
+                <td>
                   <a class="btn btn-app"><i class="fa fa-wrench"></i>Update</a>
                   <a class="btn btn-app"><i class="fa fa-trash"></i>Delete</a>
                 </td>
