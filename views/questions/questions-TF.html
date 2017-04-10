@@ -30,7 +30,7 @@
 					        <!-- /.box-header -->
 					        <div class="box-body pad">
 						          <form>
-										<textarea name="mtpcEditor" id="mtpcEditor" rows="10" cols="80">
+										<textarea name="mtpcpEditor-trueFalse" id="mtpcpEditor-trueFalse" rows="10" cols="80">
 							                This is my textarea to be replaced with CKEditor.
 							            </textarea>						            
 						          </form>
@@ -110,3 +110,15 @@
 		 </div>
 	</section>
 </div>
+<script>
+	$(function () {
+	    //Flat red color scheme for iCheck
+	    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+	      checkboxClass: 'icheckbox_flat-green',
+	      radioClass: 'iradio_flat-green'
+	    });
+
+	});
+
+	CKEDITOR.replace( 'mtpcpEditor-trueFalse' );
+</script>
