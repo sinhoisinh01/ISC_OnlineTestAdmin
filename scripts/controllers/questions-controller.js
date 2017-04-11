@@ -1,6 +1,6 @@
 app.controller("QuestionsController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
   $scope.question = null;
-  $scope.singleOrPassage = 'single';
+  $scope.singleOrPassage = '';
   $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
@@ -61,5 +61,9 @@ app.controller("QuestionsController",function($scope,$http,$routeParams,$route,D
       }
     }
     console.log($scope.question);
+  }
+  $scope.createQuestionByType = function() {
+	  console.log("#!/" + $scope.answerType + $scope.singleOrPassage);
+    window.location.href="#!/questions/add/questions-" + $scope.answerType + $scope.singleOrPassage;
   }
 });

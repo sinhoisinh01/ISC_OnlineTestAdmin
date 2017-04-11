@@ -20,29 +20,28 @@
                 </br>
                 <label class="radio-inline">
                   <input type="radio" name="singleOrPassage"
-                   value="single" ng-model="singleOrPassage">
+                   value="" ng-model="singleOrPassage">
                   Single Question
                 </label>
                 <label class="radio-inline">
                   <input type="radio" name="singleOrPassage"
-                   ng-model="singleOrPassage" value="passage">
+                   ng-model="singleOrPassage" value="p">
                   Passage Questions
                 </label>
                 </br>
                 </br>
-                <select class="form-control" id="question-type-selector" value="">
+                <select class="form-control" id="question-type-selector" ng-model="answerType">
                   <option selected="selected" disabled="disabled">Choose Question Type</option>
-                  <option>Multiple choice</option>
-                  <option>Fill in the blank</option>
-                  <option>True/False</option>
-                  <option ng-if="singleOrPassage == 'single'">Text in the blank</option>
+                  <option value="mtpc">Multiple choice</option>
+                  <option value="tf">True/False</option>
+                  <option ng-if="singleOrPassage!='p'" value="text">Text in the blank</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <button class="btn btn-info btn-flat">Create New Question(s)</button>
+              <button class="btn btn-info btn-flat" ng-click="createQuestionByType()">Create New Question(s)</button>
             </div>
           </div>
         </div>

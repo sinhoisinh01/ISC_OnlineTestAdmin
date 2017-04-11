@@ -67,7 +67,7 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl : "views/questions/questions-mtpc.html",
 			controller : "QuestionsMTPCController"
 		})
-		.when("/questions/add/questions-mttf", {
+		.when("/questions/add/questions-tfp", {
 			templateUrl : "views/questions/question-MTTF.html",
 			controller : "QuestionsMTPCController"
 		})
@@ -75,7 +75,7 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl : "views/questions/questions-mtpcp.html",
 			controller : "QuestionsMTPCController"
 		})
-		.when("/questions/add/text", {
+		.when("/questions/add/questions-text", {
 			templateUrl : "views/questions/text.html",
 			controller : "TextController"
 		})
