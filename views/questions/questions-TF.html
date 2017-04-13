@@ -1,32 +1,22 @@
 <div class="container-fluid">
-	<section class="content-header">
-      <h1>
-        Add Questions For "Test - Test"
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/questions">Questions</a></li>
-        <li class="active">True Or False</li>
-      </ol>
-    </section>
+	<div class="box-header" style="background:rgba(0,0,0,0.2);border-bottom:3px solid rgba(0,0,0,0.2)" >
+    	<h3 class="box-title">True False Question</h3>
+      <!-- tools box -->
+      <div class="pull-right box-tools">
+        <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+          <i class="fa fa-minus"></i></button>
+      </div>
+      <!-- /. tools -->
+    </div>
     <!--main content-->
 	<section class="content">
 		  <div class="row">
 			    <div class="col-md-12">
 				      <div class="box box-info">
 					        <div class="box-header">
-						          <h3 class="box-title">Content Of Questions
-						            <small></small>
-						          </h3>
-						          <!-- tools box -->
-						          <div class="pull-right box-tools">
-						            <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-						              <i class="fa fa-minus"></i></button>
-						            <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
-						              <i class="fa fa-times"></i></button>
-						          </div>
-						          <!-- /. tools -->
-					        </div>
+				      			<h3 class="box-title">Content Of Questions</h3>
+						  
+						    </div>
 					        <!-- /.box-header -->
 					        <div class="box-body pad">
 						          <form>
@@ -84,26 +74,13 @@
 
 
 
-					          	  <div class="col-md-12">
-					          	  	<div class="col-md-4">
-								 	  		<div class="col-md-4">
-								 	  			<button id="addChoice" class="btn btn-default bg-olive margin" ng-click="addQuestion()">
-								 		  			<i class="fa fa-fw fa-plus-square"></i> Add
-								 		  		</button>
-								 	  		</div>
-								 	  		<div class="col-md-4">
-								 	  			<button id="reset" class="btn btn-default bg-olive margin" ng-click="resetQuestion()">
-								 	  				<i class="fa fa-fw fa-times-circle"></i> Reset
-								 	  			</button>
-								 	  		</div>
-								 	  		<div class="col-md-4">
-								 	  			<button id="back " class="btn btn-default bg-olive margin" ng-click="back()">
-								 	  				<i class="fa fa-fw fa-times-circle"></i> Back
-								 	  			</button>
-								 	  		</div>
-								 	</div>
-								 	
-					          	 </div>
+					          	<div class="col-md-12">
+						      	 		<div class="pull-right">
+						      	 			<button class="btn btn-primary btn-flat margin">Save</button>
+						                	<button class="btn btn-warning btn-flat margin">Reset</button>
+						                	<button class="btn btn-default btn-flat margin">Back</button>
+						      	 		</div>
+		            			</div>
 					        </div>
 				      </div>
 			    </div>
