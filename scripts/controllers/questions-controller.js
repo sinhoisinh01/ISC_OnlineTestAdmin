@@ -1,5 +1,6 @@
 app.controller("QuestionsController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
   $scope.question = null;
+  $scope.answerTypeFileName = null;
   $scope.singleOrPassage = '';
   $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
@@ -63,7 +64,31 @@ app.controller("QuestionsController",function($scope,$http,$routeParams,$route,D
     console.log($scope.question);
   }
   $scope.createQuestionByType = function() {
-	  console.log("#!/" + $scope.answerType + $scope.singleOrPassage);
-    window.location.href="#!/questions/add/questions-" + $scope.answerType + $scope.singleOrPassage;
+    $scope.answerTypeFileName = 'questions-' + ($scope.answerType + $scope.singleOrPassage).toUpperCase();
+    $scope.answerTypeUrl = "./views/questions/" + $scope.answerTypeFileName + ".html";
+    console.log($scope.answerTypeUrl);
   }
+
+  $scope.addChoice = function() {
+    var myEl = angular.element( '#choice' );
+    var charACSII = 65;
+    myEl.append('<div class="input-group">'+
+              '<span class="input-group-addon">'+
+                '<input type="checkbox">'+
+              '</span>'+
+            '<span class="input-group-addon">'+
+              '<label>&#'+
+                ( charACSII + ( myEl.children())['length'] )+
+                ';.</label>'+
+            '</span>'+
+            '<input type="text" class="form-control">'+
+        '</div>');
+  };
+
+  $scope.removeChoice = function() {
+    var innerEl = angular.element('#choice').children();
+    var lastchild = innerEl['length']-1;
+    innerEl[lastchild].remove();
+    console.log(angular.element('#choice').children());
+  };
 });

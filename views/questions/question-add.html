@@ -44,6 +44,11 @@
               <button class="btn btn-info btn-flat" ng-click="createQuestionByType()">Create New Question(s)</button>
             </div>
           </div>
+          <div class="row" ng-if="answerTypeFileName">
+            <div class="col-xs-12" style="margin-top:15px;">
+              <div ng-include="answerTypeUrl"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
