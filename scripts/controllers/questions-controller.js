@@ -1,5 +1,6 @@
 app.controller("QuestionsController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
   $scope.question = null;
+  $scope.answerType = 'default';
   $scope.answerTypeFileName = null;
   $scope.singleOrPassage = '';
   $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -64,9 +65,14 @@ app.controller("QuestionsController",function($scope,$http,$routeParams,$route,D
     console.log($scope.question);
   }
   $scope.createQuestionByType = function() {
-    $scope.answerTypeFileName = 'questions-' + ($scope.answerType + $scope.singleOrPassage).toUpperCase();
-    $scope.answerTypeUrl = "./views/questions/" + $scope.answerTypeFileName + ".html";
-    console.log($scope.answerTypeUrl);
+    if( $scope.answerType ) {
+      $scope.answerTypeFileName = 'questions-' + ($scope.answerType + $scope.singleOrPassage).toUpperCase();
+      $scope.answerTypeUrl = "./views/questions/" + $scope.answerTypeFileName + ".html";
+      console.log($scope.answerTypeUrl);
+    }
+    else {
+      $scope.answerTypeFileName = null;
+    }
   }
 
 /*QuestionsMTPCController*/

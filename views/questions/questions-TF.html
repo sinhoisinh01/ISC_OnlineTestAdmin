@@ -1,92 +1,77 @@
-<div class="container-fluid">
-	<div class="box-header" style="background:rgba(0,0,0,0.2);border-bottom:3px solid rgba(0,0,0,0.2)" >
-    	<h3 class="box-title">True False Question</h3>
-      <!-- tools box -->
-      <div class="pull-right box-tools">
-        <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-          <i class="fa fa-minus"></i></button>
-      </div>
-      <!-- /. tools -->
+<div class="box box-info">
+	<div class="box-header">
+		<h2>True false</h2>
+		<!-- tools box -->
+		<div class="pull-right box-tools">
+			<button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+			<i class="fa fa-minus"></i></button>
+		</div>
+		<!-- /. tools -->
+	</div>
+	<!-- /.box-header -->
+	<div class="box-body pad">
+		<form>
+			<textarea name="mtpcpEditor-trueFalse" id="mtpcpEditor-trueFalse" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor.
+            </textarea>						            
+		</form>
+      <div class="col-md-12">
+      	<div class="col-md-3">
+      	  		<div class="col-md-6">
+      	  			<button class="btn btn-default margin">
+	 		  			<i class="fa fa-fw fa-cloud-upload"></i> Images
+	 		  		</button>
+      	  		</div>
+      	  		<div class="col-md-6">
+      	  			<button class="btn btn-default margin">
+	 		  			<i class="glyphicon glyphicon-eye-open"></i> Images
+	 		  		</button>
+      	  		</div>
+	 	</div>
+	 	<div class="col-md-3">
+	 		<div id="choice" style="padding-top: 15px">
+  	 				<div class="input-group">
+  	 					<span style="padding-right: 5px">Correct Answer </span>
+  	 					<span style="padding-right: 5px">
+  	 						<input type="checkbox"> True
+  	 					</span>
+  	 					<span style="padding-right: 5px">
+  	 						<input type="checkbox"> False
+  	 					</span>						                       
+      	 			</div>
+      	 	</div>
+	 	</div>
+	 	<div class="col-md-6">
+	 		<div id="select" class="col-md-6">
+	 	  		<div class="col-md-7" style="padding-top: 10px; padding-right: 0px">
+	 	  			<label>Column of choice: </label>
+	 	  		</div>
+		 	  	<div class="col-md-5">
+		 	  		<select class="form-control">
+	                    <option>1</option>
+	                    <option>2</option>
+	                    <option>3</option>
+	                    <option>4</option>
+                	</select>
+		 	  	</div>
+	 	  	</div>
+	 	  	<div class="col-md-6" style="padding-top: 15px;">
+	 				<label>Score: </label>
+	 				<input type="number" name="score" placeholder="Score" width="50px">
+	 		</div>
+	 	</div>
+
     </div>
-    <!--main content-->
-	<section class="content">
-		  <div class="row">
-			    <div class="col-md-12">
-				      <div class="box box-info">
-					        <div class="box-header">
-				      			<h3 class="box-title">Content Of Questions</h3>
-						  
-						    </div>
-					        <!-- /.box-header -->
-					        <div class="box-body pad">
-						          <form>
-										<textarea name="mtpcpEditor-trueFalse" id="mtpcpEditor-trueFalse" rows="10" cols="80">
-							                This is my textarea to be replaced with CKEditor.
-							            </textarea>						            
-						          </form>
-						          <div class="col-md-12">
-						          	<div class="col-md-3">
-						          	  		<div class="col-md-6">
-						          	  			<button class="btn btn-default margin">
-								 		  			<i class="fa fa-fw fa-cloud-upload"></i> Images
-								 		  		</button>
-						          	  		</div>
-						          	  		<div class="col-md-6">
-						          	  			<button class="btn btn-default margin">
-								 		  			<i class="glyphicon glyphicon-eye-open"></i> Images
-								 		  		</button>
-						          	  		</div>
-								 	</div>
-								 	<div class="col-md-3">
-								 		<div id="choice" style="padding-top: 15px">
-					          	 				<div class="input-group">
-					          	 					<span style="padding-right: 5px">Correct Answer </span>
-					          	 					<span style="padding-right: 5px">
-					          	 						<input type="checkbox"> True
-					          	 					</span>
-					          	 					<span style="padding-right: 5px">
-					          	 						<input type="checkbox"> False
-					          	 					</span>						                       
-						          	 			</div>
-						          	 	</div>
-								 	</div>
-								 	<div class="col-md-6">
-								 		<div id="select" class="col-md-6">
-								 	  		<div class="col-md-7" style="padding-top: 10px; padding-right: 0px">
-								 	  			<label>Column of choice: </label>
-								 	  		</div>
-									 	  	<div class="col-md-5">
-									 	  		<select class="form-control">
-								                    <option>1</option>
-								                    <option>2</option>
-								                    <option>3</option>
-								                    <option>4</option>
-							                	</select>
-									 	  	</div>
-								 	  	</div>
-								 	  	<div class="col-md-6" style="padding-top: 15px;">
-								 				<label>Score: </label>
-								 				<input type="number" name="score" placeholder="Score" width="50px">
-								 	</div>
-								 	</div>
+  	<div class="col-md-12">
+  	 		<div class="pull-right">
+  	 			<button class="btn btn-primary btn-flat margin">Save</button>
+            	<button class="btn btn-warning btn-flat margin">Reset</button>
+            	<button class="btn btn-default btn-flat margin">Back</button>
+  	 		</div>
+	</div>
 
-						          </div>
-
-
-
-					          	<div class="col-md-12">
-						      	 		<div class="pull-right">
-						      	 			<button class="btn btn-primary btn-flat margin">Save</button>
-						                	<button class="btn btn-warning btn-flat margin">Reset</button>
-						                	<button class="btn btn-default btn-flat margin">Back</button>
-						      	 		</div>
-		            			</div>
-					        </div>
-				      </div>
-			    </div>
-		 </div>
-	</section>
 </div>
+
 <script>
 	$(function () {
 	    //Flat red color scheme for iCheck

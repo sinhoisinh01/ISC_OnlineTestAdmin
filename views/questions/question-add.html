@@ -28,7 +28,7 @@
                 </br>
                 </br>
                 <select class="form-control" id="question-type-selector" ng-model="answerType" ng-change="createQuestionByType()">
-                  <option selected="selected" disabled="disabled">Choose Question Type</option>
+                  <option value="default">Choose Question Type</option>
                   <option value="mtpc">Multiple choice</option>
                   <option value="tf">True/False</option>
                   <option ng-if="singleOrPassage!='p'" value="text">Text in the blank</option>
