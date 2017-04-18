@@ -65,15 +65,15 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/questions/add/questions-mtpc", {
 			templateUrl : "views/questions/questions-mtpc.html",
-			controller : "QuestionsMTPCController"
+			controller : "QuestionsController"
 		})
 		.when("/questions/add/questions-tfp", {
 			templateUrl : "views/questions/question-MTTF.html",
-			controller : "QuestionsMTPCController"
+			controller : "QuestionsController"
 		})
 		.when("/questions/add/questions-mtpcp", {
 			templateUrl : "views/questions/questions-mtpcp.html",
-			controller : "QuestionsMTPCController"
+			controller : "QuestionsController"
 		})
 		.when("/questions/add/questions-text", {
 			templateUrl : "views/questions/text.html",
@@ -81,22 +81,22 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/tests",{
 			templateUrl : "views/tests/tests-index.html",
-			controller : "TestController"
+			controller : "testCtrl"
 		})
 		.when("/tests/add",{
 			templateUrl: "views/tests/tests-add.html",
-			controller: "TestController"
+			controller: "testCtrl"
 		})
 		.when("/tests/edit",{
 			templateUrl: "views/tests/tests-edit.html",
-			controller: "TestController"
+			controller: "testCtrl"
 		})
 		.when("/tests/:id",{
 			templateUrl: "views/tests/tests-detail.html",
-			controller: "TestDetailController"
+			controller: "testDetailCtrl"
 		})
 		.when("/tests/delete",{
-			controller: "TestController"
+			controller: "testCtrl"
 		})
 		.when("/subjects",{
 			templateUrl: "views/subjects/subjects.html",
