@@ -101,7 +101,12 @@ app.config(function($locationProvider,$routeProvider) {
 		.when("/subjects",{
 			templateUrl: "views/subjects/subjects.html",
 			controller: "SubjectsController"
+		})
+		.when("/login",{
+			templateUrl: "views/login.html",
+			controller: ""
 		});
+
 		/*.when("/calendar", {
 			templateUrl: "views/calendar.html"
 		})
