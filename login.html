@@ -24,8 +24,8 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
+<body class="hold-transition login-page" ng-app="myApp">
+<div class="login-box" ng-controller = "loginController">
   <div class="login-logo">
     <a href="index.html"><b>ISC</b>Test</a>
   </div>
@@ -35,11 +35,11 @@
 
     <form action="#" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Username or Email">
+        <input type="text" class="form-control" placeholder="Username or Email" ng-model = "userid">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" placeholder="Password" ng-model = "password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -52,7 +52,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <a href="index.html" type="button" class="btn btn-primary btn-block btn-flat">Sign In</a>
+          <a type="button" class="btn btn-primary btn-block btn-flat" ng-click="login()">Sign In</a>
         </div>
         <!-- /.col -->
       </div>
@@ -71,6 +71,16 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="plugins/iCheck/icheck.min.js"></script>
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/angular-cookies.min.js"></script>
+<script src="scripts/login.js"></script>
+<script src="scripts/factories/login-factory.js"></script>
+<script src="scripts/controllers/loginController.js"></script>
+
+
 <script>
   $(function () {
     $('input').iCheck({

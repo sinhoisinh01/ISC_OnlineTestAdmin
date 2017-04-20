@@ -1,4 +1,4 @@
-var app = angular.module('onlineTestAdmin', ['ngRoute','datatables']);
+var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ngCookies']);
 app.config(function($locationProvider,$routeProvider) {
 		//$locationProvider.html5Mode(true);
 		$routeProvider
