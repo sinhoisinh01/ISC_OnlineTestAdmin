@@ -22,15 +22,15 @@
                 </label>
                 <label class="radio-inline">
                   <input type="radio" name="singleOrPassage"
-                   ng-model="singleOrPassage" value="p">
+                   ng-model="singleOrPassage" value="-passage">
                   Passage Questions
                 </label>
                 </br>
                 </br>
                 <select class="form-control" id="question-type-selector" ng-model="answerType" ng-change="createQuestionByType()">
                   <option value="default">Choose Question Type</option>
-                  <option value="mtpc">Multiple choice</option>
-                  <option value="tf">True/False</option>
+                  <option value="multiple-choice">Multiple choice</option>
+                  <option value="true-false">True/False</option>
                   <option ng-if="singleOrPassage!='p'" value="text">Text in the blank</option>
                 </select>
               </div>

@@ -22,7 +22,7 @@
             <tbody>
               <tr data-ng-repeat="question in questions">
                 <td data-ng-bind="($index+1)"></td>
-                <td><a href="#!/questions/{{question.id}}" data-ng-bind="question.content"></a></td>
+                <td><a href="#!/question/get/{{question.id}}" data-ng-bind="question.content"></a></td>
                 <td data-ng-bind="question.level"></td>
                 <td data-ng-bind="question.type"></td>
                 <td class="admin-options">

@@ -1,4 +1,4 @@
-app.controller("QuestionsController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
+app.controller("QuestionController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
   $scope.question = null;
   $scope.answerType = 'default';
   $scope.answerTypeFileName = null;
@@ -66,8 +66,8 @@ app.controller("QuestionsController",function($scope,$http,$routeParams,$route,D
   }
   $scope.createQuestionByType = function() {
     if( $scope.answerType ) {
-      $scope.answerTypeFileName = 'questions-' + ($scope.answerType + $scope.singleOrPassage).toUpperCase();
-      $scope.answerTypeUrl = "./views/questions/" + $scope.answerTypeFileName + ".html";
+      $scope.answerTypeFileName = ($scope.answerType + $scope.singleOrPassage);
+      $scope.answerTypeUrl = "./views/question/add-question/" + $scope.answerTypeFileName + ".html";
       console.log($scope.answerTypeUrl);
     }
     else {

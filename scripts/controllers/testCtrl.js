@@ -1,5 +1,5 @@
 //Hong
-app.controller("testCtrl", function($scope,$http,$route,DTOptionsBuilder) {
+app.controller("TestController", function($scope,$http,$route,DTOptionsBuilder) {
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
@@ -83,7 +83,7 @@ app.controller("testCtrl", function($scope,$http,$route,DTOptionsBuilder) {
 	];
 });
 
-app.controller("testDetailCtrl", function($scope,$http,$route,DTOptionsBuilder) {
+app.controller("TestDetailController", function($scope,$http,$route,DTOptionsBuilder) {
 	$scope.Exam_Takers = [
 		{
 			EXAT_ID : 1,

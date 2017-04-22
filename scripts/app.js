@@ -1,126 +1,117 @@
 var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ngCookies']);
 app.config(function($locationProvider,$routeProvider) {
 		//$locationProvider.html5Mode(true);
+		/*
+			Convention:
+			- get all( plural) / E.g: questions
+			- get by id / E.g: question/get/:id
+			- add / E.g: question/add
+			- edit / E.g: question/edit
+			- delete / E.g: question/delete
+			...
+		*/
 		$routeProvider
 		.when("/", {
 			templateUrl: "views/index.html"
 		})
+
 		.when("/users", {
-			templateUrl: "views/user/usermanager.html",
+			templateUrl: "views/user/index.html",
 			controller: "UserController"
 		})
-		.when("/users/add", {
-			templateUrl: "views/user/adduser.html",
+		.when("/user/add", {
+			templateUrl: "views/user/add.html",
 			controller: "UserController"
 		})
-		.when("/users/edit", {
-			templateUrl: "views/user/edituser.html",
+		.when("/user/edit", {
+			templateUrl: "views/user/edit.html",
 			controller: "UserController"
 		})
+
 		.when("/subjects", {
-			templateUrl: "views/subjects/subjects.html",
-			controller: "SubjectsController"
+			templateUrl: "views/subject/index.html",
+			controller: "SubjectController"
 		})
-		.when("/addsubject", {
-			templateUrl: "views/subjects/subjectAdd.html",
-			controller: "SubjectsController"
+		.when("/subject/add", {
+			templateUrl: "views/subject/add.html",
+			controller: "SubjectController"
 		})
+
 		.when("/parts",{
-			templateUrl : "views/Parts/index.html",
+			templateUrl : "views/part/index.html",
 			controller : "partsController"
 		})
-		.when("/updateParts",{
-			templateUrl : "views/Parts/updateParts.html",
+		.when("/part/add",{
+			templateUrl : "views/part/add.html",
 			controller : "partsController"
 		})
-		.when("/deleteParts",{
+		.when("/part/edit",{
+			templateUrl : "views/part/edit.html",
 			controller : "partsController"
 		})
-		.when("/addParts",{
-			templateUrl : "views/Parts/addParts.html",
+		.when("/part/delete",{
 			controller : "partsController"
 		})
+
 		.when("/questions",{
-			templateUrl: "views/questions/questions-index.html",
-			controller: "QuestionsController"
+			templateUrl: "views/question/index.html",
+			controller: "QuestionController"
 		})
-		.when("/questions/add",{
-			templateUrl: "views/questions/question-add.html",
-			controller: "QuestionsController"
+		.when("/question/get/:id",{
+			templateUrl: "views/question/detail.html",
+			controller: "QuestionController"
 		})
-		.when("/questions/edit",{
-			templateUrl: "views/questions/question-edit.html",
-			controller: "QuestionsController"
+		.when("/question/add",{
+			templateUrl: "views/question/add.html",
+			controller: "QuestionController"
 		})
-		.when("/questions/:id",{
-			templateUrl: "views/questions/question-detail.html",
-			controller: "QuestionsController"
+		.when("/question/add/trueFalse", {
+			templateUrl : "views/question/add-question/true-false.html",
+			controller : "QuestionController"
 		})
-		.when("/questions/delete",{
-			controller: "QuestionsController"
+		.when("/question/add/trueFalsePassage", {
+			templateUrl : "views/question/add-question/true-false-passage.html",
+			controller : "QuestionController"
 		})
-		.when("/questions/add/questions-tf", {
-			templateUrl : "views/questions/questions-tf.html",
-			controller : "QuestionsTFController"
+		.when("/question/add/multipleChoice", {
+			templateUrl : "views/question/add-question/multiple-choice.html",
+			controller : "QuestionController"
 		})
-		.when("/questions/add/questions-mtpc", {
-			templateUrl : "views/questions/questions-mtpc.html",
-			controller : "QuestionsController"
+		.when("/question/add/multipleChoicePassage", {
+			templateUrl : "views/question/add-question/multiple-choice-passage.html",
+			controller : "QuestionController"
 		})
-		.when("/questions/add/questions-tfp", {
-			templateUrl : "views/questions/question-MTTF.html",
-			controller : "QuestionsController"
-		})
-		.when("/questions/add/questions-mtpcp", {
-			templateUrl : "views/questions/questions-mtpcp.html",
-			controller : "QuestionsController"
-		})
-		.when("/questions/add/questions-text", {
-			templateUrl : "views/questions/text.html",
+		.when("/question/add/text", {
+			templateUrl : "views/question/add-question/text.html",
 			controller : "TextController"
 		})
+		.when("/question/edit",{
+			templateUrl: "views/question/edit.html",
+			controller: "QuestionsController"
+		})
+		.when("/question/delete",{
+			controller: "QuestionController"
+		})
+		
 		.when("/tests",{
-			templateUrl : "views/tests/tests-index.html",
-			controller : "testCtrl"
+			templateUrl : "views/test/index.html",
+			controller : "TestController"
 		})
-		.when("/tests/add",{
-			templateUrl: "views/tests/tests-add.html",
-			controller: "testCtrl"
+		.when("/test/get/:id",{
+			templateUrl: "views/test/detail.html",
+			controller: "TestDetailController"
 		})
-		.when("/tests/edit",{
-			templateUrl: "views/tests/tests-edit.html",
-			controller: "testCtrl"
+		.when("/test/add",{
+			templateUrl: "views/test/add.html",
+			controller: "TestController"
 		})
-		.when("/tests/:id",{
-			templateUrl: "views/tests/tests-detail.html",
-			controller: "testDetailCtrl"
+		.when("/test/edit",{
+			templateUrl: "views/test/edit.html",
+			controller: "TestController"
 		})
-		.when("/tests/delete",{
-			controller: "testCtrl"
+		.when("/test/delete",{
+			controller: "TestController"
 		})
-		.when("/subjects",{
-			templateUrl: "views/subjects/subjects.html",
-			controller: "SubjectsController"
-		});
-
-		/*.when("/calendar", {
-			templateUrl: "views/calendar.html"
-		})
-		.when("/stats", {
-			templateUrl: "views/stats.html"
-		})
-		.when("/tables", {
-			templateUrl: "views/tables.html"
-		})
-		.when("/buttons", {
-			templateUrl: "views/buttons.html"
-		})
-		.when("/editors", {
-			templateUrl: "views/editors.html"
-		})
-		.when("/forms", {
-			templateUrl: "views/forms.html"
-		})*/
 	});
 
 app.run(initDT);

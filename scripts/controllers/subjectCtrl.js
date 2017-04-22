@@ -1,4 +1,4 @@
-app.controller('SubjectsController', function($scope, DTOptionsBuilder){
+app.controller('SubjectController', function($scope, DTOptionsBuilder){
 	// Subjects only have children, not grandchildren.
 	subjects = 
 	[
