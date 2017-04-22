@@ -1,5 +1,14 @@
-app.controller('SubjectController', function($scope, DTOptionsBuilder){
+app.controller('SubjectController', function($scope, $route, DTOptionsBuilder){
 	// Subjects only have children, not grandchildren.
+	$scope.name = "subject";
+	$scope.isHomePage = false;
+	$scope.isAddPage = false;
+	$scope.isEditPage = false;
+	if( $route.current.loadedTemplateUrl.includes("index.html") )
+		$scope.isHomePage = true;
+	else if( $route.current.loadedTemplateUrl.includes("add.html") )
+		$scope.isAddPage = true;
+	
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);

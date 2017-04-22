@@ -1,47 +1,32 @@
-<section class="content-header">
-  <h1>Add new question</h1>
-  <ol class="breadcrumb">
-    <li><a href="#!/questions"><i class="fa fa-graduation-cap"></i>Questions</a></li>
-    <li class="active">Add question</li>
-  </ol>
-</section>
+<ng-include src="'includes/content-header.html'"></ng-include>
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      <div class="box">
-        <div class="box-body">
-          <div class="row">
-            <div class="col-xs-6">
-              <div class="form-group">
-                <label>Question Type</label>
-                </br>
-                <label class="radio-inline">
-                  <input type="radio" name="singleOrPassage"
-                   value="" ng-model="singleOrPassage">
-                  Single Question
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="singleOrPassage"
-                   ng-model="singleOrPassage" value="-passage">
-                  Passage Questions
-                </label>
-                </br>
-                </br>
-                <select class="form-control" id="question-type-selector" ng-model="answerType" ng-change="createQuestionByType()">
-                  <option value="default">Choose Question Type</option>
-                  <option value="multiple-choice">Multiple choice</option>
-                  <option value="true-false">True/False</option>
-                  <option ng-if="singleOrPassage!='p'" value="text">Text in the blank</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="row" ng-if="answerTypeFileName">
-            <div class="col-xs-12" style="margin-top:15px;">
-              <div ng-include="answerTypeUrl"></div>
-            </div>
-          </div>
+      <div class="form-group">
+        <label>Question Type</label>
+        </br>
+        <label class="radio-inline">
+          <input type="radio" name="singleOrPassage"
+           value="" ng-model="singleOrPassage">
+          Single Question
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="singleOrPassage"
+           ng-model="singleOrPassage" value="-passage">
+          Passage Questions
+        </label>
+        </br>
+        </br>
+        <select class="form-control" id="question-type-selector" ng-model="answerType" ng-change="createQuestionByType()">
+          <option value="default">Choose Question Type</option>
+          <option value="multiple-choice">Multiple choice</option>
+          <option value="true-false">True/False</option>
+          <option ng-if="singleOrPassage!='p'" value="text">Text in the blank</option>
+        </select>
+      </div>
+      <div class="row" ng-if="answerTypeFileName">
+        <div class="col-xs-12" style="margin-top:15px;">
+          <div ng-include="answerTypeUrl"></div>
         </div>
       </div>
     </div>
@@ -53,3 +38,4 @@
     $("#question-type-selector").select2();
   });
 </script>
+

@@ -1,4 +1,13 @@
 app.controller('UserController', function($scope,$http,$route,DTOptionsBuilder) {
+	$scope.name = "user";
+	$scope.isHomePage = false;
+	$scope.isAddPage = false;
+	$scope.isEditPage = false;
+	if( $route.current.loadedTemplateUrl.includes("index.html") )
+		$scope.isHomePage = true;
+	else if( $route.current.loadedTemplateUrl.includes("add.html") )
+		$scope.isAddPage = true;
+
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
@@ -7,4 +16,6 @@ app.controller('UserController', function($scope,$http,$route,DTOptionsBuilder) 
 	{'ID': '0913', 'password': '****', 'firstName' : 'B', 'lastName' : 'Nguyen Van' , 'dob' : '2/2/2002', 'gender' : 'Female', 'email' : 'bnv@gmail.com', 'phone' : '0913222'},
 	{'ID': '0127', 'password': '****', 'firstName' : 'C', 'lastName' : 'Nguyen Van' , 'dob' : '3/3/2003', 'gender' : 'Male', 'email' : 'cnv@gmail.com', 'phone' : '0127333'}
 	];
+
+	
 });

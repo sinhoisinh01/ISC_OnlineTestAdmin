@@ -1,4 +1,13 @@
 app.controller("QuestionController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
+  $scope.name = "question";
+  $scope.isHomePage = false;
+  $scope.isAddPage = false;
+  $scope.isEditPage = false;
+  if( $route.current.loadedTemplateUrl.includes("index.html") )
+    $scope.isHomePage = true;
+  else if( $route.current.loadedTemplateUrl.includes("add.html") )
+    $scope.isAddPage = true;
+  
   $scope.question = null;
   $scope.answerType = 'default';
   $scope.answerTypeFileName = null;

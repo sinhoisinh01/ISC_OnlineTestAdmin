@@ -1,5 +1,14 @@
 //Hong
 app.controller("TestController", function($scope,$http,$route,DTOptionsBuilder) {
+	$scope.name ="test";
+	$scope.isHomePage = false;
+	$scope.isAddPage = false;
+	$scope.isEditPage = false;
+	if( $route.current.loadedTemplateUrl.includes("index.html") )
+		$scope.isHomePage = true;
+	else if( $route.current.loadedTemplateUrl.includes("add.html") )
+		$scope.isAddPage = true;
+	
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
