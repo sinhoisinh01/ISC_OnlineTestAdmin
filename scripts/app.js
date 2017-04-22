@@ -1,4 +1,4 @@
-var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ngCookies']);
+var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap','ngCookies']);
 app.config(function($locationProvider,$routeProvider) {
 		//$locationProvider.html5Mode(true);
 		/*
@@ -30,10 +30,6 @@ app.config(function($locationProvider,$routeProvider) {
 
 		.when("/subjects", {
 			templateUrl: "views/subject/index.html",
-			controller: "SubjectController"
-		})
-		.when("/subject/add", {
-			templateUrl: "views/subject/add.html",
 			controller: "SubjectController"
 		})
 

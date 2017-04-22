@@ -1,4 +1,4 @@
-app.controller('SubjectController', function($scope, $route, DTOptionsBuilder){
+app.controller('SubjectController', function($scope, $route, DTOptionsBuilder, $uibModal){
 	// Subjects only have children, not grandchildren.
 	$scope.name = "subject";
 	$scope.isHomePage = false;
@@ -48,4 +48,12 @@ app.controller('SubjectController', function($scope, $route, DTOptionsBuilder){
     }
     //console.log(array);
 	$scope.subjects = array;
+
+	$scope.addSubject = function(){
+		$uibModal.open({
+            templateUrl: 'views/subject/add.html',
+            scope: $scope,
+            size: 'md'
+        });
+	}
 });
