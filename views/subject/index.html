@@ -8,17 +8,12 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Subjects List</h3>
-        </div>
-        <div class="box-body">
-          <table id="subjects-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
+        <table id="subjects-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
             <thead>
               <tr>
                 <th>Order</th>
                 <th>Name</th>
-                <th class="admin-option">Options</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -28,21 +23,21 @@
                   <span ng-if="subject.level === 2">--</span>
                   {{subject.subname}}
                 </td>
-                <td class="admin-options">
-                  <a class="btn btn-app"><i class="fa fa-wrench"></i>Update</a>
-                  <a class="btn btn-app"><i class="fa fa-trash"></i>Delete</a>
+                <td>
+                  <a class="btn"><i class="fa fa-wrench"></i></a>
+                  <a class="btn"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
-                <th>Order</th>
-                <th>Name</th>
+                <td>Order</td>
+                <td>Name</td>
+                <td></td>
               </tr>
             </tfoot>
-          </table>
-        </div>
-      </div>
+        </table>
     </div>
   </div>
+
 </section>

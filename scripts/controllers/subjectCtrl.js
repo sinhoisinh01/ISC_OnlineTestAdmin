@@ -1,5 +1,8 @@
 app.controller('SubjectController', function($scope, DTOptionsBuilder){
 	// Subjects only have children, not grandchildren.
+	$scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withDisplayLength(10)
+        .withOption('bLengthChange', false);
 	subjects = 
 	[
 		{

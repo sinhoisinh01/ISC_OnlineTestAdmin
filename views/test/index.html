@@ -1,64 +1,70 @@
 <!--Hong-->
-<div class="container-fluid">
-	<section class="content-header">
-      <h1>
-        Tests
-        <button class="btn btn-default" type="button">Add Test</button>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Tests</li>
-        <li class="active">All Tests</li>
-      </ol>
-    </section>
-    <!--main content-->
-	<section class="content">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="box">
-					<h3 class="box-title" style="font-size: 20px; padding-left: 10px;">List Of Tests</h3>
-					<!--box header-->
-					<div class="box-body">
-						<table id="questions-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
-							<thead>
-							<tr>
-								<th>#</th>
-								<th>Test Code</th>
-								<th>Title</th>
-								<th>Version</th>
-								<th>Date</th>
-								<th>Test Time</th>
-								<th>Test Language</th>
-								<th>Max Score</th>
-								<th>Note</th>
-								<th class="admin-option">Options</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat = "test in dataTest">
-								<td ng-bind="$index + 1"></td>
-								<td><a href="#!/test/get/{{$index}}">{{test.TES_CODE}}</a></td>
-								<td ng-bind="test.TESTITLE"></td>
-								<td ng-bind="test.TESVERSION"></td>
-								<td ng-bind="test.TESDATE"></td>
-								<td ng-bind="test.TESTIME"></td>
-								<td ng-bind="test.TESLANGUAGE"></td>
-								<td ng-bind="test.TESMAX_SCORE"></td>
-								<td ng-bind="test.TESNOTE"></td>
-								<th>
-									<a class="btn btn-app btn-default" href="#!/updateParts">
-			  		                	<i class="fa fa-wrench"></i> Update
-			  		              	</a>
-			  		              	<a class="btn btn-app btn-default" ng-click='delete(test.TES_ID)'>
-			  		                	<i class="fa fa-trash"></i> Delete
-			  		              	</a>
-								</th>
-							</tr>
-						</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+<section class="content-header">
+  <h1>
+    Tests
+    <button class="btn btn-default" type="button">Add Test</button>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li>Tests</li>
+    <li class="active">All Tests</li>
+  </ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<table id="questions-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Test Code</th>
+						<th>Title</th>
+						<th>Version</th>
+						<th>Date</th>
+						<th>Test Time</th>
+						<th>Test Language</th>
+						<th>Max Score</th>
+						<th>Note</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "test in dataTest">
+						<td ng-bind="$index + 1"></td>
+						<td><a href="#!/test/get/{{$index}}">{{test.TES_CODE}}</a></td>
+						<td ng-bind="test.TESTITLE"></td>
+						<td ng-bind="test.TESVERSION"></td>
+						<td ng-bind="test.TESDATE"></td>
+						<td ng-bind="test.TESTIME"></td>
+						<td ng-bind="test.TESLANGUAGE"></td>
+						<td ng-bind="test.TESMAX_SCORE"></td>
+						<td ng-bind="test.TESNOTE"></td>
+						<td>
+							<a class="btn" href="#!/test/edit">
+	  		                	<i class="fa fa-wrench"></i> 
+	  		              	</a>
+	  		              	<a class="btn" ng-click='delete(test.TES_ID)'>
+	  		                	<i class="fa fa-trash"></i>
+	  		              	</a>
+						</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>#</td>
+						<td>Test Code</td>
+						<td>Title</td>
+						<td>Version</td>
+						<td>Date</td>
+						<td>Test Time</td>
+						<td>Test Language</td>
+						<td>Max Score</td>
+						<td>Note</td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
 		</div>
-	</section>
-</div>
+	</div>
+
+</section>

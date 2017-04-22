@@ -1,4 +1,4 @@
-app.controller("partsController",function($scope,$http,$route,DTOptionsBuilder){
+app.controller("PartController",function($scope,$http,$route,DTOptionsBuilder){
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);

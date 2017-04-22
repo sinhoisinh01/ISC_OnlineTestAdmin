@@ -1,107 +1,102 @@
 <!DOCTYPE html>
 <html ng-app="onlineTestAdmin">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ISC Test | Dashboard</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="css/ionicons.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="plugins/iCheck/all.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="plugins/select2/select2.min.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <!-- DataTable -->
-  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
-  <!--CK Editor-->
-  <link rel="stylesheet" type="text/css" href="plugins/ckeditor2/contents.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="styles/styles.css" media="all" />
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+	<head>
+	  <meta charset="utf-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <title>ISC Online Test | Dashboard</title>
+	  <!-- Tell the browser to be responsive to screen width -->
+	  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	  <!-- Bootstrap 3.3.6 -->
+	  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	  <!-- Font Awesome -->
+	  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	  <!-- Ionicons -->
+	  <link rel="stylesheet" href="assets/css/ionicons.min.css">
+	  <!-- iCheck -->
+	  <link rel="stylesheet" href="assets/plugins/iCheck/flat/blue.css">
+	  <!-- iCheck for checkboxes and radio inputs -->
+	  <link rel="stylesheet" href="assets/plugins/iCheck/all.css">
+	  <!-- Select2 -->
+	  <link rel="stylesheet" href="assets/plugins/select2/select2.min.css">
+	  <!-- Date Picker -->
+	  <link rel="stylesheet" href="assets/plugins/datepicker/datepicker3.css">
+	  <!-- Daterange picker -->
+	  <link rel="stylesheet" href="assets/plugins/daterangepicker/daterangepicker.css">
+	  <!-- DataTable -->
+	  <link rel="stylesheet" href="assets/plugins/datatables/dataTables.bootstrap.css" />
+	  <!--CK Editor-->
+	  <link rel="stylesheet" type="text/css" href="assets/plugins/ckeditor2/contents.css">
+	  <!-- Theme style -->
+	  <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+	  <!-- AdminLTE Skins. Choose a skin from the css/skins
+	       folder instead of downloading all of them to reduce the load. -->
+	  <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
+	  <link rel="stylesheet" href="assets/css/main.css" media="all" />
+	  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	  <!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	  <![endif]-->
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
 
-  <header class="main-header" ng-include="'includes/header.html'"></header>
-  <aside class="main-sidebar" ng-include="'includes/main-sidebar.html'"></aside>
-  <main class="content-wrapper" ng-view></main>
-  <footer class="main-footer" ng-include="'includes/footer.html'"></footer>
+		  <header class="main-header" ng-include="'includes/header.html'"></header>
+		  <aside class="main-sidebar" ng-include="'includes/main-sidebar.html'"></aside>
+		  <main class="content-wrapper" ng-view></main>
+		  <footer class="main-footer" ng-include="'includes/footer.html'"></footer>
 
-</div>
-<!-- ./wrapper -->
+		</div>
+		<!-- ./wrapper -->
 
-<!-- jQuery 2.2.3 -->
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<!-- Bootstrap 3.3.6 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="plugins/select2/select2.full.min.js"></script>
-<!-- daterangepicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
-<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Slimscroll -->
-<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
-<!-- DataTable -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
-<!--CK Editor-->
-<script src="plugins/ckeditor2/ckeditor.js"></script>
-<script src="plugins/ckeditor2/adapters/jquery.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="plugins/iCheck/icheck.min.js"></script>
-<!-- Angular JS -->
-<script src="js/angular.min.js"></script>
-<script src="js/angular-datatables.min.js"></script>
-<script src="js/angular-route.min.js"></script>
-<script src="js/angular-route.js"></script>
-<script src="js/angular-cookies.min.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/loginCtrl.js"></script>
-<script src="scripts/controllers/partCtrl.js"></script>
-<script src="scripts/controllers/loginCtrl.js"></script>
-<script src="scripts/controllers/questionCtrl.js"></script>
-<script src="scripts/controllers/add-question/multipleChoiceCtrl.js"></script>
-<script src="scripts/controllers/add-question/textCtrl.js"></script>
-<script src="scripts/controllers/add-question/trueFalseCtrl.js"></script>
-<script src="scripts/controllers/subjectCtrl.js"></script>
-<script src="scripts/controllers/testCtrl.js"></script>
-<script src="scripts/controllers/userCtrl.js"></script>
+		<!-- jQuery 2.2.3 -->
+		<script src="assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<!-- jQuery UI 1.11.4 -->
+		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+		<script>
+		  $.widget.bridge('uibutton', $.ui.button);
+		</script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="assets/js/bootstrap.min.js"></script>
+		<!-- Select2 -->
+		<script src="assets/plugins/select2/select2.full.min.js"></script>
+		<!-- daterangepicker -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+		<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+		<!-- datepicker -->
+		<script src="assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+		<!-- FastClick -->
+		<script src="assets/plugins/fastclick/fastclick.js"></script>
+		<!-- DataTable -->
+		<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+		<!-- AdminLTE App -->
+		<script src="assets/dist/js/app.min.js"></script>
+		<!--CK Editor-->
+		<script src="assets/plugins/ckeditor2/ckeditor.js"></script>
+		<script src="assets/plugins/ckeditor2/adapters/jquery.js"></script>
+		<!-- iCheck 1.0.1 -->
+		<script src="assets/plugins/iCheck/icheck.min.js"></script>
 
-</body>
+		<!-- Angular JS -->
+		<script src="bower_components/angular.min.js"></script>
+		<script src="bower_components/angular-datatables.min.js"></script>
+		<script src="bower_components/angular-route.min.js"></script>
+		<script src="bower_components/angular-route.js"></script>
+		<script src="bower_components/angular-cookies.min.js"></script>
+		<script src="scripts/app.js"></script>
+		<script src="scripts/controllers/loginCtrl.js"></script>
+		<script src="scripts/controllers/partCtrl.js"></script>
+		<script src="scripts/controllers/loginCtrl.js"></script>
+		<script src="scripts/controllers/questionCtrl.js"></script>
+		<script src="scripts/controllers/add-question/multipleChoiceCtrl.js"></script>
+		<script src="scripts/controllers/add-question/textCtrl.js"></script>
+		<script src="scripts/controllers/add-question/trueFalseCtrl.js"></script>
+		<script src="scripts/controllers/subjectCtrl.js"></script>
+		<script src="scripts/controllers/testCtrl.js"></script>
+		<script src="scripts/controllers/userCtrl.js"></script>
+
+	</body>
 </html>
