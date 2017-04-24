@@ -1,0 +1,47 @@
+<!--
+  Author  : Phan Tiến Hưng
+  Page    : Show all question
+-->
+<section class="content-header">
+  <h1>Questions<small><a class="btn btn-default" href="#!/questions/add">Add question</a></small></h1>
+  <ol class="breadcrumb">
+    <li><a><i class="fa fa-graduation-cap"></i>Questions</a></li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-body table-responsive">
+          <table id="questions-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Content</th>
+                <th>Level</th>
+                <th>Type</th>
+                <th class="admin-option">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="question in questions">
+                <td data-ng-bind="($index+1)"></td>
+                <td><a href="#!/questions/{{question.id}}" data-ng-bind="question.content"></a></td>
+                <td data-ng-bind="question.level"></td>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
+                <td data-ng-bind="question.type"></td>
+                <td class="admin-options">
+                  <a class="btn btn-app"><i class="fa fa-wrench"></i>Update</a>
+                  <a class="btn btn-app"><i class="fa fa-trash"></i>Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

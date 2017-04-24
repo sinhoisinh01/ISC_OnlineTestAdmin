@@ -1,0 +1,56 @@
+<!--
+  Author  : Phan Tiến Hưng
+  Page    : Add question type fill the blank 
+-->
+<div class="box box-info">
+	<div class="box-header">
+		<h2>Text</h2>
+		<!-- tools box -->
+		<div class="pull-right box-tools">
+			<button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+			<i class="fa fa-minus"></i></button>
+		</div>
+		<!-- /. tools -->
+	</div>
+	<!-- /.box-header -->
+	<div class="box-body pad">
+		<form>
+			<textarea name="textEditor" id="textEditor" rows="10" cols="80">
+			2 + 3 = ?
+			</textarea>
+			<br>
+			<div class="input-group">
+             	<input class="form-control" type="number" min="0" name="score" placeholder="Enter score">
+            </div>
+            <br>
+		  		<p><label>Answer Key(s):</label></p>
+			<table id="answers" class="table">
+				<tbody>
+					<tr>
+						<td><label>1</label></td>
+						<td><input type="text" class="form-control" placeholder="Answer 1"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-default bg-olive margin" ng-click="addAnswer()">
+		  			<i class="fa fa-fw fa-plus-square"></i> Add answer
+		  		</button>
+		  		<button class="btn btn-default bg-olive margin" ng-click="removeAnswer()">
+  				<i class="fa fa-fw fa-times-circle"></i> Remove answer
+  			</button>
+		</form>
+	</div>
+	<!-- /.box-body -->
+</div>
+<!-- /.box-info -->
+<script>
+	$(function () {
+	    //Flat red color scheme for iCheck
+	    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+	      checkboxClass: 'icheckbox_flat-green',
+	      radioClass: 'iradio_flat-green'
+	    });
+
+	});
+	CKEDITOR.replace( 'textEditor' );
+</script>
