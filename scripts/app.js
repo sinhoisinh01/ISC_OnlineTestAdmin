@@ -13,9 +13,8 @@ app.config(function($locationProvider,$routeProvider) {
 		*/
 		$routeProvider
 		.when("/", {
-			templateUrl: "views/index.html"
+			templateUrl: "views/index.html",
 		})
-
 		.when("/users", {
 			templateUrl: "views/user/index.html",
 			controller: "UserController"
@@ -89,7 +88,7 @@ app.config(function($locationProvider,$routeProvider) {
 		.when("/question/delete",{
 			controller: "QuestionController"
 		})
-		
+
 		.when("/tests",{
 			templateUrl : "views/test/index.html",
 			controller : "TestController"
@@ -111,10 +110,19 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 	});
 
-app.run(initDT);
+app.run(function($rootScope,LoginFactory,$location){
+	$rootScope.baseUrl = window.location.original + "/ISC_OnlineTestAdmin";
+	$rootScope.$on('$routeChangeStart', function (event, next) {
+        if (!LoginFactory.isLogined()) {
+						event.preventDefault();
+						window.location.href= "login.html";
+        }
+
+    });
+});
 
 function initDT(DTLoadingTemplate){
-	
+
 	// DTLoadingTemplate.setLoadingTemplate("<img src='./images/Preloader_2.gif' />");
 	// DTDefaultOptions.setLoadingTemplate("<img src='./images/Preloader_2.gif' />");
 }
