@@ -18,7 +18,7 @@ app.config(function($locationProvider,$routeProvider) {
 app.run(function($rootScope,LoginFactory,$location){
 
 	$rootScope.$on('$routeChangeStart', function (event, next) {
-        LoginFactory.login();
+        //LoginFactory.login();
         if (LoginFactory.isLogined()) {
 						event.preventDefault();
 						window.location.href= "./";

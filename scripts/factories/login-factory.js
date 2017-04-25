@@ -1,13 +1,35 @@
+// Phan Tiến Hưng
+// Login Factory
 app.factory("LoginFactory", function($http,$cookies){
 	return {
-		login : function(userName,password){
-			// var param = {
-			// 	"userName": userName,
-			// 	"password": password
-			// };
-			// var url = "http://www.saigontech.edu.vn/lib-api/login.php";
-			// return $http.post(url,param);
-			$cookies.put("user","yoyoyo");
+		login : function(username,password){
+				var url = baseUrl + "oauth/token?grant_type=password&username=" + username + "&password=" + password;
+				var request = {
+							method: 'POST',
+	            url: url,
+	            headers: {
+	                "Authorization": "Basic " + btoa("my-trusted-client:secret"),
+	                "Accept": "application/json"
+	            }
+						}
+				return $http(request);
+		},
+		refreshToken : function(){
+				var user = $cookies.getObject("user");
+				if(user && user.refresh_token)
+				{
+					var url = baseUrl + "oauth/token?grant_type=refresh_token&refresh_token=" + user.refresh_token;
+					var request = {
+						method : 'POST',
+						url : url,
+						headers:{
+							"Authorization" : "Basic " + btoa("my-trusted-client:secret"),
+							"Accept": "application/json; charset=utf-8"
+						}
+					}
+					return $http(request);
+				}
+				return null;
 		},
 		isLogined: function(){
 			if($cookies.get("user"))
@@ -17,6 +39,5 @@ app.factory("LoginFactory", function($http,$cookies){
 	}
 });
 
-var baseUrl = "http://www.saigontech.edu.vn/";
+var baseUrl = "http://localhost:8800/onlinetest/";
 var urls = {};
-urls.userLogin = baseUrl + "proshop-api/login.php";
