@@ -1,4 +1,4 @@
-app.controller('loginController', function($scope,$cookies,Login){      
+app.controller('LoginController', function($scope,$cookies,LoginFactory){
     $scope.login = function(){
             var userName = $scope.userid;
             var password = $scope.password;
@@ -16,5 +16,4 @@ app.controller('loginController', function($scope,$cookies,Login){
             }
         });
     };
-});                                                               
-
+});
