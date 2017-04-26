@@ -7,6 +7,8 @@ app.factory("userFactory",function($http){
 			return $http.get(url);
 		},
 
+
+
 		findByid : function(id){
 			return $http.get(url + id);
 		},
@@ -24,9 +26,10 @@ app.factory("userFactory",function($http){
 			});
 		},
 
+
+
 		createUser : function(user){
 			var param = user;
-			alert(user.name);
 			return $http.post(url,param);
 		}
 

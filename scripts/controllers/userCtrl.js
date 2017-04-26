@@ -55,7 +55,6 @@ app.controller('UserController', function($scope,$http,$route,$routeParams,DTOpt
 
 	$scope.Create = function(){
 		var CreateUser = {'name' : $scope.nameuser, 'age' : $scope.age, 'salary' : $scope.salary};
-		alert(CreateUser.name);
 		userFactory.createUser(CreateUser).then(function mySucces(response){
 		
 		},function myError(response){}
