@@ -1,20 +1,15 @@
-app.controller('loginController', function($scope,$cookies,Login){      
+app.controller('LoginController', function($scope,$cookies,LoginFactory){
     $scope.login = function(){
             var userName = $scope.userid;
             var password = $scope.password;
-            Login.login(userName,password).then(function(response){
-            if(response.data.errorCode === 1)
-            {
-                alert("Sai ID hoặc Password !!");
-            }
-            else if(response.data.errorCode === 0)
-            {
-                $cookies.put('cookie',response.data.user.accessToken);
-                var cookie = $cookies.get('cookie');
-                var fullName = response.data
-                console.log(cookie);
-            }
-        });
+            LoginFactory.login(userName,password).then(function(response){
+              $cookies.putObject("user",{
+                accessToken : response.data.access_token,
+                refreshToken : response.data.refresh_token
+              });
+            },function(error){
+              console.log(error);
+              location.reload();
+            });
     };
-});                                                               
-
+});

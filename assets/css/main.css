@@ -1,3 +1,6 @@
+html,body,.wrapper{
+	height:100% !important;
+}
 body{
 	margin:0;
 }
@@ -23,6 +26,19 @@ table tfoot td{
 .content-header>h1>small>a.btn,.content-header>h1>small>button.btn{
   margin-top:-10px;
 }
+#add-subject{
+	width: 100%;
+	border: none!important;
+}
+#add-subject td{
+	padding: 5px;
+}
+#add-subject td:first-child{
+	width: 30%;
+}
+#add-subject td:last-child{
+	width: 70%;
+}
 textarea.not-resizable{
   resize:none;
 }
@@ -39,4 +55,3 @@ input[type="search"]{
   text-align: center;
   min-width:45px;
 }
-
