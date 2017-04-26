@@ -41,7 +41,9 @@
 	</head>
 	<body class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
-		  <header class="main-header" ng-include="'includes/header.html'"></header>
+		  <header class="main-header" ng-include="'includes/header.html'" 
+		  		ng-controller="HeaderController">
+		  </header>
 		  <aside class="main-sidebar" ng-include="'includes/main-sidebar.html'"></aside>
 		  <main class="content-wrapper" ng-view></main>
 		  <footer class="main-footer" ng-include="'includes/footer.html'"></footer>
@@ -87,6 +89,8 @@
 		<script src="bower_components/ui-bootstrap-tpls.min.js"></script>
 		<script src="scripts/app.js"></script>
 		<script src="scripts/factories/login-factory.js"></script>
+
+		<script src="scripts/controllers/headerCtrl.js"></script>
 		<script src="scripts/controllers/loginCtrl.js"></script>
 		<script src="scripts/controllers/partCtrl.js"></script>
 		<script src="scripts/controllers/loginCtrl.js"></script>
