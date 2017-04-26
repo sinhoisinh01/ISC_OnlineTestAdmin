@@ -1,0 +1,183 @@
+<!--
+  Author  : Phan Tiến Hưng
+  Page    : Add question type multiple choice passage
+-->
+<div>
+		<div class="box-header" style="background:rgba(0,0,0,0.2);border-bottom:3px solid rgba(0,0,0,0.2)">
+				  <h3 class="box-title">Content Of Questions
+					<small></small>
+				  </h3>
+          <!-- tools box -->
+          <div class="pull-right box-tools">
+            <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+          </div>
+          <!-- /. tools -->
+      </div>
+			<!-- /.box-header -->
+
+			<div class="box-body pad">
+				<form>
+						<textarea name="mtpcpEditor_passage" id="mtpcpEditor-passage" rows="10" cols="80">
+							This is my textarea to be replaced with CKEditor.
+				  </textarea>
+				</form>
+	  <div class="responsive" style="margin-top:20px">
+		<table class="table table-bordered table-hover table-striped">
+		  <thead>
+			<tr style="background:#111111;color:white">
+			  <th colspan="2">Questions</th>
+			  <th>Order</th>
+			  <th>Score</th>
+			  <th>Delete</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <td style="width:5%">1</td>
+			  <td>Câu 1</td>
+			  <td style="width:10%">0</td>
+			  <td style="width:10%">1.0</td>
+			  <td style="width:5%"><button class="btn btn-link"><i class="text-danger  fa fa-remove"></i></button></td>
+			</tr>
+			<tr>
+			  <td style="width:5%">2</td>
+			  <td>Câu 2</td>
+			  <td style="width:10%">0</td>
+			  <td style="width:10%">1.0</td>
+			  <td style="width:5%"><button class="btn btn-link"><i class="text-danger  fa fa-remove"></i></button></td>
+			</tr>
+			<tr>
+			  <td style="width:5%">3</td>
+			  <td>Câu 3</td>
+			  <td style="width:10%">0</td>
+			  <td style="width:10%">1.0</td>
+			  <td style="width:5%"><button class="btn btn-link"><i class="text-danger  fa fa-remove"></i></button></td>
+			</tr>
+		  </tbody>
+		</table>
+	  </div>
+	</div>
+</div>
+   <div class="row">
+     <div class="col-md-12">
+         <div>
+
+             <div class="box-header" style="background:rgba(0,0,0,0.2);border-bottom:3px solid rgba(0,0,0,0.2)">
+                 <h3 class="box-title">New questions
+                   <small></small>
+                 </h3>
+               <!-- tools box -->
+                <div class="pull-right box-tools">
+                  <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i></button>
+                </div>
+                <!-- /. tools -->
+             </div>
+             <!-- /.box-header -->
+             <div class="box-body pad">
+               <form>
+                 <textarea name="mtpcpEditor_question" id="mtpcpEditor-question" rows="10" cols="80">
+                           This is my textarea to be replaced with CKEditor.
+                 </textarea>
+               </form>
+
+                 <div class="col-md-12">
+                   <div class="row">
+                     <div class="col-md-4 col-lg-3">
+                       <button class="btn btn-default btn-flat margin">
+                         <i class="fa fa-fw fa-cloud-upload"></i> Images
+                       </button>
+                       <button class="btn btn-default btn-flat margin">
+                         <i class="glyphicon glyphicon-eye-open"></i> Images
+                       </button>
+                     </div>
+                     <div class="col-md-8 col-lg-5">
+                       <button id="addChoice" class="btn btn-default bg-olive btn-flat margin" ng-click="addChoice()">
+                         <i class="fa fa-fw fa-plus-square"></i> Choice
+                       </button>
+                       <button class="btn btn-default bg-olive btn-flat margin" ng-click="removeChoice()">
+                         <i class="fa fa-fw fa-times-circle"></i> Choice
+                       </button>
+                       <label class="margin">
+                         <input type="checkbox" class="flat-red" checked>
+                         Is Bank
+                       </label>
+                       <label class="margin">
+                         <input type="checkbox" class="flat-red">
+                         Shuffle Choices
+                       </label>
+                     </div>
+                     <div class="col-md-12 col-lg-4">
+                       <div class="row">
+                         <div class="col-md-6 col-lg-7">
+                           <div class="input-group margin">
+                             <span class="input-group-addon">
+                               <label>Column of choice</label>
+                             </span>
+                            <select class="form-control">
+                                 <option>1</option>
+                                 <option>2</option>
+                                 <option>3</option>
+                                 <option>4</option>
+                                 <option>5</option>
+                            </select>
+                          </div>
+                         </div>
+                         <div class="col-md-6 col-lg-5 form-group" style="padding-right: 0px;">
+                           <div class="input-group margin">
+                             <span class="input-group-addon">
+                               <label>Score</label>
+                             </span>
+                             <input class="form-control" type="number" min="0" name="score" placeholder="Score">
+                           </div>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12 margin">
+                    <label>Reference : </label>
+                    <input type="text" name="reference" id="reference" class="form-control">
+                </div>
+
+                <div class="col-md-12 margin">
+                  <label>Choices</label>
+                  <div id="choice">
+                    <div class="input-group">
+                            <span class="input-group-addon">
+                              <input type="checkbox">
+                            </span>
+                            <span class="input-group-addon">
+                              <label>A.</label>
+                            </span>
+                          <input type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button class="btn btn-primary btn-flat margin">Save</button>
+                  <button class="btn btn-warning btn-flat margin">Reset</button>
+                  <button class="btn btn-default btn-flat margin">Back</button>
+                </div>
+                </div>
+               </div>
+             </div>
+         </div>
+       </div>
+  </div>
+</section>
+<script>
+	$(function () {
+	    //Flat red color scheme for iCheck
+	    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+	      checkboxClass: 'icheckbox_flat-green',
+	      radioClass: 'iradio_flat-green'
+	    });
+
+	});
+
+	CKEDITOR.replace( 'mtpcpEditor-passage' );
+  CKEDITOR.replace( 'mtpcpEditor-question' );
+</script>
