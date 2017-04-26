@@ -3,7 +3,13 @@ app.controller('LoginController', function($scope,$cookies,LoginFactory){
             var userName = $scope.userid;
             var password = $scope.password;
             LoginFactory.login(userName,password).then(function(response){
-              console.log(response);
+              $cookies.putObject("user",{
+                accessToken : response.data.access_token,
+                refreshToken : response.data.refresh_token
+              });
+            },function(error){
+              console.log(error);
+              location.reload();
             });
     };
 });

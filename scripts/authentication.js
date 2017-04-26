@@ -1,5 +1,5 @@
 var app = angular.module('Authentication', ['ngRoute','ngCookies']);
-app.config(function($locationProvider,$routeProvider) {
+app.config(function($locationProvider,$routeProvider,$httpProvider,$qProvider) {
 		//$locationProvider.html5Mode(true);
 		/*
 			Convention:
@@ -10,6 +10,9 @@ app.config(function($locationProvider,$routeProvider) {
 			- delete / E.g: question/delete
 			...
 		*/
+		$qProvider.errorOnUnhandledRejections(false);
+		
+
 		$routeProvider
 		.when("/", {
 			controller: "LoginController"
