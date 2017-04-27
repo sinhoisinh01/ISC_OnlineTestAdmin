@@ -41,5 +41,9 @@ app.factory("LoginFactory", function($http, $httpParamSerializer, $cookies){
 	}
 });
 
+<<<<<<< HEAD
+var baseUrl = "http://localhost:8000/onlinetest";
+=======
 var baseUrl = "http://localhost:8181/onlinetest";
+>>>>>>> da000dea3b5784f62c79b2ba9ec31ccdb07812db
 var urls = {};
