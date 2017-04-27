@@ -1,5 +1,6 @@
 var app = angular.module('onlineTestAdmin', ['datatables','ngRoute',,'ngCookies','ui.bootstrap','ui.tree']);
 app.constant("baseURL","http://localhost:8080/api/")
+app.constant("frontendBaseURL","http://127.0.0.1:8887/")
 app.config(function($locationProvider,$routeProvider) {
 		//$locationProvider.html5Mode(true);
 		/*
@@ -23,7 +24,7 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl: "views/user/add.html",
 			controller: "UserController"
 		})
-		.when("/user/edit", {
+		.when("/user/edit/:id", {
 			templateUrl: "views/user/edit.html",
 			controller: "UserController"
 		})

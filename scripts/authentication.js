@@ -1,6 +1,7 @@
 var app = angular.module('Authentication', ['ngRoute','ngCookies']);
-app.config(function($locationProvider,$routeProvider) {
-		//$locationProvider.html5Mode(true);
+app.config(function($locationProvider,$routeProvider,$httpProvider,$qProvider) {
+		$qProvider.errorOnUnhandledRejections(false);
+		
 		$routeProvider
 		.when("/", {
 			controller: "LoginController"
