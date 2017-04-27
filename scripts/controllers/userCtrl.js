@@ -1,4 +1,4 @@
-app.controller('UserController', function($scope,$http,$route,$routeParams,DTOptionsBuilder,userFactory) {
+app.controller('UserController', function($scope,$http,$route,$cookies,$routeParams,DTOptionsBuilder,userFactory) {
 	$scope.name = "user";
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -22,19 +22,20 @@ app.controller('UserController', function($scope,$http,$route,$routeParams,DTOpt
 
 	/*Hai writes*/
 
-
-
-	userFactory.findAlluser().then(function mySucces(response) {
+	id = $routeParams.id;
+	if(id===undefined){
+		userFactory.findAlluser().then(function mySucces(response) {
 	     	$scope.Users = response.data;
 	    }, function myError(response) {
 	      	//$scope.Users = response.statusText;
 	  });
-
-	id = $routeParams.id;
-			userFactory.findByid(id).then(function mySucces(response){
+	}
+	else{
+		userFactory.findByid(id).then(function mySucces(response){
 			$scope.User = response.data;
-	});
-
+		});
+	}
+	
 	$scope.Delete = function(id){
 		var id = id;
 		userFactory.deleteUser(id).then(function mySucces(response){
@@ -48,6 +49,7 @@ app.controller('UserController', function($scope,$http,$route,$routeParams,DTOpt
 
 
 	$scope.Update = function(id,user){
+		user.userDate = new Date()
 		userFactory.saveUser(id,user).then(function mySucces(response){
 
 		},function myError(response){}
@@ -55,7 +57,28 @@ app.controller('UserController', function($scope,$http,$route,$routeParams,DTOpt
 	};
 
 	$scope.Create = function(){
-		var CreateUser = {'name' : $scope.nameuser, 'age' : $scope.age, 'salary' : $scope.salary};
+		//var userDate = 1491843600000;
+		//var userDOB = 1491843600000;
+		var CreateUser = {
+			    "userName": $scope.userName,
+			    "userEncPassword": $scope.userEncPassword,
+			    "userFirstName": $scope.userFirstName,
+			    "userLastName": $scope.userLastName,
+			    "userDOB": 1491843600000,
+			    "userGender": $scope.userGender,
+			    "userEmail": $scope.userEmail,
+			    "userPhone": $scope.userPhone,
+			    "userIsActive": 1,
+			    "userDate": 1491238800000,
+			    "userType": {
+			      "id": 1,
+			      "userTypeName": "admin",
+			      "userTypeIsAdmin": false,
+			      "userTypeNote": "admin"
+			    }
+			  };
+			 
+			 console.log(CreateUser);
 		userFactory.createUser(CreateUser).then(function mySucces(response){
 
 		},function myError(response){}
