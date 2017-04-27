@@ -1,5 +1,6 @@
-app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTOptionsBuilder, $uibModal){
-	// Subjects only have children, not grandchildren.
+app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $route, DTOptionsBuilder, $uibModal){
+	
+	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -12,53 +13,64 @@ app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTO
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
-	subjects = 
-	[
-		{
-			sub_id: 1, subid: null, subname:'Khoa học',
-			childsubjects:[
-				{sub_id: 2, subid: 1, subname:'Toán'},
-				{sub_id: 3, subid: 1, subname:'Lý'}
-			]
-		},
-		{
-			sub_id: 4, subid: null, subname:'Thất học',
-			childsubjects:[
-				{sub_id: 5, subid: 4, subname:'Boxing'},
-				{sub_id: 6, subid: 4, subname:'Muay Thai'}
-			]
-		},
 
-	]
-	array = [];
-	subjectsLength = subjects.length;
-	for(i = 0; i < subjectsLength; i++)
-    {
-        subjects[i].level = 1;
-        childSubjectsLength = subjects[i].childsubjects.length;
-        temp = JSON.parse(JSON.stringify(subjects[i]));
-        delete temp.childsubjects;
-        array.push(temp);
+    $http.get(baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
+    	$scope.subjects = res.data;
+    });
 
-        for( j = 0; j < childSubjectsLength; j++){
-        	childSubject = subjects[i].childsubjects[j];
-        	childSubject.level = 2;
-        	array.push(childSubject);
-        }
-    }
-    //console.log(array);
-	$scope.subjects = array;
+
 
 	$scope.addSubject = function(){
-		$http.get(baseURL + "subjects").then(function(res){
-        		console.log(res);
-        	});
+		$scope.subject = null;
 		$uibModal.open({
-            templateUrl: 'views/subject/add.html',
+            templateUrl: 'views/subject/modal.html',
             scope: $scope,
             size: 'md'
-        }).result.then(function(){ 	
-        	
+        }).result.then(function(subject){ 	
+        	var req = {
+			 "method":"POST",
+			 "url": baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken,
+			 "headers": {
+			   "Content-Type": "application/json"
+			 },
+			 "data":subject
+			};
+        	$http(req).then(function(res){
+        		console.log(res);
+        	});
         });
+	}
+
+	$scope.editSubject = function(id){
+		$http.get(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
+			$scope.subject = res.data;
+			$uibModal.open({
+	            templateUrl: 'views/subject/modal.html',
+	            scope: $scope,
+	            size: 'md'
+	        }).result.then(function(subject){ 
+	        	subject.id = id;
+	        	console.log(subject);	
+	        	var req = {
+				 "method":"POST",
+				 "url": baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken,
+				 "headers": {
+				   "Content-Type": "application/json"
+				 },
+				 "data":subject
+				};
+	        	$http(req).then(function(res){
+	        		console.log(res);
+	        	});
+	        });
+		});
+	}
+
+	$scope.deleteSubject = function(id){
+		if( cofirm("Are you sure you want to delete?") == 1 )
+			return 0;
+		$http.delete(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
+    		
+    	});
 	}
 });
