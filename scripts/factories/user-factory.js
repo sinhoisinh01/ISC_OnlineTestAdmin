@@ -1,5 +1,5 @@
 app.factory("userFactory",function($http){
-	var url = "http://localhost:8000/Spring4MVCCRUDRestService/user/";
+	var url = "http://localhost:8181/ISC_OnlineTestRestful/user/";
 	return{
 
 		

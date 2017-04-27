@@ -1,6 +1,6 @@
 app.controller('LoginController', function($scope,$cookies,LoginFactory){
     $scope.login = function(){
-            frontendBaseURL = "http://127.0.0.1:8887/";
+            //frontendBaseURL = "http://127.0.0.1:8887/";
             console.log();
             var userName = $scope.userid;
             var password = $scope.password;
@@ -9,10 +9,10 @@ app.controller('LoginController', function($scope,$cookies,LoginFactory){
                 accessToken : response.data.access_token,
                 refreshToken : response.data.refresh_token
               });
-              window.location.href = frontendBaseURL + "index.html#!";
+              window.location.href = "./";
             },function(error){
               console.log(error);
-              location.reload();
+              // location.reload();
             });
     };
 });
