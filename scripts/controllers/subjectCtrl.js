@@ -1,5 +1,6 @@
 app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTOptionsBuilder, $uibModal){
-	// Subjects only have children, not grandchildren.
+	
+	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -12,42 +13,38 @@ app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTO
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
-	subjects = 
+
+	$scope.subjects = 
 	[
 		{
-			sub_id: 1, subid: null, subname:'Khoa học',
-			childsubjects:[
-				{sub_id: 2, subid: 1, subname:'Toán'},
-				{sub_id: 3, subid: 1, subname:'Lý'}
+			id: 1, 
+			subId: null, 
+			subName:'Khoa học',
+			childSubs:[
+				{
+					id: 2, 
+					subId: 1, 
+					subName:'Toán',
+					childSubs:[
+					{id: 3, subId: 2, subName: 'Toán rời rạc', childSubs: []},
+					{id: 4, subId: 2, subName: 'Toán ứng dụng', childSubs: []}
+					]
+				},
+				{id: 5, subId: 1, subName:'Lý', childSubs: []}
 			]
 		},
 		{
-			sub_id: 4, subid: null, subname:'Thất học',
-			childsubjects:[
-				{sub_id: 5, subid: 4, subname:'Boxing'},
-				{sub_id: 6, subid: 4, subname:'Muay Thai'}
+			id: 6, 
+			subId: null, 
+			subName:'Thất học',
+			childSubs:[
+				{id: 7, subId: 6, subName:'Boxing', childSubs: []},
+				{id: 8, subId: 6, subName:'Muay Thai', childSubs: []}
 			]
 		},
 
 	]
-	array = [];
-	subjectsLength = subjects.length;
-	for(i = 0; i < subjectsLength; i++)
-    {
-        subjects[i].level = 1;
-        childSubjectsLength = subjects[i].childsubjects.length;
-        temp = JSON.parse(JSON.stringify(subjects[i]));
-        delete temp.childsubjects;
-        array.push(temp);
 
-        for( j = 0; j < childSubjectsLength; j++){
-        	childSubject = subjects[i].childsubjects[j];
-        	childSubject.level = 2;
-        	array.push(childSubject);
-        }
-    }
-    //console.log(array);
-	$scope.subjects = array;
 
 	$scope.addSubject = function(){
 		$http.get(baseURL + "subjects").then(function(res){
