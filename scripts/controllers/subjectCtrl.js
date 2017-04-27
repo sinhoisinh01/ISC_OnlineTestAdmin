@@ -1,4 +1,4 @@
-app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $route, DTOptionsBuilder, $uibModal){
+app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $route, $uibModal){
 	
 	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
@@ -10,23 +10,35 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 	else if( $route.current.loadedTemplateUrl.includes("add.html") )
 		$scope.isAddPage = true;
 	
-	$scope.dtOptions = DTOptionsBuilder.newOptions()
-        .withDisplayLength(10)
-        .withOption('bLengthChange', false);
+	$scope.subjects = null;
 
-    $http.get(baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
-    	$scope.subjects = res.data;
-    });
+	function load(){
+		$http.get(baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
+	    	$scope.subjects = res.data;
+	    });
+	}
+    load();
 
+    
 
-
-	$scope.addSubject = function(){
+	$scope.addSubject = function(id){
 		$scope.subject = null;
+		if(id == null)
+			$scope.isParent = false;
+		else 
+		{
+			$scope.isParent = true;
+			$http.get(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
+				$scope.parentName = res.data.subName;
+			});
+		}
+
 		$uibModal.open({
             templateUrl: 'views/subject/modal.html',
             scope: $scope,
             size: 'md'
         }).result.then(function(subject){ 	
+        	subject.subId = id;
         	var req = {
 			 "method":"POST",
 			 "url": baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken,
@@ -36,7 +48,7 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 			 "data":subject
 			};
         	$http(req).then(function(res){
-        		console.log(res);
+        		load();
         	});
         });
 	}
@@ -50,7 +62,6 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 	            size: 'md'
 	        }).result.then(function(subject){ 
 	        	subject.id = id;
-	        	console.log(subject);	
 	        	var req = {
 				 "method":"POST",
 				 "url": baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken,
@@ -60,17 +71,17 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 				 "data":subject
 				};
 	        	$http(req).then(function(res){
-	        		console.log(res);
+	        		load();
 	        	});
 	        });
 		});
 	}
 
 	$scope.deleteSubject = function(id){
-		if( cofirm("Are you sure you want to delete?") == 1 )
+		if( !confirm("Are you sure you want to delete?") )
 			return 0;
 		$http.delete(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
-    		
+    		load();
     	});
 	}
 });

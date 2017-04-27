@@ -1,31 +1,36 @@
 <ng-include src="'includes/content-header.html'"></ng-include>
 <section class="content">
   <div class="row">
+    <div class="col-sm-1 pull-right">
+      <p>Search: <input ng-model="query" ng-change="findNodes()" class="ng-pristine ng-valid ng-touched"></p>
+    </div>
     <div class="col-xs-12">
         <div ui-tree id="tree-root" class="angular-ui-tree" data-drag-enabled="false">
           <ol ui-tree-nodes ng-model="subjects" class="ng-pristine ng-untouched ng-valid angular-ui-tree-nodes">
             <li ng-repeat="subject in subjects" ui-tree-node class="angular-ui-tree-node" collapsed="true" expand-on-hover="false">
               <div ui-tree-handle class="tree-node tree-node-content angular-ui-tree-handle">
-                {{subject.subName}}
                 <a class="btn btn-xs" ng-if="subject.childSubs && subject.childSubs.length > 0"  data-nodrag="" ng-click="toggle(this)"><span class="glyphicon glyphicon-chevron-right" ng-class="{
                   'glyphicon-chevron-right': collapsed,
                   'glyphicon-chevron-down': !collapsed
                 }"></span>
                 </a>
-                <a class="pull-right btn btn-danger btn-xs" data-nodrag="" ng-click="deleteSubject(subject.id)"><span class="glyphicon glyphicon-remove"></span></a>
-                <a class="pull-right btn btn-primary btn-xs" data-nodrag="" ng-click="editSubject(subject.id)" style="margin-right: 8px;"><span class="glyphicon glyphicon-edit"></span></a>
+                {{subject.subName}}
+                <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="deleteSubject(subject.id)"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="editSubject(subject.id)"><span class="glyphicon glyphicon-edit"></span></a>
+                <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="addSubject(subject.id)"><span class="glyphicon glyphicon-plus"></span></a>
               </div>
               <ol ui-tree-nodes ng-model="subject.childSubs" ng-class="{hidden: collapsed}" class="ng-pristine ng-untouched ng-valid angular-ui-tree-nodes">
                 <li ng-repeat="firstLevelSubject in subject.childSubs" ui-tree-node class="angular-ui-tree-node" collapsed="true" expand-on-hover="false">
                   <div ui-tree-handle class="tree-node tree-node-content angular-ui-tree-handle">
-                    {{firstLevelSubject.subName}}
                     <a class="btn btn-xs" ng-if="firstLevelSubject.childSubs && firstLevelSubject.childSubs.length > 0"  data-nodrag="" ng-click="toggle(this)"><span class="glyphicon glyphicon-chevron-right" ng-class="{
                       'glyphicon-chevron-right': collapsed,
                       'glyphicon-chevron-down': !collapsed
                     }"></span>
                     </a>
+                    {{firstLevelSubject.subName}}
                     <a class="pull-right btn btn-danger btn-xs" data-nodrag="" ng-click="deleteSubject(firstLevelSubject.id)"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a class="pull-right btn btn-primary btn-xs" data-nodrag="" ng-click="editSubject(firstLevelSubject.id)" style="margin-right: 8px;"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="pull-right btn btn-primary btn-xs" data-nodrag="" ng-click="editSubject(firstLevelSubject.id)" ><span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="addSubject(firstLevelSubject.id)"><span class="glyphicon glyphicon-plus"></span></a>
                   </div>
                   <ol ui-tree-nodes ng-model="firstLevelSubject.childSubs" ng-class="{hidden: collapsed}" class="ng-pristine ng-untouched ng-valid angular-ui-tree-nodes">
                     <li ng-repeat="secondLevelSubject in firstLevelSubject.childSubs" ui-tree-node >
@@ -33,6 +38,7 @@
                         {{secondLevelSubject.subName}}
                         <a class="pull-right btn btn-danger btn-xs" data-nodrag="" ng-click="deleteSubject(secondLevelSubject.id)"><span class="glyphicon glyphicon-remove"></span></a>
                         <a class="pull-right btn btn-primary btn-xs" data-nodrag="" ng-click="editSubject(secondLevelSubject.id)" style="margin-right: 8px;"><span class="glyphicon glyphicon-edit"></span></a>
+
                       </div>
                     </li>
                   </ol>

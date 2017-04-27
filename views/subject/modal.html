@@ -5,12 +5,12 @@
 <div class="modal-body">
   <form class="form-horizontal">
       <table id="add-subject">
-        <tr>
+        <tr ng-if="isParent">
           <td>
             <label class="control-label">Subject belongs to</label>
           </td>
           <td>
-            <input class="form-control" type="text" ng-model="subject.subId">
+            <input class="form-control" type="text" ng-model="parentName" readonly="">
           </td>
         </tr>
         <tr>
