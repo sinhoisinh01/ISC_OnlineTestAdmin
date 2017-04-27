@@ -1,4 +1,4 @@
-app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTOptionsBuilder, $uibModal){
+app.controller('SubjectController', function(baseURL, $cookie, $http, $scope, $route, DTOptionsBuilder, $uibModal){
 	
 	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
@@ -13,6 +13,10 @@ app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTO
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
+
+    $http.get(baseURL + "onlinetest/api/subject/?access_token=" + $cookie.getObject("user").accessToken).then(function(res){
+    	$scope.subjects = res.data;
+    });
 
 	$scope.subjects = 
 	[
@@ -45,9 +49,8 @@ app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTO
 
 	]
 
-
-	$scope.addSubject = function(){
-		$http.get(baseURL + "subjects").then(function(res){
+	$scope.addSubject = function(subject){
+		$http.post(baseURL + "onlinetest/api/subject/:id/?access_token=" + $cookie.getObject("user").accessToken).then(function(res){
         		console.log(res);
         	});
 		$uibModal.open({
@@ -57,5 +60,13 @@ app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTO
         }).result.then(function(){ 	
         	
         });
+	}
+
+	$scope.deleteSubject = function(subject){
+		if(confirm("Are you sure you want to delete?"))
+			return 0;
+		$http.delete(baseURL + "onlinetest/api/subject/:id/?access_token=" + $cookie.getObject("user").accessToken).then(function(res){
+    		
+    	});
 	}
 });
