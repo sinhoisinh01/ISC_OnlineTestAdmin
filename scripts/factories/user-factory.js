@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 app.factory("userFactory",function($http,$cookies){
 	var url = "http://localhost:8000/onlinetest/api/user";
 	var cookieWObject = $cookies.getObject("user");
 	var token = cookieWObject.accessToken;
 	return{	
+=======
+app.factory("userFactory",function($http){
+	var url = "http://localhost:8181/ISC_OnlineTestRestful/user/";
+	return{
+
+		
+>>>>>>> da000dea3b5784f62c79b2ba9ec31ccdb07812db
 		findAlluser : function(){			
 			return $http.get(url + "?access_token=" + token);
 		},
