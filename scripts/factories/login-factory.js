@@ -34,7 +34,7 @@ app.factory("LoginFactory", function($http, $httpParamSerializer, $cookies){
 				return null;
 		},
 		isLogined: function(){
-			if($cookies.get("user"))
+			if($cookies.getObject("user"))
 				return true;
 			return false;
 		}
