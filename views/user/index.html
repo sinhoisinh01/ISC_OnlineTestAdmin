@@ -5,7 +5,7 @@
 	    <table id="user-table" datatable="ng" dt-options="dtOptions" class="table table-hover table-striped text-center">
 				<thead>
 					<tr>
-						<th>UserID</th>
+						<th>No.</th>
 						<th>FirstName</th>
 						<th>LastName</th>
 						<th>DOB</th>
@@ -17,13 +17,13 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="x in Users">
-						<td><span ng-bind="x.id"></span></td>
-						<td><span ng-bind="x.userFirstName"></span></td>
-						<td><span ng-bind="x.userLastName"></span></td>
-						<td><span ng-bind="x.userDOB|date"></span></td>
-						<td><span ng-bind="x.userGender"></span></td>
-						<td><span ng-bind="x.userEmail"></span></td>
-						<td><span ng-bind="x.userPhone"></span></td>
+						<td ng-bind="$index"></td>
+						<td ng-bind="x.userFirstName"></td>
+						<td ng-bind="x.userLastName"></td>
+						<td ng-bind="x.userDOB|date"></td>
+						<td>{{x.userGender == true ? "Female" : "Male"}}</td>
+						<td ng-bind="x.userEmail"></td>
+						<td ng-bind="x.userPhone"></td>
 						<td>
 		                  <a class="btn" href="#!/user/edit/{{x.id}}"><i class="fa fa-wrench"></i></a>
 		                  <a class="btn" ng-click='delete(x.id)'><i class="fa fa-trash"></i></a>

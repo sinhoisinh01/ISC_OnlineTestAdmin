@@ -1,15 +1,20 @@
-app.controller('UserController', function($scope,$http,$route,$cookies,$routeParams,DTOptionsBuilder,userFactory, userTypeFactory) {
+app.controller('UserController', function($scope, $http, $route, $cookies, $routeParams, DTOptionsBuilder, userFactory, userTypeFactory, frontendBaseURL) {
 	$scope.name = "user";
 	$scope.userTypes = [];
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
 	$scope.isEditPage = false;
+	$scope.passwordValidation = {
+		"allowWeakPassword": false,
+		"isStrongPassword": false,
+		"isPasswordAcceptable": false
+	};
+
 	if( $route.current.loadedTemplateUrl.includes("index.html") )
 		$scope.isHomePage = true;
 	else if( $route.current.loadedTemplateUrl.includes("add.html") )
 		$scope.isAddPage = true;
 		console.log($cookies.getObject("user"));
-		console.log("Yo");
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
@@ -22,6 +27,19 @@ app.controller('UserController', function($scope,$http,$route,$cookies,$routePar
 	.then(function (response) {
 	  $scope.userTypes = response.data;
 	});
+
+	/*
+	 * Author: Doan Phuc Sinh
+	 * Check Strong Password
+	 * Using function isStrongPassword in validate.js
+     */
+	$scope.passwordValidation.checkPasswordStrength = function(password) {
+		$scope.passwordValidation.isStrongPassword = isStrongPassword(password);
+		if ( $scope.passwordValidation.isStrongPassword == true
+			|| $scope.passwordValidation.allowWeakPassword == true )
+			$scope.passwordValidation.isPasswordAcceptable = true;
+		else $scope.passwordValidation.isPasswordAcceptable = false;
+	};
 
 
 	/*Hai writes*/
@@ -61,32 +79,25 @@ app.controller('UserController', function($scope,$http,$route,$cookies,$routePar
 	};
 
 	$scope.create = function(){
-		//var userDate = 1491843600000;
-		//var userDOB = 1491843600000;
-		var CreateUser = {
-			    "userName": $scope.userName,
-			    "userEncPassword": $scope.userEncPassword,
-			    "userFirstName": $scope.userFirstName,
-			    "userLastName": $scope.userLastName,
-			    "userDOB": 1491843600000,
-			    "userGender": $scope.userGender,
-			    "userEmail": $scope.userEmail,
-			    "userPhone": $scope.userPhone,
-			    "userIsActive": 1,
-			    "userDate": 1491238800000,
-			    "userType": {
-			      "id": 1,
-			      "userTypeName": "admin",
-			      "userTypeIsAdmin": false,
-			      "userTypeNote": "admin"
-			    }
-			  };
-			 
-			 console.log(CreateUser);
-		userFactory.createUser(CreateUser).then(function mySucces(response){
-
-		},function myError(response){}
-		);
+		currentTime = new Date().getTime();
+		newUserInfo = {
+		    "userName": $scope.newUser.userName,
+		    "userEncPassword": $scope.newUser.userEncPassword,
+		    "userFirstName": $scope.newUser.userFirstName ? $scope.newUser.userFirstName : "",
+		    "userLastName": $scope.newUser.userLastName ? $scope.newUser.userLastName : "",
+		    "userDOB": $scope.newUser.userDOB.getTime(),
+		    "userGender": $scope.newUser.userGender,
+		    "userEmail": $scope.newUser.userEmail,
+		    "userPhone": $scope.newUser.userPhone ? $scope.newUser.userPhone : "",
+		    "userIsActive": 0,
+		    "userDate": currentTime,
+		    "userType": JSON.parse($scope.newUser.userType)
+	  	};
+		userFactory.createUser(newUserInfo)
+		.then(function (response) {
+			window.location.href = frontendBaseURL + "#!/users";
+		},
+		function (error) {});
 	}
 
 });

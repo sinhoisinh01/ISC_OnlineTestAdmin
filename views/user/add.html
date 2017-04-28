@@ -34,22 +34,39 @@
 			  </div>
 
 			  <div class="form-group" ng-class="{
-			  	  	'has-error has-feedback' : frm_add_user.password.$error.required
+			  	  	'has-error has-feedback' : (frm_add_user.password.$error.required
+			  	  		|| !passwordValidation.isPasswordAcceptable)
 			  	  		&& !frm_add_user.password.$pristine,
 			  	  	'has-success has-feedback' : !frm_add_user.password.$error.required 
+			  	   		&& passwordValidation.isPasswordAcceptable
 			  	   		&& !frm_add_user.password.$pristine
 				}">
 			    <label class="control-label col-sm-2">Password:*</label>
 			    <div class="col-sm-6"> 
 			      <input type="password" class="form-control" id="password" name="password"
-			       placeholder="Enter Password" ng-model="newUser.userEncPassword" required>
+			       placeholder="Enter Password" ng-model="newUser.userEncPassword"
+			       ng-change="passwordValidation.checkPasswordStrength(newUser.userEncPassword)" 
+			       required>
+			      <div class="checkbox"
+			       ng-show="!frm_add_user.password.$pristine
+			       		&& !frm_add_user.password.$error.required 
+	      				&& !passwordValidation.isStrongPassword">
+                    <label>
+                      <input type="checkbox"
+                       ng-change="passwordValidation.checkPasswordStrength(newUser.userEncPassword)"
+                       ng-model="passwordValidation.allowWeakPassword">
+                      <p class="text-muted">Confirm Weak Password</p>
+                    </label>
+                  </div>
 			       <span class="glyphicon"
 					 ng-class="{ 
 					 	'glyphicon-remove form-control-feedback' : 
-					 		frm_add_user.password.$error.required 
+					 		(frm_add_user.password.$error.required
+			  	  			|| !passwordValidation.isPasswordAcceptable)
 					 		&& !frm_add_user.password.$pristine,
 					 	'glyphicon-ok form-control-feedback' : 
-					 		!frm_add_user.password.$error.required 
+					 		!frm_add_user.password.$error.required
+					 		&& passwordValidation.isPasswordAcceptable
 					 		&& !frm_add_user.password.$pristine 
 					}"
 					 ng-show="!frm_add_user.password.$pristine">
@@ -58,6 +75,18 @@
 				    ng-show="frm_add_user.password.$error.required 
 				    	&& !frm_add_user.password.$pristine">
 				  	Your password is required
+				  </span>
+				  <span class="help-block"
+				    ng-show="!frm_add_user.password.$error.required
+				    	&& !passwordValidation.isPasswordAcceptable
+				    	&& !frm_add_user.password.$pristine">
+				  	Your password is weak. A strong password must be:
+				  	<ul>
+				  	  <li>at least 6 characters</li>
+				  	  <li>contain Lower and Upper case letter</li>
+				  	  <li>at least 1 number</li>
+				  	  <li>at least 1 special character</li>
+				  	</ul>
 				  </span>
 			    </div>
 			  </div>
@@ -127,12 +156,7 @@
 			    </div>
 			  </div>
 
-			  <div class="form-group" ng-class="{
-			  	  	'has-error has-feedback' : frm_add_user.gender.$error.required
-			  	  		&& !frm_add_user.gender.$pristine,
-			  	  	'has-success has-feedback' : !frm_add_user.gender.$error.required
-			  	   		&& !frm_add_user.gender.$pristine
-				}">
+			  <div class="form-group">
 			    <label class="control-label col-sm-2">Gender:*</label>&nbsp;
 			    <div class="col-sm-6">
 			      <label class="radio-inline">
@@ -182,23 +206,13 @@
 			    </div>
 			  </div>
 
-			  <div class="form-group" ng-class="{
-			  	  	'has-error has-feedback' : frm_add_user.phone.$error.tel
-			  	  	&& !frm_add_user.phone.$pristine,
-			  	  	'has-success has-feedback' : !frm_add_user.phone.$error.tel
-			  	  	&& !frm_add_user.phone.$pristine
-				}">
+			  <div class="form-group">
 			    <label class="control-label col-sm-2">Phone:</label>
 			    <div class="col-sm-6"> 
-			      <input type="tel" class="form-control" id="phone" name="phone"
-			      placeholder="Enter Phone Number"
+			      <input type="tel" class="form-control"
+			       placeholder="Enter Phone Number"
 			       ng-model="newUser.userPhone">
 			    </div>
-			    <span class="help-block"
-				    ng-show="frm_add_user.phone.$error.tel
-				    	&& !frm_add_user.phone.$pristine">
-				  	Please use your real phone
-			  	  </span>
 			  </div>
 
 			  <div class="form-group">

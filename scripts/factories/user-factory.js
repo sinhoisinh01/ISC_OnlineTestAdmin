@@ -28,10 +28,16 @@ app.factory("userFactory",function($http,$cookies){
 			});
 		},
 
-
-
-		createUser : function(user){
-			return $http.post(url  + "/?access_token=" + token ,user);
+		createUser : function(user) {
+			req = {
+			 "method": "POST",
+			 "url": url  + "/?access_token=" + token,
+			 "headers": {
+			   "Content-Type": "application/json"
+			 },
+			 "data": user
+			};
+			return $http(req);
 		}
 
 
