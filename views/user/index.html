@@ -2,10 +2,10 @@
 <section class="content">
 	<div class="row">
 		<div class="col-xs-12">
-	    <!--	<table id="user-table" datatable="ng" dt-options="dtOptions" class="table table-hover table-striped text-center">
+	    <table id="user-table" datatable="ng" dt-options="dtOptions" class="table table-hover table-striped text-center">
 				<thead>
 					<tr>
-						<th>UserID</th>
+						<th>No.</th>
 						<th>FirstName</th>
 						<th>LastName</th>
 						<th>DOB</th>
@@ -17,21 +17,17 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="x in Users">
-						<td><span ng-bind="x.ID"></span></td>
-						<td><span ng-bind="x.firstName"></span></td>
-						<td><span ng-bind="x.lastName"></span></td>
-						<td><span ng-bind="x.dob"></span></td>
-						<td><span ng-bind="x.gender"></span></td>
-						<td><span ng-bind="x.email"></span></td>
-						<td><span ng-bind="x.phone"></span></td>
+						<td ng-bind="$index"></td>
+						<td ng-bind="x.userFirstName"></td>
+						<td ng-bind="x.userLastName"></td>
+						<td ng-bind="x.userDOB|date"></td>
+						<td>{{x.userGender == true ? "Female" : "Male"}}</td>
+						<td ng-bind="x.userEmail"></td>
+						<td ng-bind="x.userPhone"></td>
 						<td>
-							<a class="btn" href="#!/user/edit">
-			                	<i class="fa fa-wrench"></i>
-			              	</a>
-			              	<a class="btn" ng-click='Delete(x.PARID)'>
-			                	<i class="fa fa-trash"></i>
-			              	</a>
-			            </td>
+		                  <a class="btn" href="#!/user/edit/{{x.id}}"><i class="fa fa-wrench"></i></a>
+		                  <a class="btn" ng-click='delete(x.id)'><i class="fa fa-trash"></i></a>
+		                </td>
 					</tr>
 				</tbody>
 				<tfoot>
@@ -47,37 +43,6 @@
 					</tr>
 				</tfoot>
 			</table>
-		-->
-
-		<table id="user-table" datatable="ng" dt-options="dtOptions" class="table table-hover table-striped text-center table-bordered">
-					<thead>
-						<th>UserID</th>
-						<th>FirstName</th>
-						<th>LastName</th>
-						<th>DOB</th>
-						<th class="admin-option">Options</th>
-
-					</thead>
-					<tbody>
-						<tr ng-repeat="x in Users">
-							<td><span ng-bind="x.id"></span></td>
-							<td><span ng-bind="x.name"></span></td>
-							<td><span ng-bind="x.age"></span></td>
-							<td><span ng-bind="x.salary"></span></td>						
-							<td>
-								<a class="btn btn-app" href="#!/user/edit/{{x.id}}">
-				                	<i class="fa fa-wrench"></i> Update 				                	
-				              	</a>
-				              	<a class="btn btn-app" ng-click='Delete(x.id)'>
-				                	<i class="fa fa-trash"></i> Delete
-				              	</a>
-				            </td>
-						</tr>
-					</tbody>
-				</table>
-
-
 		</div>
 	</div>
-
 </section>

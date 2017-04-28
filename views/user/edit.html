@@ -16,7 +16,7 @@
 				<div class="box-header with-border form-group">
 				</div>
 				<div class="box-body">
-					<form class="form-horizontal">
+				<form class="form-horizontal">
 						  <div class="form-group">
 						    <label class="control-label col-sm-2" for="userId">UserID:</label>
 						    <div class="col-sm-6">
@@ -27,29 +27,39 @@
 						  <div class="form-group">
 						    <label class="control-label col-sm-2" for="pwd">User Password:</label>
 						    <div class="col-sm-6"> 
-						      <input type="text" class="form-control" id="pwd" placeholder="Enter password" ng-model="User.name">
+						      <input type="text" class="form-control" id="pwd" placeholder="Enter password" ng-model="User.userEncPassword">
 						    </div>
 						  </div>
 
 						  <div class="form-group">
 						    <label class="control-label col-sm-2" for="pwd">First Name:</label>
 						    <div class="col-sm-6"> 
-						      <input type="text" class="form-control" id="pwd" placeholder="Enter Firstname" ng-model="User.age">
+						      <input type="text" class="form-control" id="pwd" placeholder="Enter Firstname" ng-model="User.userFirstName">
 						    </div>
 						  </div>
 
 						  <div class="form-group">
 						    <label class="control-label col-sm-2" for="pwd">Last Name:</label>
 						    <div class="col-sm-6"> 
-						      <input type="text" class="form-control" id="pwd" placeholder="Enter Lastname" ng-model="User.salary">
+						      <input type="text" class="form-control" id="pwd" placeholder="Enter Lastname" ng-model="User.userLastName">
 						    </div>
 						  </div>
 
+						  <!--<div class="form-group">
+						    <label class="control-label col-sm-2" for="pwd">Date Of Birth:</label>
+						    <div class="col-sm-2"> 
+						      	<div class="input-group date">
+								    <input type="date" class="form-control" ng-model="User.userDOB">							    
+								</div>
+						    </div>
+						  </div>-->
+						 
+						  
 						  <div class="form-group">
 						    <label class="control-label col-sm-2" for="pwd">Date Of Birth:</label>
 						    <div class="col-sm-2"> 
 						      	<div class="input-group date" data-provide="datepicker">
-								    <input type="text" class="form-control">
+								    <input type="text" class="form-control" ng-model="User.userDOB|date">
 								    <div class="input-group-addon">
 								        <span class="glyphicon glyphicon-th"></span>
 								    </div>
@@ -58,35 +68,29 @@
 						  </div>
 
 						  <div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">Gender:</label>
-						    	<div class="dropdown col-sm-6">
-								    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose
-								    <span class="caret"></span></button>
-								    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Male</a></li>
-								      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Female</a></li>
-								      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
-								    </ul>
-								</div>
+						    <label class="control-label col-sm-2" for="pwd">Gender:</label>&nbsp;
+						    <label class="radio-inline"><input type="radio" name="sex" value="true" ng-model="User.userGender">Male</label>
+						    <label class="radio-inline"><input type="radio" name="sex" value="false" ng-model="User.userGender">Female</label>
 						  </div>
 
-						  <div class="form-group">
+						  
+						   <div class="form-group">
 						    <label class="control-label col-sm-2" for="pwd">Email:</label>
 						    <div class="col-sm-6"> 
-						      <input type="password" class="form-control" id="pwd" placeholder="Enter Email">
+						      <input type="text" class="form-control" id="pwd" placeholder="Enter Email" ng-model="User.userEmail">
 						    </div>
 						  </div>
 
 						  <div class="form-group">
 						    <label class="control-label col-sm-2" for="pwd">Phone:</label>
 						    <div class="col-sm-6"> 
-						      <input type="password" class="form-control" id="pwd" placeholder="Enter Phonenumber">
+						      <input type="text" class="form-control" id="pwd" placeholder="Enter Phonenumber" ng-model="User.userPhone">
 						    </div>
 						  </div>
 
 						  <div class="form-group"> 
 						    <div class="col-sm-offset-2 col-sm-10">
-						      <button type="submit" class="btn btn-default" ng-click="Update(User.id,User)">Submit</button>
+						      <button type="submit" class="btn btn-default" ng-click="update(User.id,User)">Submit</button>
 						    </div>
 						  </div>
 				</form>

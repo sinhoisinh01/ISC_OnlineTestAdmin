@@ -1,5 +1,6 @@
 var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap','ngCookies']);
-app.constant("baseURL","http://localhost:8080/api/");
+app.constant("baseURL","http://localhost:8080/api/")
+app.constant("frontendBaseURL","http://127.0.0.1:8887/")
 app.config(function($locationProvider,$routeProvider) {
 		//$locationProvider.html5Mode(true);
 		/*
