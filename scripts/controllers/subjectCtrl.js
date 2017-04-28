@@ -22,6 +22,7 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
     
 
 	$scope.addSubject = function(id){
+		$scope.action = 'add';
 		$scope.subject = null;
 		if(id == null)
 			$scope.isParent = false;
@@ -43,7 +44,7 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 			 "method":"POST",
 			 "url": baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken,
 			 "headers": {
-			   "Content-Type": "application/json"
+			   "Content-Type": "application/json; charset=UTF-8",
 			 },
 			 "data":subject
 			};
@@ -54,6 +55,7 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 	}
 
 	$scope.editSubject = function(id){
+		$scope.action = 'edit';
 		$http.get(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
 			$scope.subject = res.data;
 			$uibModal.open({
@@ -66,7 +68,7 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 				 "method":"POST",
 				 "url": baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken,
 				 "headers": {
-				   "Content-Type": "application/json"
+				   "Content-Type": "application/json; charset=UTF-8"
 				 },
 				 "data":subject
 				};

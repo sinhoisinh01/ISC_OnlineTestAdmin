@@ -5,7 +5,9 @@
     padding: 10px 10px;
     margin-bottom: 5px;
 }
-
+.angular-ui-tree-handle .btn{
+    margin-left: 5px;
+}
 .angular-ui-tree-handle:hover {
     color: #438eb9;
     background: #f4f6f7;
