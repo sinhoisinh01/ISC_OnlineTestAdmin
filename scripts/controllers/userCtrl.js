@@ -1,5 +1,6 @@
-app.controller('UserController', function($scope,$http,$route,$cookies,$routeParams,DTOptionsBuilder,userFactory) {
+app.controller('UserController', function($scope,$http,$route,$cookies,$routeParams,DTOptionsBuilder,userFactory, userTypeFactory) {
 	$scope.name = "user";
+	$scope.userTypes = [];
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
 	$scope.isEditPage = false;
@@ -12,12 +13,15 @@ app.controller('UserController', function($scope,$http,$route,$cookies,$routePar
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
-	/*$scope.Users=[
-	{'ID': '0948', 'password': '****', 'firstName' : 'A', 'lastName' : 'Nguyen Van' , 'dob' : '1/1/2001', 'gender' : 'Male', 'email' : 'anv@gmail.com', 'phone' : '0948111'},
-	{'ID': '0913', 'password': '****', 'firstName' : 'B', 'lastName' : 'Nguyen Van' , 'dob' : '2/2/2002', 'gender' : 'Female', 'email' : 'bnv@gmail.com', 'phone' : '0913222'},
-	{'ID': '0127', 'password': '****', 'firstName' : 'C', 'lastName' : 'Nguyen Van' , 'dob' : '3/3/2003', 'gender' : 'Male', 'email' : 'cnv@gmail.com', 'phone' : '0127333'}
-	];*/
-
+	
+    /*
+	 * Author: Doan Phuc Sinh
+	 * Get UserTypes From Database
+     */
+    userTypeFactory.findAllUserType()
+	.then(function (response) {
+	  $scope.userTypes = response.data;
+	});
 
 
 	/*Hai writes*/
@@ -36,7 +40,7 @@ app.controller('UserController', function($scope,$http,$route,$cookies,$routePar
 		});
 	}
 	
-	$scope.Delete = function(id){
+	$scope.delete = function(id){
 		var id = id;
 		userFactory.deleteUser(id).then(function mySucces(response){
 		for(i = 0; i < $scope.Users.length; i++) {
@@ -48,7 +52,7 @@ app.controller('UserController', function($scope,$http,$route,$cookies,$routePar
 	};
 
 
-	$scope.Update = function(id,user){
+	$scope.update = function(id,user){
 		user.userDate = new Date()
 		userFactory.saveUser(id,user).then(function mySucces(response){
 
@@ -56,7 +60,7 @@ app.controller('UserController', function($scope,$http,$route,$cookies,$routePar
 		);
 	};
 
-	$scope.Create = function(){
+	$scope.create = function(){
 		//var userDate = 1491843600000;
 		//var userDOB = 1491843600000;
 		var CreateUser = {

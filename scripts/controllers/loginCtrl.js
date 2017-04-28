@@ -11,12 +11,7 @@ app.controller('LoginController', function($scope,$cookies,LoginFactory){
                 accessToken : response.data.access_token,
                 refreshToken : response.data.refresh_token
               });
-<<<<<<< HEAD
-              location.href = "./";
-              
-=======
               window.location.href = "./";
->>>>>>> da000dea3b5784f62c79b2ba9ec31ccdb07812db
             },function(error){
               console.log(error);
               // location.reload();

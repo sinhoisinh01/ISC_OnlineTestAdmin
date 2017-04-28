@@ -2,85 +2,225 @@
 <section class="content">
 	<div class="row">
 		<div class="col-xs-12">
-			<form class="form-horizontal">
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" for="userId">User Name:</label>
-						    <div class="col-sm-6">
-						      <input type="text" class="form-control" id="email" placeholder="Enter UserName" ng-model="userName">
-						    </div>
-						  </div>
+			<form class="form-horizontal" role="form" name="frm_add_user"
+			 ng-submit="create()" novalidate>
+			  <div class="form-group" ng-class="{
+			  	  	'has-error has-feedback' : frm_add_user.username.$error.required
+			  	  		&& !frm_add_user.username.$pristine,
+			  	  	'has-success has-feedback' : !frm_add_user.username.$error.required 
+			  	   		&& !frm_add_user.username.$pristine
+				}">
+			    <label class="control-label col-sm-2">Username:*</label>
+			    <div class="col-sm-6">
+			      <input type="text" class="form-control" id="username" name="username"
+			       placeholder="Enter Username" ng-model="newUser.userName" required>
+			      <span class="glyphicon"
+					 ng-class="{ 
+					 	'glyphicon-remove form-control-feedback' : 
+					 		frm_add_user.username.$error.required 
+					 		&& !frm_add_user.username.$pristine,
+					 	'glyphicon-ok form-control-feedback' : 
+					 		!frm_add_user.username.$error.required 
+					 		&& !frm_add_user.username.$pristine 
+					}"
+					 ng-show="!frm_add_user.username.$pristine">
+				  </span>
+				  <span class="help-block"
+				    ng-show="frm_add_user.username.$error.required 
+				    	&& !frm_add_user.username.$pristine">
+				  	Your username is required
+				  </span>
+			    </div>
+			  </div>
 
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">User Password:</label>
-						    <div class="col-sm-6"> 
-						      <input type="text" class="form-control" id="pwd" placeholder="Enter Password" ng-model="userEncPassword">
-						    </div>
-						  </div>
+			  <div class="form-group" ng-class="{
+			  	  	'has-error has-feedback' : frm_add_user.password.$error.required
+			  	  		&& !frm_add_user.password.$pristine,
+			  	  	'has-success has-feedback' : !frm_add_user.password.$error.required 
+			  	   		&& !frm_add_user.password.$pristine
+				}">
+			    <label class="control-label col-sm-2">Password:*</label>
+			    <div class="col-sm-6"> 
+			      <input type="password" class="form-control" id="password" name="password"
+			       placeholder="Enter Password" ng-model="newUser.userEncPassword" required>
+			       <span class="glyphicon"
+					 ng-class="{ 
+					 	'glyphicon-remove form-control-feedback' : 
+					 		frm_add_user.password.$error.required 
+					 		&& !frm_add_user.password.$pristine,
+					 	'glyphicon-ok form-control-feedback' : 
+					 		!frm_add_user.password.$error.required 
+					 		&& !frm_add_user.password.$pristine 
+					}"
+					 ng-show="!frm_add_user.password.$pristine">
+				  </span>
+				  <span class="help-block"
+				    ng-show="frm_add_user.password.$error.required 
+				    	&& !frm_add_user.password.$pristine">
+				  	Your password is required
+				  </span>
+			    </div>
+			  </div>
 
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">First Name:</label>
-						    <div class="col-sm-6"> 
-						      <input type="text" class="form-control" id="pwd" placeholder="Enter Firstname" ng-model="userFirstName">
-						    </div>
-						  </div>
+			  <div class="form-group" ng-class="{
+			  	  	'has-error has-feedback' : (frm_add_user.retype_password.$error.required
+			  	  		&& !frm_add_user.retype_password.$pristine)
+			  	  		|| (userRetypeEncPassword && userRetypeEncPassword.length > 0
+				    	&& newUser.userEncPassword !== userRetypeEncPassword),
+			  	  	'has-success has-feedback' : !frm_add_user.retype_password.$error.required 
+			  	   		&& !frm_add_user.retype_password.$pristine
+				}">
+			    <label class="control-label col-sm-2">Retype Password:*</label>
+			    <div class="col-sm-6"> 
+			      <input type="password" class="form-control" id="retype_password"
+			       name="retype_password"
+			       placeholder="Enter Your Password Again"
+			       ng-model="userRetypeEncPassword" required>
+			       <span class="glyphicon"
+					 ng-class="{ 
+					 	'glyphicon-remove form-control-feedback' : 
+					 		frm_add_user.retype_password.$error.required 
+					 		&& !frm_add_user.retype_password.$pristine
+					 		&& newUser.userEncPassword !== userRetypeEncPassword,
+					 	'glyphicon-ok form-control-feedback' : 
+					 		!frm_add_user.retype_password.$error.required 
+					 		&& !frm_add_user.retype_password.$pristine
+					 		&& newUser.userEncPassword === userRetypeEncPassword 
+					}"
+					 ng-show="!frm_add_user.retype_password.$pristine">
+				  </span>
+				  <span class="help-block"
+				    ng-show="(frm_add_user.retype_password.$error.required 
+				    	&& !frm_add_user.retype_password.$pristine)">
+				  	Plaease retype your password
+				  </span>
+				  <span class="help-block"
+				    ng-show="userRetypeEncPassword && userRetypeEncPassword.length > 0
+				    	&& newUser.userEncPassword !== userRetypeEncPassword">
+				  	Retype password is not match
+				  </span>
+			    </div>
+			  </div>
 
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">Last Name:</label>
-						    <div class="col-sm-6"> 
-						      <input type="text" class="form-control" id="pwd" placeholder="Enter Lastname" ng-model="userLastName">
-						    </div>
-						  </div>
+			  <div class="form-group">
+			    <label class="control-label col-sm-2">First Name:</label>
+			    <div class="col-sm-6"> 
+			      <input type="text" class="form-control"
+			       placeholder="Enter Firstname" ng-model="newUser.userFirstName">
+			    </div>
+			  </div>
 
+			  <div class="form-group">
+			    <label class="control-label col-sm-2">Last Name:</label>
+			    <div class="col-sm-6"> 
+			      <input type="text" class="form-control" placeholder="Enter Lastname"
+			       ng-model="newUser.userLastName">
+			    </div>
+			  </div>
 
-						 
-						  
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">Date Of Birth:</label>
-						    <div class="col-sm-2"> 
-						      	<div class="input-group">
-								    <input class="form-control" ng-model="userDOB" type="date">
-								</div>
-						    </div>
-						  </div>
-						  <!--<div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">Date Of Birth:</label>
-						    <div class="col-sm-2"> 
-						      	<div class="input-group date" data-provide="datepicker">
-								    <input type="text" class="form-control" ng-model="userDOB | date">
-								    <div class="input-group-addon">
-								        <span class="glyphicon glyphicon-th"></span>
-								    </div>
-								</div>
-						    </div>
-						  </div>-->
+			  <div class="form-group">
+			    <label class="control-label col-sm-2">Date Of Birth:</label>
+			    <div class="col-sm-2"> 
+			      	<div class="input-group">
+					    <input class="form-control" ng-model="newUser.userDOB" type="date">
+					</div>
+			    </div>
+			  </div>
 
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">Gender:</label>&nbsp;
-						    <label class="radio-inline"><input type="radio" name="sex" value="true" ng-model="userGender">Male</label>
-						    <label class="radio-inline"><input type="radio" name="sex" value="false" ng-model="userGender">Female</label>
-						  </div>
+			  <div class="form-group" ng-class="{
+			  	  	'has-error has-feedback' : frm_add_user.gender.$error.required
+			  	  		&& !frm_add_user.gender.$pristine,
+			  	  	'has-success has-feedback' : !frm_add_user.gender.$error.required
+			  	   		&& !frm_add_user.gender.$pristine
+				}">
+			    <label class="control-label col-sm-2">Gender:*</label>&nbsp;
+			    <div class="col-sm-6">
+			      <label class="radio-inline">
+			      	<input type="radio" value="true" name="gender"
+			      	 ng-model="newUser.userGender" required>Male
+			      </label>
+			      <label class="radio-inline">
+			      	<input type="radio" value="false" name="gender"
+			      	 ng-model="newUser.userGender" required>Female
+			      </label>
+			    </div>
+			  </div>
 
-						  
-						   <div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">Email:</label>
-						    <div class="col-sm-6"> 
-						      <input type="text" class="form-control" id="pwd" placeholder="Enter Email" ng-model="userEmail">
-						    </div>
-						  </div>
+			  
+			   <div class="form-group" ng-class="{
+			  	  	'has-error has-feedback' : (frm_add_user.email.$error.required
+			  	  		|| frm_add_user.email.$error.email)
+			  	  		&& !frm_add_user.email.$pristine,
+			  	  	'has-success has-feedback' : !frm_add_user.email.$error.required 
+			  	   		&& !frm_add_user.email.$error.email
+			  	   		&& !frm_add_user.email.$pristine
+				}">
+			    <label class="control-label col-sm-2">Email:*</label>
+			    <div class="col-sm-6"> 
+			      <input type="email" class="form-control" id="email" name="email"
+			       placeholder="Enter Email"
+			       ng-model="newUser.userEmail" required>
+			      <span class="glyphicon"
+					 ng-class="{ 
+					 	'glyphicon-remove form-control-feedback' : 
+					 		(frm_add_user.email.$error.required
+				  	  		|| frm_add_user.email.$error.email)
+				  	  		&& !frm_add_user.email.$pristine,
+					 	'glyphicon-ok form-control-feedback' : 
+					 		!frm_add_user.email.$error.required 
+				  	   		&& !frm_add_user.email.$error.email
+				  	   		&& !frm_add_user.email.$pristine 
+					}"
+					 ng-show="!frm_add_user.email.$pristine">
+				  </span>
+			      <span class="help-block"
+				    ng-show="(frm_add_user.email.$error.required
+			  	  		|| frm_add_user.email.$error.email)
+			  	  		&& !frm_add_user.email.$pristine">
+				  	Please use your real email
+			  	  </span>
+			    </div>
+			  </div>
 
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" for="pwd">Phone:</label>
-						    <div class="col-sm-6"> 
-						      <input type="text" class="form-control" id="pwd" placeholder="Enter Phonenumber" ng-model="userPhone">
-						    </div>
-						  </div>
+			  <div class="form-group" ng-class="{
+			  	  	'has-error has-feedback' : frm_add_user.phone.$error.tel
+			  	  	&& !frm_add_user.phone.$pristine,
+			  	  	'has-success has-feedback' : !frm_add_user.phone.$error.tel
+			  	  	&& !frm_add_user.phone.$pristine
+				}">
+			    <label class="control-label col-sm-2">Phone:</label>
+			    <div class="col-sm-6"> 
+			      <input type="tel" class="form-control" id="phone" name="phone"
+			      placeholder="Enter Phone Number"
+			       ng-model="newUser.userPhone">
+			    </div>
+			    <span class="help-block"
+				    ng-show="frm_add_user.phone.$error.tel
+				    	&& !frm_add_user.phone.$pristine">
+				  	Please use your real phone
+			  	  </span>
+			  </div>
 
-						  <div class="form-group"> 
-						    <div class="col-sm-offset-2 col-sm-10">
-						      <button type="submit" class="btn btn-default" ng-click="Create()">Submit</button>
-						    </div>
-						  </div>
-				</form>
+			  <div class="form-group">
+                  <label class="control-label col-sm-2">User Role:*</label>
+                  <div class="col-sm-6">
+                  	<select class="form-control" ng-model="newUser.userType" required>
+                	  <option value="" selected disabled>Choose User Type</option>
+                	  <option ng-repeat="uT in userTypes" value="{{uT}}">{{uT.userTypeName}}</option>
+                  	</select>
+                  </div>
+        	  </div>
+
+			  <div class="form-group"> 
+			    <div class="col-sm-8">
+			      <center>
+			        <button type="submit" class="btn btn-info" ng-disabled="frm_add_user.$invalid">
+			        	Create User
+			        </button>
+			      </center>
+			    </div>
+			  </div>
+			</form>
 		</div>
 	</div>
 </section>
