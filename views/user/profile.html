@@ -1,0 +1,258 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    User Profile
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#!"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">User Profile</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-sm-8">
+      <!-- form edit profile -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Edit Profile</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- form start -->
+        <form  class="form-horizontal" role="form"
+         name="frm_edit_profile" ng-submit="updateInfo()" novalidate>
+          <!-- Box Body -->
+          <div class="box-body">
+            <div class="form-group">
+              <label class="control-label col-sm-3">Username:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="username" name="username"
+                 placeholder="Enter Username" ng-model="currentUser.userName" disabled>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3">Email:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="email" name="email"
+                 placeholder="Enter Email" ng-model="currentUser.email" disabled>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3">User Role:</label>
+              <div class="col-sm-8">
+                <select class="form-control" ng-model="currentUser.userType" disabled>
+                    <option value="" selected>Choose User Type</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3">First Name:</label>
+              <div class="col-sm-8"> 
+                <input type="text" class="form-control"
+                 placeholder="Enter Firstname" ng-model="currentUser.userFirstName">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3">Last Name:</label>
+              <div class="col-sm-8"> 
+                <input type="text" class="form-control" placeholder="Enter Lastname"
+                 ng-model="currentUser.userLastName">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3">Date Of Birth:</label>
+              <div class="col-sm-3"> 
+                  <div class="input-group">
+                  <input class="form-control" ng-model="currentUser.userDOB" type="date">
+              </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3">Gender:</label>&nbsp;
+              <div class="col-sm-8">
+                <label class="radio-inline">
+                  <input type="radio" value="true" name="gender"
+                   ng-model="currentUser.userGender">Male
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" value="false" name="gender"
+                   ng-model="currentUser.userGender">Female
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3">Phone:</label>
+              <div class="col-sm-8"> 
+                <input type="tel" class="form-control"
+                 placeholder="Enter Phone Number"
+                 ng-model="currentUser.userPhone">
+              </div>
+            </div>
+
+            <div class="form-group"> 
+              <div class="col-sm-11">
+                <center>
+                  <button type="submit" class="btn btn-info" ng-disabled="frm_edit_profile.$invalid">
+                    Update Profile
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+          <!-- /.Box Body -->
+        </form>
+      </div>
+      <!-- /.form edit profile -->
+
+      <!-- form change password -->
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">Change Password</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- form start -->
+        <form  class="form-horizontal" role="form"
+         name="frm_change_password" ng-submit="updatePassword()" novalidate>
+          <!-- Box Body -->
+          <div class="box-body">
+            <div class="form-group">
+              <label class="control-label col-sm-3">Old Password:</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="oldPassword" name="oldPassword"
+                 placeholder="Enter Your Old Password" ng-model="oldPassword" required>
+              </div>
+            </div>
+
+            <div class="form-group" ng-class="{
+                  'has-error has-feedback' : (frm_change_password.password.$error.required
+                    || !passwordValidation.isPasswordAcceptable)
+                    && !frm_change_password.password.$pristine,
+                  'has-success has-feedback' : !frm_change_password.password.$error.required 
+                    && passwordValidation.isPasswordAcceptable
+                    && !frm_change_password.password.$pristine
+            }">
+              <label class="control-label col-sm-3">New Password:</label>
+              <div class="col-sm-8"> 
+                <input type="password" class="form-control" id="password" name="password"
+                 placeholder="Enter New Password" ng-model="newPassword"
+                 ng-change="passwordValidation.checkPasswordStrength(newPassword)" 
+                 required>
+                <div class="checkbox"
+                 ng-show="!frm_change_password.password.$pristine
+                    && !frm_change_password.password.$error.required 
+                    && !passwordValidation.isStrongPassword">
+                        <label>
+                          <input type="checkbox"
+                           ng-change="passwordValidation.checkPasswordStrength(newPassword)"
+                           ng-model="passwordValidation.allowWeakPassword">
+                          <p class="text-muted">Confirm Weak Password</p>
+                        </label>
+                      </div>
+                 <span class="glyphicon"
+               ng-class="{ 
+                'glyphicon-remove form-control-feedback' : 
+                  (frm_change_password.password.$error.required
+                      || !passwordValidation.isPasswordAcceptable)
+                  && !frm_change_password.password.$pristine,
+                'glyphicon-ok form-control-feedback' : 
+                  !frm_change_password.password.$error.required
+                  && passwordValidation.isPasswordAcceptable
+                  && !frm_change_password.password.$pristine 
+              }"
+               ng-show="!frm_change_password.password.$pristine">
+              </span>
+              <span class="help-block"
+                ng-show="frm_change_password.password.$error.required 
+                  && !frm_change_password.password.$pristine">
+                Your password is required
+              </span>
+              <span class="help-block"
+                ng-show="!frm_change_password.password.$error.required
+                  && !passwordValidation.isPasswordAcceptable
+                  && !frm_change_password.password.$pristine">
+                Your password is weak. A strong password must be:
+                <ul>
+                  <li>at least 6 characters</li>
+                  <li>contain Lower and Upper case letter</li>
+                  <li>at least 1 number</li>
+                  <li>at least 1 special character</li>
+                </ul>
+              </span>
+              </div>
+            </div>
+
+            <div class="form-group" ng-class="{
+                  'has-error has-feedback' : (frm_change_password.retype_password.$error.required
+                    && !frm_change_password.retype_password.$pristine)
+                    || (newPasswordRetype && newPasswordRetype.length > 0
+                  && newPassword !== newPasswordRetype),
+                  'has-success has-feedback' : !frm_change_password.retype_password.$error.required 
+                    && !frm_change_password.retype_password.$pristine
+            }">
+              <label class="control-label col-sm-3">Retype Password:</label>
+              <div class="col-sm-8"> 
+                <input type="password" class="form-control" id="retype_password"
+                 name="retype_password"
+                 placeholder="Confirm Your New Password"
+                 ng-model="newPasswordRetype" required>
+                 <span class="glyphicon"
+               ng-class="{ 
+                'glyphicon-remove form-control-feedback' : 
+                  frm_change_password.retype_password.$error.required 
+                  && !frm_change_password.retype_password.$pristine
+                  && newPassword !== newPasswordRetype,
+                'glyphicon-ok form-control-feedback' : 
+                  !frm_change_password.retype_password.$error.required 
+                  && !frm_change_password.retype_password.$pristine
+                  && newPassword === newPasswordRetype 
+              }"
+               ng-show="!frm_change_password.retype_password.$pristine">
+              </span>
+              <span class="help-block"
+                ng-show="(frm_change_password.retype_password.$error.required 
+                  && !frm_change_password.retype_password.$pristine)">
+                Plaease retype your password
+              </span>
+              <span class="help-block"
+                ng-show="newPasswordRetype && newPasswordRetype.length > 0
+                  && newPassword !== newPasswordRetype">
+                Retype password is not match
+              </span>
+              </div>
+            </div>
+
+            <div class="form-group"> 
+              <div class="col-sm-11">
+                <center>
+                  <button type="submit" class="btn btn-success"
+                   ng-disabled="frm_change_password.$invalid">
+                    Update Password
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+          <!-- /.Box Body -->
+        </form>
+      </div>
+      <!-- /.form change password -->
+    </div>
+  </div>
+</section>
+<!-- /.content -->
