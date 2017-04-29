@@ -1,6 +1,6 @@
-app.controller('HeaderController', function($scope,$cookies,LoginFactory, frontendBaseURL){
+app.controller('HeaderController', function($scope,Oauth2Factory, frontendBaseURL){
     $scope.logout = function(){
-      $cookies.remove("user");
+      Oauth2Factory.logout();
       window.location.href = frontendBaseURL + "login.html#!";
     };
 });

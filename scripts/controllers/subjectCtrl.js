@@ -1,5 +1,5 @@
 app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $route, $uibModal){
-	
+
 	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
 	$scope.isHomePage = false;
@@ -9,7 +9,7 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 		$scope.isHomePage = true;
 	else if( $route.current.loadedTemplateUrl.includes("add.html") )
 		$scope.isAddPage = true;
-	
+
 	$scope.subjects = null;
 
 	function load(){
@@ -19,14 +19,14 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 	}
     load();
 
-    
+
 
 	$scope.addSubject = function(id){
 		$scope.action = 'add';
 		$scope.subject = null;
 		if(id == null)
 			$scope.isParent = false;
-		else 
+		else
 		{
 			$scope.isParent = true;
 			$http.get(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
@@ -38,7 +38,7 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
             templateUrl: 'views/subject/modal.html',
             scope: $scope,
             size: 'md'
-        }).result.then(function(subject){ 	
+        }).result.then(function(subject){
         	subject.subId = id;
         	var req = {
 			 "method":"POST",
@@ -62,7 +62,7 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 	            templateUrl: 'views/subject/modal.html',
 	            scope: $scope,
 	            size: 'md'
-	        }).result.then(function(subject){ 
+	        }).result.then(function(subject){
 	        	subject.id = id;
 	        	var req = {
 				 "method":"POST",

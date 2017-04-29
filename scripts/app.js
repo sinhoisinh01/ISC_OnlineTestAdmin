@@ -111,10 +111,10 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 	});
 
-app.run(function($rootScope,LoginFactory,$location){
-	$rootScope.baseUrl = window.location.original + "/ISC_OnlineTestAdmin";
+app.run(function($rootScope,Oauth2Factory,HelperFactory,$http){
+	console.log("a");
 	$rootScope.$on('$routeChangeStart', function (event, next) {
-        if (!LoginFactory.isLogined()) {
+        if (!Oauth2Factory.isLogined()) {
 						event.preventDefault();
 						window.location.href= "login.html";
         }
