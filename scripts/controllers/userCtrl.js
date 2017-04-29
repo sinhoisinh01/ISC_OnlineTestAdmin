@@ -1,4 +1,4 @@
-app.controller('UserController', function($scope, $http, $route, $cookies, $routeParams, DTOptionsBuilder, userFactory, userTypeFactory, frontendBaseURL) {
+app.controller('UserController', function($scope, $http, $route, $cookies, $routeParams, DTOptionsBuilder, userFactory, userTypeFactory, frontendBaseURL, md5) {
 	$scope.name = "user";
 	$scope.userTypes = [];
 	$scope.isHomePage = false;
@@ -82,7 +82,7 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 		currentTime = new Date().getTime();
 		newUserInfo = {
 		    "userName": $scope.newUser.userName,
-		    "userEncPassword": $scope.newUser.userEncPassword,
+		    "userEncPassword": md5.createHash($scope.newUser.userEncPassword),
 		    "userFirstName": $scope.newUser.userFirstName ? $scope.newUser.userFirstName : "",
 		    "userLastName": $scope.newUser.userLastName ? $scope.newUser.userLastName : "",
 		    "userDOB": $scope.newUser.userDOB.getTime(),
