@@ -1,19 +1,11 @@
-app.controller('LoginController', function($scope,$cookies,Oauth2Factory){
+app.controller('LoginController', function($scope, Oauth2Factory, Alertifier){
     $scope.login = function(){
-            //frontendBaseURL = "http://127.0.0.1:8887/";
-            console.log();
-            var userName = $scope.userid;
-            var password = $scope.password;
-
-            Oauth2Factory.login(userName,password).then(function(response){
-              $cookies.putObject("user",{
-                accessToken : response.data.access_token,
-                refreshToken : response.data.refresh_token
-              });
-              window.location.href = "./";
-            },function(error){
-              console.log(error);
-              // location.reload();
-            });
+      var userName = $scope.username;
+      var password = $scope.password;
+      Oauth2Factory.login(userName,password,function(data){
+        window.location.href = "./";
+      },function(error){
+        Alertifier.error("Wrong username or password !");
+      });
     };
 });

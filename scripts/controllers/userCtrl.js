@@ -1,4 +1,4 @@
-app.controller('UserController', function($scope, $http, $route, $cookies, $routeParams, DTOptionsBuilder, userFactory, userTypeFactory, frontendBaseURL) {
+app.controller('UserController', function($scope, $http, $route, $cookies, $routeParams, DTOptionsBuilder, userFactory, userTypeFactory, frontendBaseURL, md5) {
 	$scope.name = "user";
 	$scope.userTypes = [];
 	$scope.isHomePage = false;
@@ -18,7 +18,7 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
-	
+
     /*
 	 * Author: Doan Phuc Sinh
 	 * Get UserTypes From Database
@@ -45,10 +45,11 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	/*Hai writes*/
 
 	id = $routeParams.id;
-	if(id===undefined){
-		userFactory.findAlluser().then(function mySucces(response) {
+	if(id === undefined){
+		console.log("a");
+		userFactory.findAlluser(function (response) {
 	     	$scope.Users = response.data;
-	    }, function myError(response) {
+	    }, function(error) {
 	      	//$scope.Users = response.statusText;
 	  });
 	}
@@ -57,7 +58,7 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 			$scope.User = response.data;
 		});
 	}
-	
+
 	$scope.delete = function(id){
 		var id = id;
 		userFactory.deleteUser(id).then(function mySucces(response){
@@ -82,7 +83,7 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 		currentTime = new Date().getTime();
 		newUserInfo = {
 		    "userName": $scope.newUser.userName,
-		    "userEncPassword": $scope.newUser.userEncPassword,
+		    "userEncPassword": md5.createHash($scope.newUser.userEncPassword),
 		    "userFirstName": $scope.newUser.userFirstName ? $scope.newUser.userFirstName : "",
 		    "userLastName": $scope.newUser.userLastName ? $scope.newUser.userLastName : "",
 		    "userDOB": $scope.newUser.userDOB.getTime(),

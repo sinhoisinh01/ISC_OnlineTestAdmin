@@ -1,4 +1,4 @@
-var app = angular.module('Authentication', ['ngRoute','ngCookies']);
+var app = angular.module('Authentication', ['ngRoute','ngCookies','ngAlertify']);
 app.config(function($locationProvider,$routeProvider,$httpProvider,$qProvider) {
 		$qProvider.errorOnUnhandledRejections(false);
 

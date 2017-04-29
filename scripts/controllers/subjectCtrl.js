@@ -1,4 +1,4 @@
-app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $route, $uibModal){
+app.controller('SubjectController', function($scope, $route, $uibModal, SubjectFactory){
 
 	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
@@ -13,24 +13,31 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
 	$scope.subjects = null;
 
 	function load(){
-		$http.get(baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
-	    	$scope.subjects = res.data;
-	    });
+		SubjectFactory.findAll(function(data){
+			$scope.subjects = data;
+		},function(error){
+			location.href = "./login.html";
+		});
 	}
-    load();
+  load();
 
 
 
 	$scope.addSubject = function(id){
 		$scope.action = 'add';
 		$scope.subject = null;
-		if(id == null)
+		if(id === null)
 			$scope.isParent = false;
 		else
 		{
 			$scope.isParent = true;
-			$http.get(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
-				$scope.parentName = res.data.subName;
+			// $http.get(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
+			// 	$scope.parentName = res.data.subName;
+			// });
+			SubjectFactory.findById(id,function(data){
+				$scope.parentName = data.subName;
+			},function(error){
+				location.href = "./login.html";
 			});
 		}
 
@@ -40,50 +47,65 @@ app.controller('SubjectController', function(baseURL, $cookies, $http, $scope, $
             size: 'md'
         }).result.then(function(subject){
         	subject.subId = id;
-        	var req = {
-			 "method":"POST",
-			 "url": baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken,
-			 "headers": {
-			   "Content-Type": "application/json; charset=UTF-8",
-			 },
-			 "data":subject
-			};
-        	$http(req).then(function(res){
-        		load();
-        	});
+		      // var req = {
+					//  "method":"POST",
+					//  "url": baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken,
+					//  "headers": {
+					//    "Content-Type": "application/json; charset=UTF-8",
+					//  },
+					//  "data":subject
+					// };
+        	// $http(req).then(function(res){
+        	// 	load();
+        	// });
+					SubjectFactory.create(subject,function(data){
+						load();
+					},function(error){
+
+					});
         });
 	}
 
 	$scope.editSubject = function(id){
 		$scope.action = 'edit';
-		$http.get(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
-			$scope.subject = res.data;
+		SubjectFactory.findById(id,function(data){
+			$scope.subject = data;
 			$uibModal.open({
 	            templateUrl: 'views/subject/modal.html',
 	            scope: $scope,
 	            size: 'md'
 	        }).result.then(function(subject){
 	        	subject.id = id;
-	        	var req = {
-				 "method":"POST",
-				 "url": baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken,
-				 "headers": {
-				   "Content-Type": "application/json; charset=UTF-8"
-				 },
-				 "data":subject
-				};
-	        	$http(req).then(function(res){
-	        		load();
-	        	});
+	        	// var req = {
+						//  "method":"POST",
+						//  "url": baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken,
+						//  "headers": {
+						//    "Content-Type": "application/json; charset=UTF-8"
+						//  },
+						//  "data":subject
+						// };
+						SubjectFactory.edit(id,subject,function(data){
+							load();
+						},function(error){
+
+						});
+						// $http(req).then(function(res){
+	        	// 	load();
+	        	// });
 	        });
+		},function(error){
+
 		});
+
 	}
 
 	$scope.deleteSubject = function(id){
 		if( !confirm("Are you sure you want to delete?") )
 			return 0;
-		$http.delete(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
-    		load();
-    	});
+		SubjectFactory.remove(id,function(data){
+			load();
+		},function(error){
+
+		});
 	}
 });

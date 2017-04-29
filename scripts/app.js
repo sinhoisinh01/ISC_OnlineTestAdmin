@@ -1,4 +1,4 @@
-var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap','ngCookies']);
+var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap','ngCookies','angular-md5','ngAlertify']);
 app.constant("baseURL","http://localhost:8080/api/")
 app.constant("frontendBaseURL","http://127.0.0.1:8887/")
 app.config(function($locationProvider,$routeProvider) {
@@ -112,7 +112,6 @@ app.config(function($locationProvider,$routeProvider) {
 	});
 
 app.run(function($rootScope,Oauth2Factory,HelperFactory,$http){
-	console.log("a");
 	$rootScope.$on('$routeChangeStart', function (event, next) {
         if (!Oauth2Factory.isLogined()) {
 						event.preventDefault();

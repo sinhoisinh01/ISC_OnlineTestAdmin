@@ -1,17 +1,15 @@
-
-app.factory("userFactory",function($http,$cookies){
-	var url = "http://localhost:8080/onlinetest/api/user";
-	var cookieWObject = $cookies.getObject("user");
-	var token = cookieWObject.accessToken;
-	return{	
-
-		findAlluser : function(){			
-			return $http.get(url + "/?access_token=" + token);
+app.factory("userFactory",function(APIFactory){
+	// var url = "http://localhost:8080/onlinetest/api/user";
+	// var cookieWObject = $cookies.getObject("user");
+	// var token = cookieWObject.accessToken;
+	return{
+		findAlluser : function(success = null, fail = null){
+			return APIFactory.get(APIFactory.apiName("GET_USER"),null,success,fail);
 		},
 
 
 		findByid : function(id){
-			
+
 			return $http.get(url + "/" + id + "?access_token=" + token );
 		},
 

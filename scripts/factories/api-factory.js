@@ -7,9 +7,10 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 			{
 				for(var i = 0; i < params.length; i++)
 				{
-					apiName.replace("$"+i,params[i]);
+					apiName = apiName.replace("$" + (i+1),params[i]);
 				}
 			}
+
 			if(Oauth2Factory.isLogined())
      		return HelperFactory.BASE_BE_URL + apiName + "?access_token=" + $cookies.getObject("user").accessToken;
 			else
@@ -22,7 +23,10 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 			var req = {
 				method : method,
 				url : this.fixUrl(apiName,params),
-				data : data
+				data : data,
+				headers: {
+					"Content-Type": "application/json; charset=utf-8"
+				}
 			};
 			$http(req).then(
 				function(response){
@@ -40,8 +44,8 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 										}
 									)
 								},
-								function(){
-									fail();
+								function(error){
+									fail(error.data);
 								});
 						}
 					}
@@ -50,18 +54,18 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 					}
 				}
 			)
-		}
+		},
     post : function(apiName,params = null,data = null, success = null, fail = null){
 			this.request("POST",apiName,params,data,success,fail);
     },
     get : function(apiName,params = null,success = null, fail = null){
-			this.request("GET",apiName,params,data,success,fail);
+			this.request("GET",apiName,params,null,success,fail);
     },
     put : function(apiName,params = null,data = null, success = null, fail = null){
 			this.request("PUT",apiName,params,data,success,fail);
     },
     delete : function(apiName,params = null, success = null, fail = null){
-			this.request("DELETE",apiName,params,data,success,fail);
+			this.request("DELETE",apiName,params,null,success,fail);
     },
 		apiName : function(name){
 			return API_URL[name];
