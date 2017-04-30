@@ -61,22 +61,29 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 
 	$scope.delete = function(id){
 		var id = id;
-		userFactory.deleteUser(id).then(function mySucces(response){
-		for(i = 0; i < $scope.Users.length; i++) {
+		userFactory.delete(id, 
+		function (response) {
+		  for(i = 0; i < $scope.Users.length; i++) {
 			if ( $scope.Users[i].id == id ) {
-				$scope.Users.splice(i, 1);
+			  $scope.Users.splice(i, 1);
 			}
-		}
+		  }
+		},
+		function (error) {
+
 		});
 	};
 
 
 	$scope.update = function(id,user){
 		user.userDate = new Date()
-		userFactory.saveUser(id,user).then(function mySucces(response){
+		userFactory.edit(id,user,
+		function (response){
 
-		},function myError(response){}
-		);
+		},
+		function (error){
+
+		});
 	};
 
 	$scope.create = function(){
@@ -94,11 +101,13 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 		    "userDate": currentTime,
 		    "userType": JSON.parse($scope.newUser.userType)
 	  	};
-		userFactory.createUser(newUserInfo)
-		.then(function (response) {
+		userFactory.add(newUserInfo,
+		function (response) {
 			window.location.href = frontendBaseURL + "#!/users";
 		},
-		function (error) {});
+		function (error) {
+
+		});
 	}
 
 });

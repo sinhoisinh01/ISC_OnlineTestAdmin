@@ -13,7 +13,7 @@ app.controller('UserProfileController', function($scope, $cookies, DTOptionsBuil
 	}
 	};
 
-	userFactory.findByid($cookies.getObject("user").userId,
+	userFactory.findById($cookies.getObject("user").userId,
 	function (data) {
 		console.log(data);
 		data.userDOB = new Date(parseInt(data.userDOB));
