@@ -30,7 +30,7 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/user/profile", {
 			templateUrl: "views/user/profile.html",
-			controller: "UserController"
+			controller: "UserProfileController"
 		})
 
 		.when("/subjects", {

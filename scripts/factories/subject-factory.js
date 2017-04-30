@@ -8,7 +8,7 @@ app.factory("SubjectFactory",function(APIFactory){
 		},
 
 
-		findById : function(id,success = null, fail = null){
+		findById : function( id, success = null, fail = null ){
       return APIFactory.get(APIFactory.apiName("GET_SUBJECT_BY_ID"),[id],success,fail);
 		},
 

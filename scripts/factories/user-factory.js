@@ -4,13 +4,13 @@ app.factory("userFactory",function(APIFactory){
 	// var token = cookieWObject.accessToken;
 	return{
 		findAlluser : function(success = null, fail = null){
-			return APIFactory.get(APIFactory.apiName("GET_USER"),null,success,fail);
+			return APIFactory.get( APIFactory.apiName("GET_USER"),null,success,fail );
 		},
 
 
-		findByid : function(id){
+		findByid : function(id, success = null , fail = null){
 
-			return $http.get(url + "/" + id + "?access_token=" + token );
+			return APIFactory.get( APIFactory.apiName("GET_USER_BY_ID"),[id],success,fail );
 		},
 
 		deleteUser : function(id){
