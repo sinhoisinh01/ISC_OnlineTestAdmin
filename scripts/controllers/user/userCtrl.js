@@ -46,7 +46,6 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 
 	id = $routeParams.id;
 	if(id === undefined){
-		console.log("a");
 		userFactory.findAlluser(function (data) {
 	     	$scope.Users = data;
 	    }, function(error) {
@@ -54,8 +53,9 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	  });
 	}
 	else{
-		userFactory.findByid(id).then(function mySucces(response){
-			$scope.User = response.data;
+		userFactory.findById(id, function(data){
+			console.log(data);
+			$scope.user = data;
 		});
 	}
 
@@ -75,14 +75,14 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	};
 
 
-	$scope.update = function(id,user){
-		user.userDate = new Date()
+	$scope.update = function(id, user){
+		user.userDOB = new Date(user.userDOB).getTime();
 		userFactory.edit(id,user,
-		function (response){
-
+		function (data){
+			alert('Edit Success');
 		},
 		function (error){
-
+			alert('Cant edit');
 		});
 	};
 
