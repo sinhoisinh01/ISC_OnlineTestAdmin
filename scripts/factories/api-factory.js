@@ -83,5 +83,11 @@ var API_URL = {
 	"GET_SUBJECT_BY_ID" : "api/subject/$1",
 	"CREATE_SUBJECT"  : "api/subject",
 	"UPDATE_SUBJECT"  : "api/subject/$1",
-	"DELETE_SUBJECT"  : "api/subject/$1"
+	"DELETE_SUBJECT"  : "api/subject/$1",
+
+	"GET_USER_TYPE"     : "api/usertype",
+	"GET_USER_TYPE_BY_ID" : "api/usertype/$1",
+	"CREATE_USER_TYPE"  : "api/usertype",
+	"UPDATE_USER_TYPE"  : "api/usertype/$1",
+	"DELETE_USER_TYPE"  : "api/usertype/$1"
 };

@@ -1,5 +1,6 @@
 app.controller('UserController', function($scope, $http, $route, $cookies, $routeParams, DTOptionsBuilder, userFactory, userTypeFactory, frontendBaseURL, md5) {
 	$scope.name = "user";
+	$scope.userId = $cookies.getObject('user').userId;
 	$scope.userTypes = [];
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -23,10 +24,13 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	 * Author: Doan Phuc Sinh
 	 * Get UserTypes From Database
      */
-    userTypeFactory.findAllUserType()
-	.then(function (response) {
-	  $scope.userTypes = response.data;
-	});
+    userTypeFactory.findAllUserType(
+    	function (response) {
+		  $scope.userTypes = response;
+		},
+		function (error) {
+
+		});
 
 	/*
 	 * Author: Doan Phuc Sinh
@@ -53,9 +57,9 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	  });
 	}
 	else{
-		userFactory.findById(id, function(data){
-			console.log(data);
+		userFactory.findById(id, function(data) {
 			$scope.user = data;
+			$scope.user.userGender = $scope.user.userGender + '';
 		});
 	}
 
@@ -77,6 +81,7 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 
 	$scope.update = function(id, user){
 		user.userDOB = new Date(user.userDOB).getTime();
+		console.log(user);
 		userFactory.edit(id,user,
 		function (data){
 			alert('Edit Success');
