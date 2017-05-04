@@ -36,7 +36,7 @@
             <div class="form-group">
               <label class="control-label col-sm-3">User Role:</label>
               <div class="col-sm-8">
-                <select class="form-control" disabled>
+                <select class="form-control">
                     <option ng-bind="user.userType.userTypeName" selected></option>
                 </select>
               </div>
@@ -76,7 +76,7 @@
               <div class="col-sm-8">
                 <label class="radio-inline">
                   <input type="radio" value="false" name="gender"
-                   ng-value="user.userGender" ng-model="user.userGender">Male
+                   ng-model="user.userGender">Male
                 </label>
                 <label class="radio-inline">
                   <input type="radio" value="true" name="gender"
