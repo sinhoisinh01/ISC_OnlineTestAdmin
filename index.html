@@ -26,6 +26,8 @@
 	  <link rel="stylesheet" href="assets/plugins/datatables/dataTables.bootstrap.css" />
 	  <!--CK Editor-->
 	  <link rel="stylesheet" type="text/css" href="assets/plugins/ckeditor2/contents.css">
+		<!--Alertify-->
+		<link rel="stylesheet" type="text/css" href="assets/css/alertify.min.css" />
 	  <!-- Theme style -->
 	  <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
 	  <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -41,7 +43,7 @@
 	</head>
 	<body class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
-		  <header class="main-header" ng-include="'includes/header.html'" 
+		  <header class="main-header" ng-include="'includes/header.html'"
 		  		ng-controller="HeaderController">
 		  </header>
 		  <aside class="main-sidebar" ng-include="'includes/main-sidebar.html'"></aside>
@@ -87,8 +89,9 @@
 		<script src="bower_components/angular-route.min.js"></script>
 		<script src="bower_components/angular-cookies.min.js"></script>
 		<script src="bower_components/ui-bootstrap-tpls.min.js"></script>
+		<script src="bower_components/alertify.min.js"></script>
 		<script src="scripts/app.js"></script>
-		<script src="scripts/factories/login-factory.js"></script>
+		<script src="scripts/factories/oauth2-factory.js"></script>
 
 		<script src="scripts/controllers/headerCtrl.js"></script>
 		<script src="scripts/controllers/loginCtrl.js"></script>

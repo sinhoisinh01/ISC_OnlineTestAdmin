@@ -1,6 +1,6 @@
 // Phan Tiến Hưng
 // Login Factory
-app.factory("LoginFactory", function($http, $httpParamSerializer, $cookies){
+app.factory("ErrorFactory", function($cookies){
 	return {
 		login : function(username,password){
 				var url = baseUrl + "/oauth/token?grant_type=password&username="+username+"&password="+password;
