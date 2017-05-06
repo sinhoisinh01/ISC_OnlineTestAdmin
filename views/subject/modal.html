@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <button type="button" ng-click="$dismiss()" class="close">&times;</button>
+    <h2 class="modal-title">
+      {{ action == 'add' ? 'Add New Subject' : 'Edit Subject'}}
+    </h2>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal" accept-charset="UTF-8">
+      <table id="add-subject">
+        <tr ng-if=" isParent && action == 'add' ">
+          <td>
+            <label class="control-label">Subject belongs to</label>
+          </td>
+          <td>
+            <input class="form-control" type="text" ng-model="parentName" readonly="">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label class="control-label">Subject name</label>
+          </td>
+          <td>
+            <input class="form-control" type="text" ng-model="subject.subName">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button type="button" class="btn btn-default pull-right" ng-click="$dismiss()">Close</button>
+            <button type="submit" class="btn btn-primary pull-right" ng-click="$close(subject);">
+                    Submit
+            </button>
+          </td>
+        </tr>
+      </table>
+  </form>
+</div>
+<div class="modal-footer">
+
+</div>

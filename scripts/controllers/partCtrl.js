@@ -19,5 +19,5 @@ app.controller("PartController",function($scope,$http,$route,DTOptionsBuilder){
 				{PAR_ID:6,PARID:1,PARTNAME:"Hai",PARDIRECTION:"long des",PARDEFAULT_SCORE:9,PARDEFAULT_COLUMN:8,PARDEFAULT_LEVEL:4,	PARORDER : "wqe",PARNOTE:'kew'},
 				{PAR_ID:7,PARID:1,PARTNAME:"Hai",PARDIRECTION:"long des",PARDEFAULT_SCORE:9,PARDEFAULT_COLUMN:8,PARDEFAULT_LEVEL:4,	PARORDER : "wqe",PARNOTE:'kew'},
 				];
-					
+
 });

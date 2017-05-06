@@ -2,7 +2,7 @@
 	<h1 ng-if="isHomePage">{{name}}s
 		<small>
 			<a ng-if = " name != 'subject' " class="btn btn-default" href="#!/{{name}}/add">Add new {{name}}</a>
-			<a ng-if = " name === 'subject' " class="btn btn-default" ng-click="addSubject()">Add new subject</a>
+			<a ng-if = " name === 'subject' " class="btn btn-default" ng-click="addSubject(null)">Add new subject</a>
 		</small>
 	</h1>
 	<h1 ng-if="isAddPage">Add New {{name}}</h1>

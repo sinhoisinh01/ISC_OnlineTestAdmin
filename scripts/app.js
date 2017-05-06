@@ -1,6 +1,6 @@
-var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap','ngCookies']);
-app.constant("baseURL","http://localhost:8080/api/")
-app.constant("frontendBaseURL","http://127.0.0.1:8887/")
+var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap','ngCookies','angular-md5','ngAlertify']);
+app.constant("baseURL","http://localhost:8181/api/")
+app.constant("frontendBaseURL","http://localhost/onlinetest/")
 app.config(function($locationProvider,$routeProvider) {
 		//$locationProvider.html5Mode(true);
 		/*
@@ -27,6 +27,10 @@ app.config(function($locationProvider,$routeProvider) {
 		.when("/user/edit/:id", {
 			templateUrl: "views/user/edit.html",
 			controller: "UserController"
+		})
+		.when("/user/profile", {
+			templateUrl: "views/user/profile.html",
+			controller: "UserProfileController"
 		})
 
 		.when("/subjects", {
@@ -111,8 +115,7 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 	});
 
-app.run(function($rootScope,Oauth2Factory,$location){
-	$rootScope.baseUrl = window.location.original + "/ISC_OnlineTestAdmin";
+app.run(function($rootScope,Oauth2Factory,HelperFactory,$http){
 	$rootScope.$on('$routeChangeStart', function (event, next) {
         if (!Oauth2Factory.isLogined()) {
 						event.preventDefault();

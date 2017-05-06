@@ -1,9 +1,9 @@
 // Phan Tiến Hưng
 // Login Factory
-app.factory("Oauth2Factory", function($http, $httpParamSerializer, $cookies){
+app.factory("Oauth2Factory", function($http, $httpParamSerializer, $cookies, HelperFactory){
 	return {
-		login : function(username,password){
-				var url = baseUrl + "/oauth/token?grant_type=password&username="+username+"&password="+password;
+		login : function(username, password, success = null, fail = null){
+				var url = HelperFactory.BASE_BE_URL + "oauth/token?grant_type=password&username="+username+"&password="+password;
 				var clientId = "Basic " + btoa("my-trusted-client:secret");
 				var request = {
 					method: 'POST',
@@ -13,14 +13,27 @@ app.factory("Oauth2Factory", function($http, $httpParamSerializer, $cookies){
 						"Accept": "application/json"
 					},
 				};
-
-				return $http(request);
+				$http(request).then(function(response){
+					$cookies.putObject("user",{
+						userId : response.data.userId,
+						fullName : response.data.fullName,
+						userRole : response.data.userRole,
+						accessToken : response.data.access_token,
+						refreshToken : response.data.refresh_token
+					});
+					success();
+				},function(error){
+					fail(error.data);
+				});
 		},
-		refreshToken : function(){
+		logout : function(){
+				$cookies.remove("user");
+		},
+		refreshToken : function(success = null , fail = null){
 				var user = $cookies.getObject("user");
-				if(user && user.refresh_token)
+				if(user && user.refreshToken)
 				{
-					var url = baseUrl + "/oauth/token?grant_type=refresh_token&refresh_token=" + user.refresh_token;
+					var url = HelperFactory.BASE_BE_URL + "oauth/token?grant_type=refresh_token&refresh_token=" + user.refreshToken;
 					var request = {
 						method : 'POST',
 						url : url,
@@ -29,17 +42,43 @@ app.factory("Oauth2Factory", function($http, $httpParamSerializer, $cookies){
 							"Accept": "application/json"
 						}
 					};
-					return $http(request);
+					$http(request).then(
+						(response) => {
+							user.refreshToken = response.data.refresh_token;
+							user.accessToken  = response.data.access_token;
+							success();
+						},
+						(error) => {
+							if(error.status === 401)
+							{
+								if(error.data.error === "invalid_token"){
+									this.logout();
+									fail(error.data);
+								}
+							}
+							else if(error.status === 400)
+							{
+								if(error.data.error === "invalid_grant"){
+									this.logout();
+									fail(error.data);
+								}
+							}
+						}
+					);
 				}
-				return null;
+				else{
+					success(null);
+					fail({error:"is_not_logined"});
+				}
+		},
+		getUserInfo : function(){
+			if($cookies.getObject("user"))
+				return $cookies.getObject("user");
 		},
 		isLogined: function(){
-			if($cookies.get("user"))
+			if($cookies.getObject("user"))
 				return true;
 			return false;
 		}
 	}
 });
-
-var baseUrl = "http://localhost:8080/onlinetest";
-var urls = {};

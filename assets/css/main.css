@@ -55,3 +55,26 @@ input[type="search"]{
   text-align: center;
   min-width:45px;
 }
+.alertify{
+	z-index:1000;
+}
+.alertify .dialog p.msg{
+	text-align: center;
+	font-size:18px;
+}
+.alertify .dialog .error{
+	background:#e74c3c;
+	color:white;
+}
+.alertify .dialog nav{
+	text-align: center;
+}
+.alertify .dialog nav button.ok{
+	border-color:white !important;
+	color:white !important;
+}
+.alertify .dialog .error .header{
+	height:90px;
+	width:100%;
+	font-size:60px;
+}

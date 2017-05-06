@@ -1,5 +1,6 @@
-app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTOptionsBuilder, $uibModal){
-	// Subjects only have children, not grandchildren.
+app.controller('SubjectController', function($scope, $route, $uibModal, SubjectFactory){
+
+	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -8,57 +9,103 @@ app.controller('SubjectController', function(baseURL, $http, $scope, $route, DTO
 		$scope.isHomePage = true;
 	else if( $route.current.loadedTemplateUrl.includes("add.html") )
 		$scope.isAddPage = true;
-	
-	$scope.dtOptions = DTOptionsBuilder.newOptions()
-        .withDisplayLength(10)
-        .withOption('bLengthChange', false);
-	subjects = 
-	[
+
+	$scope.subjects = null;
+
+	function load(){
+		SubjectFactory.findAll(function(data){
+			$scope.subjects = data;
+		},function(error){
+			location.href = "./login.html";
+		});
+	}
+  load();
+
+
+
+	$scope.addSubject = function(id){
+		$scope.action = 'add';
+		$scope.subject = null;
+		if(id === null)
+			$scope.isParent = false;
+		else
 		{
-			sub_id: 1, subid: null, subname:'Khoa học',
-			childsubjects:[
-				{sub_id: 2, subid: 1, subname:'Toán'},
-				{sub_id: 3, subid: 1, subname:'Lý'}
-			]
-		},
-		{
-			sub_id: 4, subid: null, subname:'Thất học',
-			childsubjects:[
-				{sub_id: 5, subid: 4, subname:'Boxing'},
-				{sub_id: 6, subid: 4, subname:'Muay Thai'}
-			]
-		},
+			$scope.isParent = true;
+			// $http.get(baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken).then(function(res){
+			// 	$scope.parentName = res.data.subName;
+			// });
+			SubjectFactory.findById(id,function(data){
+				$scope.parentName = data.subName;
+			},function(error){
+				location.href = "./login.html";
+			});
+		}
 
-	]
-	array = [];
-	subjectsLength = subjects.length;
-	for(i = 0; i < subjectsLength; i++)
-    {
-        subjects[i].level = 1;
-        childSubjectsLength = subjects[i].childsubjects.length;
-        temp = JSON.parse(JSON.stringify(subjects[i]));
-        delete temp.childsubjects;
-        array.push(temp);
-
-        for( j = 0; j < childSubjectsLength; j++){
-        	childSubject = subjects[i].childsubjects[j];
-        	childSubject.level = 2;
-        	array.push(childSubject);
-        }
-    }
-    //console.log(array);
-	$scope.subjects = array;
-
-	$scope.addSubject = function(){
-		$http.get(baseURL + "subjects").then(function(res){
-        		console.log(res);
-        	});
 		$uibModal.open({
-            templateUrl: 'views/subject/add.html',
+            templateUrl: 'views/subject/modal.html',
             scope: $scope,
             size: 'md'
-        }).result.then(function(){ 	
-        	
+        }).result.then(function(subject){
+        	subject.subId = id;
+		      // var req = {
+					//  "method":"POST",
+					//  "url": baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken,
+					//  "headers": {
+					//    "Content-Type": "application/json; charset=UTF-8",
+					//  },
+					//  "data":subject
+					// };
+        	// $http(req).then(function(res){
+        	// 	load();
+        	// });
+					SubjectFactory.create(subject,function(data){
+						load();
+					},function(error){
+
+					});
         });
+	}
+
+	$scope.editSubject = function(id){
+		$scope.action = 'edit';
+		SubjectFactory.findById(id,function(data){
+			$scope.subject = data;
+			$uibModal.open({
+	            templateUrl: 'views/subject/modal.html',
+	            scope: $scope,
+	            size: 'md'
+	        }).result.then(function(subject){
+	        	subject.id = id;
+	        	// var req = {
+						//  "method":"POST",
+						//  "url": baseURL + "subject/"+id+"/?access_token=" + $cookies.getObject("user").accessToken,
+						//  "headers": {
+						//    "Content-Type": "application/json; charset=UTF-8"
+						//  },
+						//  "data":subject
+						// };
+						SubjectFactory.edit(id,subject,function(data){
+							load();
+						},function(error){
+
+						});
+						// $http(req).then(function(res){
+	        	// 	load();
+	        	// });
+	        });
+		},function(error){
+
+		});
+
+	}
+
+	$scope.deleteSubject = function(id){
+		if( !confirm("Are you sure you want to delete?") )
+			return 0;
+		SubjectFactory.remove(id,function(data){
+			load();
+		},function(error){
+
+		});
 	}
 });

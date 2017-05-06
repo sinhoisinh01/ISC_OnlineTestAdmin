@@ -30,16 +30,22 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/alertify.min.css" />
 	  <!-- Theme style -->
 	  <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+		<!-- Alertify -->
+		<link rel="stylesheet" href="assets/css/alertify.css">
 	  <!-- AdminLTE Skins. Choose a skin from the css/skins
 	       folder instead of downloading all of them to reduce the load. -->
 	  <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
 	  <link rel="stylesheet" href="assets/css/main.css" media="all" />
+	  <link rel="stylesheet" href="assets/css/angular-ui-tree.min.css" media="all" />
+	  <link rel="stylesheet" href="assets/css/subject.css" media="all" />
 	  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	  <!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	  <![endif]-->
+
+	  <link rel="stylesheet" href="styles/my-style.css" media="all" />
 	</head>
 	<body class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
@@ -56,32 +62,34 @@
 		<!-- jQuery 2.2.3 -->
 		<script src="assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 		<!-- jQuery UI 1.11.4 -->
-		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" async></script>
+		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-		<script>
-		  $.widget.bridge('uibutton', $.ui.button);
+		<script async>
+		 $(document).ready(function(){
+			  $.widget.bridge('uibutton', $.ui.button);
+		 });
 		</script>
 		<!-- Bootstrap 3.3.6 -->
 		<script src="assets/js/bootstrap.min.js"></script>
 		<!-- Select2 -->
 		<script src="assets/plugins/select2/select2.full.min.js"></script>
 		<!-- daterangepicker -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js" async></script>
-		<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js" ></script>
+		<script src="assets/plugins/daterangepicker/daterangepicker.js" ></script>
 		<!-- datepicker -->
-		<script src="assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+		<script src="assets/plugins/datepicker/bootstrap-datepicker.js" ></script>
 		<!-- FastClick -->
-		<script src="assets/plugins/fastclick/fastclick.js"></script>
+		<script src="assets/plugins/fastclick/fastclick.js" ></script>
 		<!-- DataTable -->
-		<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-		<script src="assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+		<script src="assets/plugins/datatables/jquery.dataTables.min.js" ></script>
+		<script src="assets/plugins/datatables/dataTables.bootstrap.min.js" ></script>
 		<!-- AdminLTE App -->
-		<script src="assets/dist/js/app.min.js"></script>
+		<script src="assets/dist/js/app.min.js" ></script>
 		<!--CK Editor-->
-		<script src="assets/plugins/ckeditor2/ckeditor.js"></script>
-		<script src="assets/plugins/ckeditor2/adapters/jquery.js"></script>
+		<script src="assets/plugins/ckeditor2/ckeditor.js" ></script>
+		<script src="assets/plugins/ckeditor2/adapters/jquery.js" ></script>
 		<!-- iCheck 1.0.1 -->
-		<script src="assets/plugins/iCheck/icheck.min.js"></script>
+		<script src="assets/plugins/iCheck/icheck.min.js" ></script>
 
 		<!-- Angular JS -->
 		<script src="bower_components/angular.min.js"></script>
@@ -89,23 +97,35 @@
 		<script src="bower_components/angular-route.min.js"></script>
 		<script src="bower_components/angular-cookies.min.js"></script>
 		<script src="bower_components/ui-bootstrap-tpls.min.js"></script>
-		<script src="bower_components/alertify.min.js"></script>
-		<script src="scripts/app.js"></script>
-		<script src="scripts/factories/oauth2-factory.js"></script>
 
-		<script src="scripts/controllers/headerCtrl.js"></script>
-		<script src="scripts/controllers/loginCtrl.js"></script>
-		<script src="scripts/controllers/partCtrl.js"></script>
-		<script src="scripts/controllers/loginCtrl.js"></script>
-		<script src="scripts/controllers/questionCtrl.js"></script>
-		<script src="scripts/controllers/add-question/multipleChoiceCtrl.js"></script>
-		<script src="scripts/controllers/add-question/textCtrl.js"></script>
-		<script src="scripts/controllers/add-question/trueFalseCtrl.js"></script>
-		<script src="scripts/controllers/subjectCtrl.js"></script>
-		<script src="scripts/controllers/testCtrl.js"></script>
-		<script src="scripts/controllers/userCtrl.js"></script>
+		<script src="bower_components/angular-ui-tree.js"></script>
+		<script src="bower_components/angular-md5.min.js"></script>
+		<script src="bower_components/alertify.js"></script>
+		<script src="bower_components/ngAlertify.js"></script>
 
-		<script src="scripts/factories/user-factory.js"></script>
+		<script src="scripts/app.js" ></script>
+		<script src="scripts/factories/helper-factory.js" ></script>
+		<script src="scripts/factories/oauth2-factory.js" ></script>
+		<script src="scripts/factories/api-factory.js" ></script>
+
+		<script src="scripts/controllers/headerCtrl.js" ></script>
+		<script src="scripts/controllers/loginCtrl.js" ></script>
+		<script src="scripts/controllers/partCtrl.js" ></script>
+		<script src="scripts/controllers/questionCtrl.js" ></script>
+		<script src="scripts/controllers/add-question/multipleChoiceCtrl.js" ></script>
+		<script src="scripts/controllers/add-question/textCtrl.js" ></script>
+		<script src="scripts/controllers/add-question/trueFalseCtrl.js" ></script>
+		<script src="scripts/controllers/subjectCtrl.js" ></script>
+		<script src="scripts/controllers/testCtrl.js" ></script>
+		<script src="scripts/controllers/user/userCtrl.js" ></script>
+		<script src="scripts/controllers/user/userProfileCtrl.js" ></script>
+
+		<script src="scripts/factories/user-factory.js" ></script>
+		<script src="scripts/factories/user-type-factory.js" ></script>
+		<script src="scripts/factories/subject-factory.js"></script>
+
+		<script src="scripts/filter.js" ></script>
+		<script src="scripts/validate.js" ></script>
 
 	</body>
 </html>
