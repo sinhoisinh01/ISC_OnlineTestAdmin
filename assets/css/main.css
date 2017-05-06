@@ -63,18 +63,29 @@ input[type="search"]{
 	font-size:18px;
 }
 .alertify .dialog .error{
-	background:#e74c3c;
-	color:white;
+	color:black;
 }
 .alertify .dialog nav{
 	text-align: center;
 }
-.alertify .dialog nav button.ok{
-	border-color:white !important;
+.alertify .dialog .error nav button.ok{
+	border-color: #e74c3c !important;
+	color:black !important;
+}
+.alertify .dialog .error nav button.ok:hover{
+	background:#e74c3c !important;
 	color:white !important;
 }
 .alertify .dialog .error .header{
+	color:white;
+	background:#e74c3c;
+	margin:-12px -12px 12px -12px;
 	height:90px;
-	width:100%;
+	width:calc(100% + 24px);
 	font-size:60px;
+}
+.alertify-logs .error{
+	background:#e74c3c;
+	font-size:18px;
+	padding:15px;
 }

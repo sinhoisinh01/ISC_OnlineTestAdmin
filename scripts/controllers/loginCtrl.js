@@ -5,7 +5,7 @@ app.controller('LoginController', function($scope, Oauth2Factory, Alertifier){
       Oauth2Factory.login(userName,password,function(data){
         window.location.href = "./";
       },function(error){
-        Alertifier.error("Wrong username or password !");
+        Alertifier.toast("error","Wrong username or password !");
       });
     };
 });
