@@ -12,7 +12,7 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 			}
 
 			if(Oauth2Factory.isLogined())
-     		return HelperFactory.BASE_BE_URL + apiName + "?access_token=" + $cookies.getObject("user").accessToken;
+     		return HelperFactory.BASE_BE_URL + apiName;
 			else
 				return null;
     },
@@ -25,7 +25,8 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 				url : this.fixUrl(apiName,params),
 				data : data,
 				headers: {
-					"Content-Type": "application/json; charset=utf-8"
+					"Content-Type": "application/json; charset=utf-8",
+					"Authorization" : "Bearer " + $cookies.getObject("user").accessToken
 				}
 			};
 			$http(req).then(

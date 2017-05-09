@@ -49,6 +49,9 @@ app.factory("Alertifier", function(alertify){
 				jQuery(".alertify-logs div").removeClass("default").addClass("error");
 				jQuery(".alertify-logs").css("margin-left","calc(50% - "+(jQuery(".alertify-logs").width() / 2)+"px)");
 			}
+		},
+		showMessage : function(type,message,container){
+			jQuery(container).addClass("message error");
 		}
   }
 });
