@@ -36,7 +36,10 @@ app.factory("Alertifier", function(alertify){
 						cancel();
 				});
 				jQuery(".alertify .dialog div").addClass("warn");
-				jQuery(".alertify .dialog div.warn").prepend("<div class='header'><span class='Example of exclamation-triangle fa-exclamation-triangle vcenter'></span></div>");
+				var button = jQuery(".alertify .dialog div.warn nav button");
+				jQuery(".alertify .dialog div.warn nav").append(button[1]);
+				jQuery(".alertify .dialog div.warn nav").append(button[0]);
+				jQuery(".alertify .dialog div.warn").prepend("<div class='header'><span class='fa fa-exclamation-triangle vcenter'></span></div>");
 				jQuery(".alertify .dialog div.warn").addClass("animated bounce");
 			}
 		},
