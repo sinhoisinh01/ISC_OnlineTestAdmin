@@ -1,4 +1,4 @@
-app.controller('SubjectController', function($scope, $route, $uibModal, SubjectFactory){
+app.controller('SubjectController', function($scope, $route, $uibModal, SubjectFactory, Alertifier){
 
 	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
@@ -47,7 +47,6 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
             size: 'md'
         }).result.then(function(subject){
         	subject.subId = id;
-					console.log(subject);
 		      // var req = {
 					//  "method":"POST",
 					//  "url": baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken,
@@ -101,12 +100,14 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	}
 
 	$scope.deleteSubject = function(id){
-		if( !confirm("Are you sure you want to delete?") )
-			return 0;
-		SubjectFactory.remove(id,function(data){
-			load();
-		},function(error){
+		Alertifier.confirm("warn","Bạn có chắc muốn xóa môn này ?",function(){
+			SubjectFactory.remove(id,function(data){
+				load();
+			},function(error){
 
+			});
+		},function(){
+			
 		});
 	}
 });

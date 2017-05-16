@@ -28,6 +28,18 @@ app.factory("Alertifier", function(alertify){
 				jQuery(".alertify .dialog div.error").addClass("animated shake");
 			}
 		},
+		confirm: function(type,message,ok,cancel){
+			if(type === "warn"){
+				alertify.confirm(message, function () {
+						ok();
+					}, function() {
+						cancel();
+				});
+				jQuery(".alertify .dialog div").addClass("warn");
+				jQuery(".alertify .dialog div.warn").prepend("<div class='header'><span class='Example of exclamation-triangle fa-exclamation-triangle vcenter'></span></div>");
+				jQuery(".alertify .dialog div.warn").addClass("animated bounce");
+			}
+		},
 		toast : function(type,message){
 			if(type === "confirm"){
 				alertify.delay(10000).log(message);
@@ -52,6 +64,7 @@ app.factory("Alertifier", function(alertify){
 		},
 		showMessage : function(type,message,container){
 			jQuery(container).addClass("message error");
+			jQuery(container).append("<p>"+message+"</p>");
 		}
   }
 });

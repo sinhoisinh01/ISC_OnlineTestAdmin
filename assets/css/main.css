@@ -73,11 +73,27 @@ input[type="search"]{
 	border-color: #e74c3c !important;
 	color:black !important;
 }
+.alertify .dialog .warn nav button.ok{
+	border-color: #e74c3c !important;
+	color:black !important;
+}
 .message.error,.alertify .dialog .error nav button.ok:hover{
 	background:#e74c3c !important;
 	color:white !important;
 }
+.message.error,.alertify .dialog .warn nav button.ok:hover{
+	background:#e74c3c !important;
+	color:white !important;
+}
 .alertify .dialog .error .header{
+	color:white;
+	background:#e74c3c;
+	margin:-12px -12px 12px -12px;
+	height:90px;
+	width:calc(100% + 24px);
+	font-size:60px;
+}
+.alertify .dialog .warn .header{
 	color:white;
 	background:#e74c3c;
 	margin:-12px -12px 12px -12px;
@@ -90,8 +106,20 @@ input[type="search"]{
 	font-size:18px;
 	padding:15px;
 }
+.alertify-logs .warn{
+	background:#e74c3c;
+	font-size:18px;
+	padding:15px;
+}
 .message{
-	height:30px;
+	height:45px;
 	width:100%;
 	margin:5px 0;
+	padding:5px;
+}
+.message p{
+	text-align: center;
+	height:calc(100% - 10px);
+	line-height:35px;
+	font-size:16px;
 }
