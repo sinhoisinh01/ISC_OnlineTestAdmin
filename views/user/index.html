@@ -25,10 +25,13 @@
 						<td ng-bind="x.userEmail"></td>
 						<td ng-bind="x.userPhone"></td>
 						<td>
-		                  <div ng-if="x.id != userId">
+		                  <div ng-if="x.id !== userId">
 			                  <a class="btn" href="#!/user/edit/{{x.id}}"><i class="fa fa-wrench"></i></a>
 			                  <a class="btn" ng-click='delete(x.id)'><i class="fa fa-trash"></i></a>
 		                  </div>
+											<div ng-if="x.id === userId" style="min-height:34px;visibility:hidden">
+
+											</div>
 		                </td>
 					</tr>
 				</tbody>

@@ -46,6 +46,7 @@ app.factory("Oauth2Factory", function($http, $httpParamSerializer, $cookies, Hel
 						(response) => {
 							user.refreshToken = response.data.refresh_token;
 							user.accessToken  = response.data.access_token;
+							$cookies.putObject("user",user);
 							success();
 						},
 						(error) => {
@@ -74,6 +75,13 @@ app.factory("Oauth2Factory", function($http, $httpParamSerializer, $cookies, Hel
 		getUserInfo : function(){
 			if($cookies.getObject("user"))
 				return $cookies.getObject("user");
+		},
+		updateUserInfo : function(fullname){
+			if($cookies.getObject("user")){
+				var user = $cookies.getObject("user");
+				user.fullName = fullname;
+				$cookies.putObject("user",user);
+			}
 		},
 		isLogined: function(){
 			if($cookies.getObject("user"))

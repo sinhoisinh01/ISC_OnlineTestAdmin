@@ -100,14 +100,14 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	}
 
 	$scope.deleteSubject = function(id){
-		Alertifier.confirm("warn","Bạn có chắc muốn xóa môn này ?",function(){
+		Alertifier.confirm("warn","Are you sure you want to remove this subject ?",function(){
 			SubjectFactory.remove(id,function(data){
 				load();
 			},function(error){
 
 			});
 		},function(){
-			
+
 		});
 	}
 });

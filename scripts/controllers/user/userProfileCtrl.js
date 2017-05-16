@@ -1,4 +1,4 @@
-app.controller('UserProfileController', function($scope, $cookies, DTOptionsBuilder, userFactory, frontendBaseURL, md5) {
+app.controller('UserProfileController', function($scope, DTOptionsBuilder, userFactory, Oauth2Factory, HelperFactory, md5, Alertifier) {
 	$scope.currentUser = {};
 	$scope.passwordValidation = {
 		"allowWeakPassword": false,
@@ -13,7 +13,7 @@ app.controller('UserProfileController', function($scope, $cookies, DTOptionsBuil
 		}
 	};
 
-	userFactory.findById($cookies.getObject("user").userId,
+	userFactory.findById(Oauth2Factory.getUserInfo().userId,
 	function (data) {
 		data.userDOB = new Date(parseInt(data.userDOB));
 		$scope.currentUser = data;
@@ -27,7 +27,10 @@ app.controller('UserProfileController', function($scope, $cookies, DTOptionsBuil
 		$scope.currentUser.DOB = $scope.currentUser.userDOB.getTime();
 		userFactory.edit($scope.currentUser.id, $scope.currentUser,
 		function (response) {
-			alert("Your information has been changed");
+			Alertifier.confirm("success","Your profile has been changed",function(){
+				Oauth2Factory.updateUserInfo($scope.currentUser.userFirstName + " " + $scope.currentUser.userLastName);
+				location.reload();
+			});
 		},
 		function (error) {
 
