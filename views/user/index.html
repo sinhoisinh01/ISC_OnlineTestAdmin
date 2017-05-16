@@ -17,7 +17,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="x in Users">
-						<td ng-bind="$index"></td>
+						<td ng-bind="$index+1"></td>
 						<td ng-bind="x.userFirstName"></td>
 						<td ng-bind="x.userLastName"></td>
 						<td ng-bind="x.userDOB|date"></td>
@@ -25,8 +25,10 @@
 						<td ng-bind="x.userEmail"></td>
 						<td ng-bind="x.userPhone"></td>
 						<td>
-		                  <a class="btn" href="#!/user/edit/{{x.id}}"><i class="fa fa-wrench"></i></a>
-		                  <a class="btn" ng-click='delete(x.id)'><i class="fa fa-trash"></i></a>
+		                  <div ng-if="x.id != userId">
+			                  <a class="btn" href="#!/user/edit/{{x.id}}"><i class="fa fa-wrench"></i></a>
+			                  <a class="btn" ng-click='delete(x.id)'><i class="fa fa-trash"></i></a>
+		                  </div>
 		                </td>
 					</tr>
 				</tbody>

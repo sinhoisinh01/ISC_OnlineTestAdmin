@@ -1,5 +1,6 @@
 app.controller('UserController', function($scope, $http, $route, $cookies, $routeParams, DTOptionsBuilder, userFactory, userTypeFactory, frontendBaseURL, md5) {
 	$scope.name = "user";
+	$scope.userId = $cookies.getObject('user').userId;
 	$scope.userTypes = [];
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -23,10 +24,13 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	 * Author: Doan Phuc Sinh
 	 * Get UserTypes From Database
      */
-    userTypeFactory.findAllUserType()
-	.then(function (response) {
-	  $scope.userTypes = response.data;
-	});
+    userTypeFactory.findAllUserType(
+    	function (response) {
+		  $scope.userTypes = response;
+		},
+		function (error) {
+
+		});
 
 	/*
 	 * Author: Doan Phuc Sinh
@@ -53,29 +57,38 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	  });
 	}
 	else{
-		userFactory.findByid(id).then(function mySucces(response){
-			$scope.User = data;
+		userFactory.findById(id, function(data) {
+			$scope.user = data;
+			$scope.user.userGender = $scope.user.userGender + '';
 		});
 	}
 
 	$scope.delete = function(id){
 		var id = id;
-		userFactory.deleteUser(id).then(function mySucces(response){
-		for(i = 0; i < $scope.Users.length; i++) {
+		userFactory.delete(id,
+		function (response) {
+		  for(i = 0; i < $scope.Users.length; i++) {
 			if ( $scope.Users[i].id == id ) {
-				$scope.Users.splice(i, 1);
+			  $scope.Users.splice(i, 1);
 			}
-		}
+		  }
+		},
+		function (error) {
+
 		});
 	};
 
 
-	$scope.update = function(id,user){
-		user.userDate = new Date()
-		userFactory.saveUser(id,user).then(function mySucces(response){
-
-		},function myError(response){}
-		);
+	$scope.update = function(id, user){
+		user.userDOB = new Date(user.userDOB).getTime();
+		console.log(user);
+		userFactory.edit(id,user,
+		function (data){
+			alert('Edit Success');
+		},
+		function (error){
+			alert('Cant edit');
+		});
 	};
 
 	$scope.create = function(){
@@ -93,11 +106,13 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 		    "userDate": currentTime,
 		    "userType": JSON.parse($scope.newUser.userType)
 	  	};
-		userFactory.createUser(newUserInfo)
-		.then(function (response) {
+		userFactory.add(newUserInfo,
+		function (response) {
 			window.location.href = frontendBaseURL + "#!/users";
 		},
-		function (error) {});
+		function (error) {
+
+		});
 	}
 
 });

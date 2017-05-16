@@ -1,7 +1,6 @@
 var app = angular.module('Authentication', ['ngRoute','ngCookies','ngAlertify']);
 app.config(function($locationProvider,$routeProvider,$httpProvider,$qProvider) {
 		$qProvider.errorOnUnhandledRejections(false);
-
 		$routeProvider
 		.when("/", {
 			controller: "LoginController"
