@@ -21,8 +21,6 @@ app.factory("SubjectFactory",function(APIFactory){
 		},
 
 		create : function(subject,success = null, fail = null) {
-			subject.subName = unescape(encodeURIComponent(subject.subName ));
-			console.log(subject.subName);
 			return APIFactory.post(APIFactory.apiName("CREATE_SUBJECT"),null,subject,success,fail);
 		}
 

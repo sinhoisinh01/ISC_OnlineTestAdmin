@@ -46,16 +46,15 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 
 	id = $routeParams.id;
 	if(id === undefined){
-		console.log("a");
-		userFactory.findAlluser(function (response) {
-	     	$scope.Users = response.data;
+		userFactory.findAlluser(function (data) {
+	     	$scope.Users = data;
 	    }, function(error) {
 	      	//$scope.Users = response.statusText;
 	  });
 	}
 	else{
 		userFactory.findByid(id).then(function mySucces(response){
-			$scope.User = response.data;
+			$scope.User = data;
 		});
 	}
 

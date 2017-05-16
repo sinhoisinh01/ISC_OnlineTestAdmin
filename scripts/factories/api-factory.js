@@ -23,9 +23,9 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 			var req = {
 				method : method,
 				url : this.fixUrl(apiName,params),
-				data : data,
+				data : JSON.stringify(data),
 				headers: {
-					"Content-Type": "application/json; charset=utf-8"
+					"Accept": "application/json; charset=utf-8"
 				}
 			};
 			$http(req).then(

@@ -47,6 +47,7 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
             size: 'md'
         }).result.then(function(subject){
         	subject.subId = id;
+					console.log(subject);
 		      // var req = {
 					//  "method":"POST",
 					//  "url": baseURL + "subject/?access_token=" + $cookies.getObject("user").accessToken,
