@@ -48,6 +48,8 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	if(id === undefined){
 		userFactory.findAlluser(function (data) {
 	     	$scope.Users = data;
+	     	$scope.userId = $cookies.getObject("user").userId;
+	     	console.log($scope.userId);
 	    }, function(error) {
 	      	//$scope.Users = response.statusText;
 	  });
