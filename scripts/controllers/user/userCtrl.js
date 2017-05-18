@@ -1,5 +1,6 @@
-app.controller('UserController', function($scope, $http, $route, $cookies, $routeParams, DTOptionsBuilder, userFactory, userTypeFactory, frontendBaseURL, md5) {
+app.controller('UserController', function($scope, $route, $routeParams, DTOptionsBuilder, userFactory, Oauth2Factory, userTypeFactory, HelperFactory, md5, Alertifier) {
 	$scope.name = "user";
+	$scope.userId = Oauth2Factory.getUserInfo().userId;
 	$scope.userTypes = [];
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -14,7 +15,7 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 		$scope.isHomePage = true;
 	else if( $route.current.loadedTemplateUrl.includes("add.html") )
 		$scope.isAddPage = true;
-		console.log($cookies.getObject("user"));
+		console.log(Oauth2Factory.getUserInfo());
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
@@ -23,10 +24,13 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	 * Author: Doan Phuc Sinh
 	 * Get UserTypes From Database
      */
-    userTypeFactory.findAllUserType()
-	.then(function (response) {
-	  $scope.userTypes = response.data;
-	});
+    userTypeFactory.findAllUserType(
+    	function (response) {
+		  $scope.userTypes = response;
+		},
+		function (error) {
+
+		});
 
 	/*
 	 * Author: Doan Phuc Sinh
@@ -55,23 +59,26 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	  });
 	}
 	else{
-		userFactory.findById(id, function(data){
-			console.log(data);
+		userFactory.findById(id, function(data) {
 			$scope.user = data;
+			$scope.user.userGender = $scope.user.userGender + '';
 		});
 	}
 
 	$scope.delete = function(id){
-		var id = id;
-		userFactory.delete(id, 
-		function (response) {
-		  for(i = 0; i < $scope.Users.length; i++) {
-			if ( $scope.Users[i].id == id ) {
-			  $scope.Users.splice(i, 1);
-			}
-		  }
+		Alertifier.confirm("warn","Are you sure you want to remove this user ?",function(){
+			var id = id;
+			userFactory.delete(id,function(response){
+			  for(i = 0; i < $scope.Users.length; i++) {
+					if ( $scope.Users[i].id == id ) {
+					  $scope.Users.splice(i, 1);
+					}
+				}
 		},
 		function (error) {
+
+		});
+		},function(){
 
 		});
 	};
@@ -105,7 +112,7 @@ app.controller('UserController', function($scope, $http, $route, $cookies, $rout
 	  	};
 		userFactory.add(newUserInfo,
 		function (response) {
-			window.location.href = frontendBaseURL + "#!/users";
+			window.location.href = HelperFactory.BASE_FE_URL + "#!/users";
 		},
 		function (error) {
 

@@ -1,12 +1,12 @@
 
-app.factory("userTypeFactory",function($http,$cookies){
-	var url = "http://localhost:8080/onlinetest/api/usertype";
+app.factory("userTypeFactory",function(APIFactory){
+	/*var url = "http://localhost:8180/onlinetest/api/usertype";
 	var cookieWObject = $cookies.getObject("user");
-	var token = cookieWObject.accessToken;
+	var token = cookieWObject.accessToken;*/
 	return{	
 
-		findAllUserType : function(){			
-			return $http.get(url + "/?access_token=" + token);
+		findAllUserType : function(success = null, fail = null){
+			return APIFactory.get( APIFactory.apiName("GET_USER_TYPE"),null,success,fail );
 		},
 
 
