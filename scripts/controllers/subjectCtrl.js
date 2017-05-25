@@ -1,4 +1,4 @@
-app.controller('SubjectController', function($scope, $route, $uibModal, SubjectFactory, PartFactory, Alertifier){
+app.controller('SubjectController', function($scope, $route, $uibModal, SubjectFactory, PartFactory, Alertifier, DTOptionsBuilder){
 
 	$scope.subjectPartBox = {
 	  "cssClass": "col-md-12",
@@ -6,6 +6,10 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  "partBoxTitle": "",
 	  "parts": []
 	};
+
+	$scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withDisplayLength(10)
+        .withOption('bLengthChange', false);
 
 	// Subjects only have childSubs, not grandchildSubs.
 	$scope.name = "subject";
@@ -126,5 +130,11 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  	$scope.subjectPartBox.parts = data;
 	  	console.log(data);
 	  }, function() {});
+	};
+
+	$scope.deletePart = function(id) {
+	  if (confirm("Are you sure to delete this part?") == true) {
+	  	PartFactory.remove(id, function(data) {}, function() {});
+	  }
 	};
 });
