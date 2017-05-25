@@ -17,9 +17,9 @@ app.factory("Alertifier", function(alertify){
 			}
 			else if(type === "success"){
 				alertify.alert(message);
-				jQuery(".alertify .dialog div").addClass("error");
-				jQuery(".alertify .dialog div.error").prepend("<div class='header'><span class='fa fa-exclamation vcenter'></span></div>");
-				jQuery(".alertify .dialog div.error").addClass("animated shake");
+				jQuery(".alertify .dialog div").addClass("success");
+				jQuery(".alertify .dialog div.success").prepend("<div class='header'><span class='fa fa-exclamation vcenter'></span></div>");
+				jQuery(".alertify .dialog div.success").addClass("animated shake");
 			}
 			else if(type === "warn"){
 				alertify.alert(message);
@@ -28,12 +28,13 @@ app.factory("Alertifier", function(alertify){
 				jQuery(".alertify .dialog div.error").addClass("animated shake");
 			}
 		},
-		confirm: function(type,message,ok,cancel){
+		confirm: function(type,message,ok,cancel = null){
 			if(type === "warn"){
 				alertify.confirm(message, function () {
 						ok();
 					}, function() {
-						cancel();
+						if(cancel && typeof cancel === "function")
+							cancel();
 				});
 				jQuery(".alertify .dialog div").addClass("warn");
 				var button = jQuery(".alertify .dialog div.warn nav button");
@@ -41,6 +42,21 @@ app.factory("Alertifier", function(alertify){
 				jQuery(".alertify .dialog div.warn nav").append(button[0]);
 				jQuery(".alertify .dialog div.warn").prepend("<div class='header'><span class='fa fa-exclamation-triangle vcenter'></span></div>");
 				jQuery(".alertify .dialog div.warn").addClass("animated bounce");
+			}
+			else if(type === "success"){
+				alertify.confirm(message, function () {
+						ok();
+					}, function() {
+						if(cancel && typeof cancel === "function")
+							cancel();
+				});
+				jQuery(".alertify .dialog div").addClass("success");
+				var button = jQuery(".alertify .dialog div.success nav button");
+				jQuery(".alertify .dialog div.success nav").append(button[1]);
+				if(!cancel)
+					button[0].remove();
+				jQuery(".alertify .dialog div.success").prepend("<div class='header'><span class='fa fa-check vcenter'></span></div>");
+				jQuery(".alertify .dialog div.success").addClass("animated bounce");
 			}
 		},
 		toast : function(type,message){
