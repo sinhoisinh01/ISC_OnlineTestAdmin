@@ -1,10 +1,10 @@
-pp.factory("PartFactory",function(APIFactory){
+app.factory("PartFactory",function(APIFactory){
 	// var url = "http://localhost:8080/onlinetest/api/user";
 	// var cookieWObject = $cookies.getObject("user");
 	// var token = cookieWObject.accessToken;
 	return{
-		findAll : function(success = null, fail = null){
-			return APIFactory.get(APIFactory.apiName("GET_SUBJECT_PART"),[id],success,fail);
+		findAll : function(subjectId, success = null, fail = null){
+			return APIFactory.get(APIFactory.apiName("GET_PART_BY_SUBJECT"),[subjectId],success,fail);
 		},
 
 
