@@ -1,9 +1,10 @@
-app.controller('SubjectController', function($scope, $route, $uibModal, SubjectFactory, Alertifier){
+app.controller('SubjectController', function($scope, $route, $uibModal, SubjectFactory, PartFactory, Alertifier){
 
 	$scope.subjectPartBox = {
 	  "cssClass": "col-md-12",
 	  "showParts": false,
-	  "partBoxTitle": ""
+	  "partBoxTitle": "",
+	  "parts": []
 	};
 
 	// Subjects only have childSubs, not grandchildSubs.
@@ -121,6 +122,9 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  $scope.subjectPartBox.showParts = true;
 	  $scope.subjectPartBox.cssClass = "col-md-6";
 	  $scope.subjectPartBox.partBoxTitle = subject.subName;
-	  console.log(subject);
+	  PartFactory.findAll(subject.id, function(data) {
+	  	$scope.subjectPartBox.parts = data;
+	  	console.log(data);
+	  }, function() {});
 	};
 });

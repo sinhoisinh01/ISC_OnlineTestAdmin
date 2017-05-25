@@ -77,7 +77,12 @@
             </tr>
           </thead>
           <tbody>
-            
+            <tr ng-repeat="part in subjectPartBox.parts">
+              <td ng-bind="$index + 1"></td>
+              <td ng-bind="part.id"></td>
+              <td ng-bind="part.name"></td>
+              <td></td>
+            </tr>
           </tbody>
           <tfoot>
             <tr>

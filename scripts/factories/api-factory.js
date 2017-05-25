@@ -90,5 +90,11 @@ var API_URL = {
 	"GET_USER_TYPE_BY_ID" : "api/usertype/$1",
 	"CREATE_USER_TYPE"  : "api/usertype",
 	"UPDATE_USER_TYPE"  : "api/usertype/$1",
-	"DELETE_USER_TYPE"  : "api/usertype/$1"
+	"DELETE_USER_TYPE"  : "api/usertype/$1",
+
+	"GET_PART_BY_SUBJECT" : "api/parts/$1",
+	"GET_PART_BY_ID" : "api/part/$1",
+	"CREATE_PART" : "api/part/",
+	"UPDATE_PART" : "api/part/$1",
+	"DELETE_PART" : "api/part/$1"
 };
