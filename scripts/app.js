@@ -53,6 +53,10 @@ app.config(function($locationProvider,$routeProvider) {
 		.when("/part/delete",{
 			controller : "PartController"
 		})
+		.when("/image-galery",{
+			templateUrl : "views/part/image-galery.html",
+			controller : "ImageGaleryController"
+		})
 
 		.when("/questions",{
 			templateUrl: "views/question/index.html",
