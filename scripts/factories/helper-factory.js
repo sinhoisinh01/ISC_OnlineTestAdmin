@@ -3,6 +3,6 @@
 app.factory("HelperFactory", function(){
 	return {
     BASE_FE_URL : location.origin + location.pathname,
-    BASE_BE_URL : "http://localhost:8800/onlinetest/",
+    BASE_BE_URL : "http://localhost:8080/onlinetest/",
   }
 });
