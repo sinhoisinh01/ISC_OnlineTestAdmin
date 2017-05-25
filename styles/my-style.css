@@ -5,3 +5,18 @@
 .clickable {
 	cursor: pointer;
 }
+
+.scrollable-box {
+	height: 50%;
+	overflow-y: auto;
+}
+
+.1-2-box {
+	height: 50%;
+	overflow-y: auto;
+}
+
+figure {
+	margin: 0px 0px 0px 0px;
+	text-align: left;
+}
