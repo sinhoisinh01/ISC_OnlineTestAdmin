@@ -1,0 +1,29 @@
+<section class="content-header">
+	<h1>Gallery
+		<small>
+			<a class="btn btn-default" ng-click="addImage()">Add new image</a>
+      <form style="display:none" enctype="multipart/form-data">
+        <input class="btn btn-default" type="file" file-model = "myFile" accept="image/*" multiple>
+      </form>
+      <a ng-if="imageChose.length === 0" class="btn btn-default" disabled>Delete</a>
+			<a ng-if="imageChose.length !== 0" class="btn btn-default" ng-click="deleteImage()" >Delete</a>
+		</small>
+	</h1>
+</section>
+<section class="content">
+	<div class="row">
+	  <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="image in images track by $index">
+	    <div class="image-item" ng-click="chooseImage($event,$index)" ng-mouseover="showViewFullSize($event,$index)" ng-mouseleave="showViewFullSize($event,$index)">
+	    	<img ng-src="{{image.imageURL}}" />
+	    </div>
+	  </div>
+	</div>
+</section>
+<script>
+  jQuery(function(){
+    //iCheck for checkbox and radio inputs
+    jQuery('input[type="checkbox"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue'
+    });
+  });
+</script>

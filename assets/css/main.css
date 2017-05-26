@@ -56,14 +56,38 @@ input[type="search"]{
   min-width:45px;
 }
 .image-item{
-	padding:0;
 	overflow: hidden;
+	background:white;
+	border:1px solid rgba(0,0,0,0.2);
+	margin-bottom:15px;
+	cursor:pointer;
+	padding:15px;
+	height:180px;
+}
+.image-item.choose{
+	background:#446CB3;
 }
 .image-item img{
 	display: block;
 	width:100%;
+	min-height:150px;
   margin: 0 auto;
 }
+.full-size{
+	font-size:30px;
+	text-align: center;
+	z-index:1000;
+	color:white;
+	display:block;
+	top:0;
+	left:15px;
+	height:40px;
+	width:calc(100% - 30px);
+	background:rgba(0,0,0,0.8);
+	position:absolute;
+	cursor: pointer;
+}
+
 
 .alertify{
 	z-index:1000;

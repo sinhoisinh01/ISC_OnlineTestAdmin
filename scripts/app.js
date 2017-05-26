@@ -1,7 +1,7 @@
-var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap','ngCookies','angular-md5','ngAlertify']);
+var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap', 'ngCookies','angular-md5','ngAlertify']);
 app.constant("baseURL","http://localhost:8181/api/")
 app.constant("frontendBaseURL","http://localhost/onlinetest/")
-app.config(function($locationProvider,$routeProvider) {
+app.config(function($qProvider,$locationProvider,$routeProvider) {
 		//$locationProvider.html5Mode(true);
 		/*
 			Convention:
@@ -12,6 +12,7 @@ app.config(function($locationProvider,$routeProvider) {
 			- delete / E.g: question/delete
 			...
 		*/
+		$qProvider.errorOnUnhandledRejections(false);
 		$routeProvider
 		.when("/", {
 			templateUrl: "views/index.html",
@@ -53,9 +54,9 @@ app.config(function($locationProvider,$routeProvider) {
 		.when("/part/delete",{
 			controller : "PartController"
 		})
-		.when("/image-galery",{
-			templateUrl : "views/part/image-galery.html",
-			controller : "ImageGaleryController"
+		.when("/image-gallery",{
+			templateUrl : "views/part/image-gallery.html",
+			controller : "ImageGalleryController"
 		})
 
 		.when("/questions",{
@@ -128,7 +129,25 @@ app.run(function($rootScope,Oauth2Factory,HelperFactory,$http){
 
     });
 });
-
+app.directive('fileModel', ['$parse', function ($parse) {
+		 return {
+				restrict: 'A',
+				link: function(scope, element, attrs) {
+					 var model = $parse(attrs.fileModel);
+					 var modelSetter = model.assign;
+					 element.bind('change', function(){
+							scope.$apply(function(){
+								if(element[0].files.length > 1){
+								 modelSetter(scope, element[0].files);
+							 	}
+								else {
+									modelSetter(scope, element[0].files[0]);
+								}
+							});
+					 });
+				}
+		 };
+	}]);
 function initDT(DTLoadingTemplate){
 
 	// DTLoadingTemplate.setLoadingTemplate("<img src='./images/Preloader_2.gif' />");
