@@ -19,13 +19,26 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
     tokenIsExpired : function(){
 
     },
-		request : function(method, apiName, params = null, data = null, success = null, fail = null){
+		request : function(method, apiName, params = null, data = null, success = null, fail = null, isUploadFile = false){
+			var formData = new FormData();
+			if(isUploadFile){
+				if(data.length)
+				{
+					for(var i = 0; i < data.length ; i++){
+						formData.append('files[]', data[i]);
+					}
+
+				}
+				else
+					formData.append('files[]', data);
+			}
 			var req = {
 				method : method,
 				url : this.fixUrl(apiName,params),
-				data : JSON.stringify(data),
+				data : isUploadFile ? formData : JSON.stringify(data),
+				transformRequest : angular.indentity,
 				headers: {
-					"Content-Type": "application/json; charset=utf-8",
+					"Content-Type": undefined,
 					"Authorization" : "Bearer " + $cookies.getObject("user").accessToken
 				}
 			};
@@ -56,6 +69,9 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 				}
 			)
 		},
+		uploadFile : function(apiName,params = null,data = null, success = null, fail = null){
+			this.request("POST",apiName,params,data,success,fail,true);
+		},
     post : function(apiName,params = null,data = null, success = null, fail = null){
 			this.request("POST",apiName,params,data,success,fail);
     },
@@ -79,6 +95,12 @@ var API_URL = {
 	"CREATE_USER"  : "api/user",
 	"UPDATE_USER"  : "api/user/$1",
 	"DELETE_USER"  : "api/user/$1",
+
+	"GET_IMAGES"     : "api/part/$1/image",
+	"GET_IMAGE_BY_ID" : "api/part/$1/image/$2",
+	"CREATE_IMAGE"  : "api/part/$1/image",
+	"UPDATE_IMAGE"  : "api/user/$1",
+	"DELETE_IMAGE"  : "api/image/$1",
 
 	"GET_SUBJECT"     : "api/subject",
 	"GET_SUBJECT_BY_ID" : "api/subject/$1",
