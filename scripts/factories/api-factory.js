@@ -116,7 +116,7 @@ var API_URL = {
 
 	"GET_PART_BY_SUBJECT" : "api/parts/$1",
 	"GET_PART_BY_ID" : "api/part/$1",
-	"CREATE_PART" : "api/part/",
+	"CREATE_PART" : "api/part/$1",
 	"UPDATE_PART" : "api/part/$1",
 	"DELETE_PART" : "api/part/$1"
 };

@@ -62,7 +62,7 @@
           <h3 class="box-title" ng-bind="subjectPartBox.partBoxTitle"></h3>
         </div>
         
-        <button class="btn btn-default" role="button">Add New Part</button>
+        <button class="btn btn-default" role="button" ng-click="addPart()">Add New Part</button>
         <center ng-if="!subjectPartBox.showPartsTable">Chưa có dữ liệu</center>
         <div ng-if="subjectPartBox.showPartsTable">
           <table id="part-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">

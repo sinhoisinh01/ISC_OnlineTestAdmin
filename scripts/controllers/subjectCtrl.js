@@ -155,4 +155,9 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  	}, function() {});
 	  }
 	};
+
+	$scope.addPart = function() {
+		var subjectId = $scope.subjectPartBox.parts[0].subject.id;
+		window.location.href = "/onlinetest/#!/part/add/" + subjectId;
+	}
 });
