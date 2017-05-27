@@ -52,8 +52,7 @@ app.controller('UserController', function($scope, $route, $routeParams, DTOption
 	if(id === undefined){
 		userFactory.findAlluser(function (data) {
 	     	$scope.Users = data;
-	     	$scope.userId = $cookies.getObject("user").userId;
-	     	console.log($scope.userId);
+	     	$scope.userId = Oauth2Factory.getUserInfo().userId;
 	    }, function(error) {
 	      	//$scope.Users = response.statusText;
 	  });

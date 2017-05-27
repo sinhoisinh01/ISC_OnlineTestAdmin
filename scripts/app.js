@@ -42,7 +42,7 @@ app.config(function($locationProvider,$routeProvider) {
 			templateUrl : "views/part/index.html",
 			controller : "PartController"
 		})
-		.when("/part/add",{
+		.when("/part/add/:id",{
 			templateUrl : "views/part/add.html",
 			controller : "PartController"
 		})
@@ -52,6 +52,10 @@ app.config(function($locationProvider,$routeProvider) {
 		})
 		.when("/part/delete",{
 			controller : "PartController"
+		})
+		.when("/image-galery",{
+			templateUrl : "views/part/image-galery.html",
+			controller : "ImageGaleryController"
 		})
 
 		.when("/questions",{
