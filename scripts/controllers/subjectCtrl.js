@@ -139,21 +139,27 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	};
 
 	$scope.deletePart = function(id) {
-	  if (confirm("Are you sure to delete this part?") == true) {
-	  	PartFactory.remove(id, function(data) {
-  		  length = $scope.subjectPartBox.parts.length;
-  		  for(i = 0; i < length; i++) {
-			if ( $scope.subjectPartBox.parts[i].id == id ) {
-			  $scope.subjectPartBox.parts.splice(i, 1);
-			}
-		  }
-		  if ($scope.subjectPartBox.parts.length == 0) {
-	  	  	$scope.subjectPartBox.showPartsTable = false;
-  		  } else {
-	  	  	$scope.subjectPartBox.showPartsTable = true;
-	  	  }
-	  	}, function() {});
-	  }
+	  console.log(Alertifier);
+	  Alertifier.confirm('warn', 'All questions in this part will lost. Are you sure to delete this part?', 
+	  	function() { 
+	  	  alertify.success("Yes, I am");
+	  	  PartFactory.remove(id, function(data) {
+  		  	length = $scope.subjectPartBox.parts.length;
+  		  	for(i = 0; i < length; i++) {
+			  if ( $scope.subjectPartBox.parts[i].id == id ) {
+			  	$scope.subjectPartBox.parts.splice(i, 1);
+		      }
+		  	}
+		  	if ($scope.subjectPartBox.parts.length == 0) {
+	  	  	  $scope.subjectPartBox.showPartsTable = false;
+  		  	} else {
+	  	  	  $scope.subjectPartBox.showPartsTable = true;
+	  	  	}
+	  	  }, function() {});
+	  	}, 
+	  	function() {
+	  	  alertify.error("No, I am not")
+	  	});
 	};
 
 	$scope.addPart = function() {
