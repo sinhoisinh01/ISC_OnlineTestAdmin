@@ -63,43 +63,45 @@
         </div>
         
         <button class="btn btn-default" role="button">Add New Part</button>
-        <center ng-if="subjectPartBox.parts.length == 0">Chưa có dữ liệu</center>
-        <table id="part-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover" ng-if="subjectPartBox.parts.length > 0">
-          <thead>
-            <tr>
-              <th class="col-sm-1">#</th>
-              <th class="col-sm-2">Id</th>
-              <th>Name</th>
-              <th class="col-sm-2">Level</th>
-              <th class="col-sm-3"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="part in subjectPartBox.parts">
-              <td class="col-sm-1" ng-bind="$index + 1"></td>
-              <td class="col-sm-2" ng-bind="part.parId"></td>
-              <td ng-bind="part.parName"></td>
-              <td class="col-sm-2" ng-bind="part.parDefault_level"></td>
-              <td class="col-sm-3">
-                <a class="pull-right btn btn-danger btn-xs" ng-click="deletePart(part.id);">
-                  <span class="glyphicon glyphicon-remove"></span>
-                </a>
-                <a class="pull-right btn btn-primary btn-xs">
-                  <span class="glyphicon glyphicon-edit"></span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th class="col-sm-1">#</th>
-              <th class="col-sm-2">Id</th>
-              <th>Name</th>
-              <th class="col-sm-2">Level</th>
-              <th class="col-sm-3"></th>
-            </tr>
-          </tfoot>
-        </table>
+        <center ng-if="!subjectPartBox.showPartsTable">Chưa có dữ liệu</center>
+        <div ng-if="subjectPartBox.showPartsTable">
+          <table id="part-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="col-sm-1">#</th>
+                <th class="col-sm-2">Id</th>
+                <th>Name</th>
+                <th class="col-sm-2">Level</th>
+                <th class="col-sm-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="part in subjectPartBox.parts">
+                <td class="col-sm-1" ng-bind="$index + 1"></td>
+                <td class="col-sm-2" ng-bind="part.parId"></td>
+                <td ng-bind="part.parName"></td>
+                <td class="col-sm-2" ng-bind="part.parDefault_level"></td>
+                <td class="col-sm-3">
+                  <a class="pull-right btn btn-danger btn-xs" ng-click="deletePart(part.id);">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                  <a class="pull-right btn btn-primary btn-xs">
+                    <span class="glyphicon glyphicon-edit"></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th class="col-sm-1">#</th>
+                <th class="col-sm-2">Id</th>
+                <th>Name</th>
+                <th class="col-sm-2">Level</th>
+                <th class="col-sm-3"></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </figure>
     </div>   
   </div>

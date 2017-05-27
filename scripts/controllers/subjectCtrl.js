@@ -3,6 +3,7 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	$scope.subjectPartBox = {
 	  "cssClass": "col-md-12",
 	  "showParts": false,
+	  "showPartsTable": false,
 	  "partBoxTitle": "",
 	  "parts": []
 	};
@@ -128,13 +129,30 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  $scope.subjectPartBox.partBoxTitle = subject.subName;
 	  PartFactory.findAll(subject.id, function(data) {
 	  	$scope.subjectPartBox.parts = data;
-	  	console.log(data);
+	  	if (data.length == 0) {
+	  	  $scope.subjectPartBox.showPartsTable = false;
+	  	}
+	  	else {
+	  	  $scope.subjectPartBox.showPartsTable = true;
+	  	}
 	  }, function() {});
 	};
 
 	$scope.deletePart = function(id) {
 	  if (confirm("Are you sure to delete this part?") == true) {
-	  	PartFactory.remove(id, function(data) {}, function() {});
+	  	PartFactory.remove(id, function(data) {
+  		  length = $scope.subjectPartBox.parts.length;
+  		  for(i = 0; i < length; i++) {
+			if ( $scope.subjectPartBox.parts[i].id == id ) {
+			  $scope.subjectPartBox.parts.splice(i, 1);
+			}
+		  }
+		  if ($scope.subjectPartBox.parts.length == 0) {
+	  	  	$scope.subjectPartBox.showPartsTable = false;
+  		  } else {
+	  	  	$scope.subjectPartBox.showPartsTable = true;
+	  	  }
+	  	}, function() {});
 	  }
 	};
 });
