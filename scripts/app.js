@@ -54,7 +54,7 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 		.when("/part/delete",{
 			controller : "PartController"
 		})
-		.when("/image-gallery",{
+		.when("/subject/:subId/part/:parId/images",{
 			templateUrl : "views/part/image-gallery.html",
 			controller : "ImageGalleryController"
 		})

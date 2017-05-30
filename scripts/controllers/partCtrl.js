@@ -6,6 +6,7 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 	$scope.isEditPage = false;
 
 	$scope.part = {
+		"id" : "",
 		"parId": "",
 	    "parName": "",
 	    "parDirection": "",
@@ -23,6 +24,8 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 		$scope.isHomePage = true;
 	else if( $route.current.loadedTemplateUrl.includes("add.html") )
 		$scope.isAddPage = true;
+	else if( $route.current.loadedTemplateUrl.includes("edit.html") )
+		$scope.isEditPage = true;
 
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
@@ -52,7 +55,7 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 	}
 
 	//get Part By id
-	private getPartById = function(){
+	function getPartById(){
 		PartFactory.findById($routeParams.id, function(data){
 			console.log(data);
 			$scope.part = data;
@@ -61,5 +64,5 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 		    alertify.error(error);
 		});
 	}
-	
+
 });

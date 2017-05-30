@@ -1,5 +1,11 @@
 <!--Hong-->
-<ng-include src="'includes/content-header.html'"></ng-include>
+<section class="content-header">
+  <h1>Update part {{part.parName}}</h1>
+  <ol class="breadcrumb">
+      <li><a href="#!/subjects"><i class="fa fa-dashboard"></i>Subject</a></li>
+      <li class="active">Part</li>
+  </ol>
+</section>
 <section class="content">
       <div class="container">
         <div class="row">
@@ -36,7 +42,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">Default column:</label>
                 <div class="col-sm-1">
-                  <select class="form-control" ng-model="part.parDefault_column">
+                  <select class="form-control" ng-value="part.parDefault_column" ng-model="part.parDefault_column">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -64,6 +70,16 @@
                   </div>
                 <div class="col-sm-5"></div>
               </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Images:</label>
+                  <div class="col-sm-5">
+                    <a class="btn btn-primary" ng-href="#!/subject/{{part.subject.id}}/part/{{part.id}}/images">
+                      <i class="fa fa-upload" aria-hidden="true"></i> Upload
+                    </a>
+                  </div>
+                <div class="col-sm-5"></div>
+              </div>
+
             </form>
           </div>
             <div class="col-sm-8">

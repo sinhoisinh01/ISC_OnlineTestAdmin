@@ -2,13 +2,15 @@
  * Author: Phan Tiến Hưng
  * Description: Controller for image galery
  */
-app.controller('ImageGalleryController', function($scope, $route, $uibModal, ImageGalleryFactory){
+app.controller('ImageGalleryController', function($scope, $route, $routeParams, $uibModal, ImageGalleryFactory){
   $scope.images = [];
   $scope.imageChose = [];
   $scope.currentImage;
+  $scope.subId = $routeParams.subId;
+  $scope.parId = $routeParams.parId;
   load();
   function load(){
-    ImageGalleryFactory.findAllImages(1,
+    ImageGalleryFactory.findAllImages($scope.parId,
       function (response) {
       $scope.images = response;
     },
@@ -24,7 +26,7 @@ app.controller('ImageGalleryController', function($scope, $route, $uibModal, Ima
   }
   $scope.uploadImage = function(){
     var file = $scope.myFile;
-    ImageGalleryFactory.add(1,file,function(response){
+    ImageGalleryFactory.add($scope.parId,file,function(response){
       load();
     },function(error){
       window.location.href="./";
