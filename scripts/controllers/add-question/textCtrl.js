@@ -3,6 +3,7 @@ app.controller("TextController",function($scope,$http,$routeParams,$route,DTOpti
 	$scope.addAnswer = function() {
 		var answers = angular.element( '#answers' );
 		var lenght = answers.find('tbody').children().length;
+		alert(length);
 		answers.append('<tr>'+
 					'<td><label>'+
 	         			(lenght+1)+
