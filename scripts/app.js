@@ -39,10 +39,6 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 			controller: "SubjectController"
 		})
 
-		.when("/parts",{
-			templateUrl : "views/part/index.html",
-			controller : "PartController"
-		})
 		.when("/part/add/:id",{
 			templateUrl : "views/part/add.html",
 			controller : "PartController"
@@ -61,6 +57,10 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 
 		.when("/questions",{
 			templateUrl: "views/question/index.html",
+			controller: "QuestionController"
+		})
+		.when("/question/:part_id",{
+			templateUrl: "views/question/detail.html",
 			controller: "QuestionController"
 		})
 		.when("/question/get/:id",{

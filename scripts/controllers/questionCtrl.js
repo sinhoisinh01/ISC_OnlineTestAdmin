@@ -1,4 +1,4 @@
-app.controller("QuestionController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
+app.controller("QuestionController",function($scope,$http,$routeParams,$route,DTOptionsBuilder, QuestionFactory){
   $scope.name = "question";
   $scope.isHomePage = false;
   $scope.isAddPage = false;
@@ -15,53 +15,18 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
   $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
-  $scope.questions = [
-    {
-      "id":1,
-      "content":"Tại sao nước biển lại mặn ?",
-      "type": 'Passage - True/False'
-    },{
-        "id":2,
-        "content":"Tại sao nước biển lại mặn ?",
-        "type": 'Multiple Choice'
-    },{
-        "id":3,
-        "content":"Tại sao nước biển lại mặn ?",
-        "type": 'True/False'
-    },{
-        "id":4,
-        "content":"Tại sao nước biển lại mặn ?",
-        "type": 'Text In The Blank'
-    },{
-        "id":5,
-        "content":"Tại sao nước biển lại mặn ",
-        "type": 'Passage - Multiple Choice'
-    },{
-        "id":6,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":7,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":8,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":9,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":10,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":11,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    }
-  ];
+  $scope.questions = [];
+
+  if ($routeParams.part_id) {
+
+  } else {
+    QuestionFactory.findAll(function(response) {
+      console.log(response);
+      $scope.questions = response;
+
+    }, function(error) {});
+  }
+
   if($routeParams && $routeParams.id){
     for(var i = 0; i<$scope.questions.length;i++)
     {
