@@ -3,8 +3,10 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	$scope.subjectPartBox = {
 	  "cssClass": "col-md-12",
 	  "showParts": false,
+	  "showPartsTable": false,
 	  "partBoxTitle": "",
-	  "parts": []
+	  "parts": [],
+	  "subjectId": ""
 	};
 
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -126,20 +128,50 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  $scope.subjectPartBox.showParts = true;
 	  $scope.subjectPartBox.cssClass = "col-md-6";
 	  $scope.subjectPartBox.partBoxTitle = subject.subName;
+	  $scope.subjectPartBox.subjectId = subject.id;
 	  PartFactory.findAll(subject.id, function(data) {
 	  	$scope.subjectPartBox.parts = data;
-	  	console.log(data);
+	  	if (data.length == 0) {
+	  	  $scope.subjectPartBox.showPartsTable = false;
+	  	}
+	  	else {
+	  	  $scope.subjectPartBox.showPartsTable = true;
+	  	}
 	  }, function() {});
 	};
 
 	$scope.deletePart = function(id) {
-	  if (confirm("Are you sure to delete this part?") == true) {
-	  	PartFactory.remove(id, function(data) {}, function() {});
-	  }
+	  console.log(Alertifier);
+	  Alertifier.confirm('warn', 'All questions in this part will lost. Are you sure to delete this part?', 
+	  	function() { 
+	  	  alertify.success("Yes, I am");
+	  	  PartFactory.remove(id, function(data) {
+  		  	length = $scope.subjectPartBox.parts.length;
+  		  	for(i = 0; i < length; i++) {
+			  if ( $scope.subjectPartBox.parts[i].id == id ) {
+			  	$scope.subjectPartBox.parts.splice(i, 1);
+		      }
+		  	}
+		  	if ($scope.subjectPartBox.parts.length == 0) {
+	  	  	  $scope.subjectPartBox.showPartsTable = false;
+  		  	} else {
+	  	  	  $scope.subjectPartBox.showPartsTable = true;
+	  	  	}
+	  	  }, function() {});
+	  	}, 
+	  	function() {
+	  	  alertify.error("No, I am not")
+	  	});
 	};
 
+	//Hong
 	$scope.addPart = function() {
-		var subjectId = $scope.subjectPartBox.parts[0].subject.id;
-		window.location.href = "/onlinetest/#!/part/add/" + subjectId;
+		var subjectId = $scope.subjectPartBox.subjectId;
+		window.location.href = "/onlinetest/#!/subject/" + subjectId + "/part";
+	}
+
+	$scope.editPart = function(partId) {
+		var subjectId = $scope.subjectPartBox.subjectId;
+		window.location.href = "/onlinetest/#!/subject/" + subjectId + "/part/" + partId;
 	}
 });
