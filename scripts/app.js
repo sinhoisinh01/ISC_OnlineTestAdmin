@@ -43,11 +43,11 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 			templateUrl : "views/part/index.html",
 			controller : "PartController"
 		})
-		.when("/part/add/:id",{
+		.when("/subject/:subjectId/part",{
 			templateUrl : "views/part/add.html",
 			controller : "PartController"
 		})
-		.when("/part/edit",{
+		.when("/subject/:subjectId/part/:id",{
 			templateUrl : "views/part/edit.html",
 			controller : "PartController"
 		})
