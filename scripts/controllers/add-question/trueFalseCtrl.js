@@ -21,7 +21,7 @@ app.controller("QuestionsTFController",function($scope,$http,$routeParams,$route
 		console.log(angular.element('#choice').children());
 	};
 	$scope.addQuestion = function(){
-
+		
 	};
 	$scope.resetQuestion = function(){
 

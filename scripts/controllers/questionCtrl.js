@@ -1,4 +1,4 @@
-app.controller("QuestionController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
+app.controller("QuestionController",function($scope,$http,$routeParams,$route,questionFactory,DTOptionsBuilder){
   $scope.name = "question";
   $scope.isHomePage = false;
   $scope.isAddPage = false;
@@ -8,14 +8,31 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
   else if( $route.current.loadedTemplateUrl.includes("add.html") )
     $scope.isAddPage = true;
   
-  $scope.question = null;
+  $scope.question = {
+    "queContent": "",
+    "queIsshuffle": "",
+    "queScore": "",
+    "queOpt_Column": "",
+    "queIsBank": "",
+    "queLevel": "",
+    "queMedia": "",
+    "queReference": "",
+    "queOrder": "",
+    "answearType": {
+      "id": 1,
+      "anstID": "qweqe",
+      "anstName": "qwewqe",
+      "anstOrder": 13,
+      "anstSample": "eqwewqe"
+    }
+  };
   $scope.answerType = 'default';
   $scope.answerTypeFileName = null;
   $scope.singleOrPassage = '';
   $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
-  $scope.questions = [
+  /*$scope.questions = [
     {
       "id":1,
       "content":"Tại sao nước biển lại mặn ?",
@@ -61,7 +78,7 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
         "content":"Tại sao nước biển lại mặn",
         "type": 'Multiple Choice'
     }
-  ];
+  ];*/
   if($routeParams && $routeParams.id){
     for(var i = 0; i<$scope.questions.length;i++)
     {
@@ -83,6 +100,11 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
       $scope.answerTypeFileName = null;
     }
   }
+
+
+  $scope.addquestion = function(){
+    console.log(question);
+  };
 
 /*QuestionsMTPCController*/
   $scope.addChoice = function() {

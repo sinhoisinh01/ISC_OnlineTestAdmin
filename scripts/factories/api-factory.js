@@ -38,7 +38,7 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 				data : isUploadFile ? formData : JSON.stringify(data),
 				transformRequest : angular.indentity,
 				headers: {
-					"Content-Type": "application/json; charset=utf-8",
+					"Content-Type": isUploadFile ? undefined : "application/json; charset=utf-8",
 					"Authorization" : "Bearer " + $cookies.getObject("user").accessToken
 				}
 			};
