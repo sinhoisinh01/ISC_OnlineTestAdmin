@@ -62,7 +62,7 @@
           <h3 class="box-title" ng-bind="subjectPartBox.partBoxTitle"></h3>
         </div>
         
-        <button class="btn btn-default" role="button" ng-click="addPart()">Add New Part</button>
+        <button class="btn btn-default" role="button" ng-click="addPart(subject.id)">Add New Part</button>
         <center ng-if="subjectPartBox.parts.length == 0">Chưa có dữ liệu</center>
         <table id="part-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover" ng-if="subjectPartBox.parts.length > 0">
           <thead>
@@ -84,7 +84,7 @@
                 <a class="pull-right btn btn-danger btn-xs" ng-click="deletePart(part.id);">
                   <span class="glyphicon glyphicon-remove"></span>
                 </a>
-                <a class="pull-right btn btn-primary btn-xs">
+                <a class="pull-right btn btn-primary btn-xs" ng-click="editPart(part.id)">
                   <span class="glyphicon glyphicon-edit"></span>
                 </a>
               </td>

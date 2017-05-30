@@ -16,12 +16,12 @@ app.factory("PartFactory",function(APIFactory){
 			return APIFactory.delete(APIFactory.apiName("DELETE_PART"),[id],success,fail);
 		},
 
-		edit : function(id,subject,success = null, fail = null){
-			return APIFactory.put(APIFactory.apiName("UPDATE_PART"),[id],subject,success,fail);
+		edit : function(subjectId, partId, part,success = null, fail = null){
+			return APIFactory.put(APIFactory.apiName("UPDATE_PART"),[subjectId, partId],part,success,fail);
 		},
 
-		create : function(subject,success = null, fail = null) {
-			return APIFactory.post(APIFactory.apiName("CREATE_PART"),null,subject,success,fail);
+		create : function(subjectId, part,success = null, fail = null) {
+			return APIFactory.post(APIFactory.apiName("CREATE_PART"),[subjectId],part,success,fail);
 		}
 
 
