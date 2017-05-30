@@ -38,7 +38,7 @@ app.factory("APIFactory", function($http, $httpParamSerializer, $cookies, Oauth2
 				data : isUploadFile ? formData : JSON.stringify(data),
 				transformRequest : angular.indentity,
 				headers: {
-					"Content-Type": "application/json; charset=utf-8",
+					"Content-Type": isUploadFile ? undefined : "application/json; charset=utf-8",
 					"Authorization" : "Bearer " + $cookies.getObject("user").accessToken
 				}
 			};
@@ -114,10 +114,10 @@ var API_URL = {
 	"UPDATE_USER_TYPE"  : "api/usertype/$1",
 	"DELETE_USER_TYPE"  : "api/usertype/$1",
 
-	"GET_PART_BY_SUBJECT" : "api/parts/$1",
-	"GET_PART_BY_ID" : "api/part/$1",
-	"CREATE_PART" : "api/part/$1",
-	"UPDATE_PART" : "api/part/$1",
+	"GET_PART_BY_SUBJECT" : "/api/subject/$1/parts",
+	"GET_PART_BY_ID" : "/api/subject/$1/part",
+	"CREATE_PART" : "/api/subject/$1/part",
+	"UPDATE_PART" : "/api/subject/$1/part/$2",
 	"DELETE_PART" : "api/part/$1",
 
 	"GET_QUESTIONS_BY_PART" : "api/questions/$1",

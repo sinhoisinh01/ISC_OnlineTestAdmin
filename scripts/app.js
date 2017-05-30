@@ -38,19 +38,18 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 			templateUrl: "views/subject/index.html",
 			controller: "SubjectController"
 		})
-
-		.when("/part/add/:id",{
+		.when("/subject/:subjectId/part",{
 			templateUrl : "views/part/add.html",
 			controller : "PartController"
 		})
-		.when("/part/edit",{
+		.when("/subject/:subjectId/part/:id",{
 			templateUrl : "views/part/edit.html",
 			controller : "PartController"
 		})
 		.when("/part/delete",{
 			controller : "PartController"
 		})
-		.when("/image-gallery",{
+		.when("/subject/:subId/part/:parId/images",{
 			templateUrl : "views/part/image-gallery.html",
 			controller : "ImageGalleryController"
 		})

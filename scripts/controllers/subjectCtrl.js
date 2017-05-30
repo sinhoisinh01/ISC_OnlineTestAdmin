@@ -5,7 +5,8 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  "showParts": false,
 	  "showPartsTable": false,
 	  "partBoxTitle": "",
-	  "parts": []
+	  "parts": [],
+	  "subjectId": ""
 	};
 
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -127,6 +128,7 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  $scope.subjectPartBox.showParts = true;
 	  $scope.subjectPartBox.cssClass = "col-md-6";
 	  $scope.subjectPartBox.partBoxTitle = subject.subName;
+	  $scope.subjectPartBox.subjectId = subject.id;
 	  PartFactory.findAll(subject.id, function(data) {
 	  	$scope.subjectPartBox.parts = data;
 	  	if (data.length == 0) {
@@ -162,8 +164,14 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  	});
 	};
 
+	//Hong
 	$scope.addPart = function() {
-		var subjectId = $scope.subjectPartBox.parts[0].subject.id;
-		window.location.href = "/onlinetest/#!/part/add/" + subjectId;
+		var subjectId = $scope.subjectPartBox.subjectId;
+		window.location.href = "/onlinetest/#!/subject/" + subjectId + "/part";
+	}
+
+	$scope.editPart = function(partId) {
+		var subjectId = $scope.subjectPartBox.subjectId;
+		window.location.href = "/onlinetest/#!/subject/" + subjectId + "/part/" + partId;
 	}
 });
