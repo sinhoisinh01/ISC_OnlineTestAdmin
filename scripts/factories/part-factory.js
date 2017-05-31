@@ -7,6 +7,11 @@ app.factory("PartFactory",function(APIFactory){
 			return APIFactory.get(APIFactory.apiName("GET_PART_BY_SUBJECT"),[subjectId],success,fail);
 		},
 
+		findAllforQ : function(success = null, fail = null){
+
+			return APIFactory.get(APIFactory.apiName("GET_PART_FOR_Q"),null,success,fail);
+			
+		},
 
 		findById : function( id, success = null, fail = null ){
       		return APIFactory.get(APIFactory.apiName("GET_PART_BY_ID"),[id],success,fail);
@@ -21,6 +26,7 @@ app.factory("PartFactory",function(APIFactory){
 		},
 
 		create : function(subjectId, part,success = null, fail = null) {
+
 			return APIFactory.post(APIFactory.apiName("CREATE_PART"),[subjectId],part,success,fail);
 		}
 

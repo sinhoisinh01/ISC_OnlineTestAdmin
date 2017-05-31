@@ -1,3 +1,4 @@
+
 <div class="box box-info">
 	<div class="box-header">
 		<h2>True false</h2>
@@ -11,7 +12,7 @@
 	<!-- /.box-header -->
 	<div class="box-body pad">
 		<form>
-			<textarea name="mtpcpEditor-trueFalse" id="mtpcpEditor-trueFalse" rows="10" cols="80" ng-model="question.content">
+			<textarea name="mtpcpEditor-trueFalse" id="mtpcpEditor-trueFalse" rows="10" cols="80" ng-model="question.queContent"  >
                 This is my textarea to be replaced with CKEditor.
             </textarea>						            
 		</form>
@@ -33,10 +34,10 @@
   	 				<div class="input-group">
   	 					<span style="padding-right: 5px">Correct Answer </span>
   	 					<span style="padding-right: 5px">
-  	 						<input type="radio" name="checkAnswer" ng-model="question.checkAnswer"> True
+  	 						<input type="radio" name="checkAnswer" ng-model="question.checkAnswer" ng-value="true"> True
   	 					</span>
   	 					<span style="padding-right: 5px">
-  	 						<input type="radio" name="checkAnswer" ng-model="question.checkAnswer"> False
+  	 						<input type="radio" name="checkAnswer" ng-model="question.checkAnswer" ng-value="false"> False
   	 					</span>						                       
       	 			</div>
       	 	</div>
@@ -50,7 +51,7 @@
 	  			<label>Column of choice: </label>
 	  		</div>
  	  	<div class="col-md-6">
- 	  		<select class="form-control" ng-model="question.column">
+ 	  		<select class="form-control" ng-model="question.queOpt_Column">
                 <option value="1">1</option>
                 <option value="2">2</option>
         	</select>
@@ -59,19 +60,19 @@
 			<div class="col-md-6" style="padding-top: 15px;">
 	 		<div class="col-md-5" style="padding-right: 0px;">
 	 				<label>Score: </label>
-	 				<input type="number" name="score" value="2" placeholder="Score" width="100px"  ng-model="question.score">
+	 				<input type="number" name="score" value="2" placeholder="Score" width="100px"  ng-model="question.queScore">
 	 		</div>
 	 		<div class="col-md-3">
 	 			<div class="form-group">
 	                <label>
-	                  <input type="checkbox" class="flat-red" ng-model="question.isbank" ng-checked ="question.isbank">
-	                   Is Bank
+	                  <input type="checkbox"  ng-model="question.queIsBank"> <!--class="flat-red"-->
+	                   Is Bank                  
 	                </label>
 	              </div>
 	 		</div>
 	 		<div class="col-md-4">
 	 			<label>
-                  <input type="checkbox" class="flat-red" ng-model="question.shuffle">
+                  <input type="checkbox" ng-model="question.queIsshuffle"><!--class="flat-red"-->
                   Shuffle Choices
                 </label>
 	 		</div>
@@ -99,5 +100,6 @@
 
 	});
 
-	CKEDITOR.replace( 'mtpcpEditor-trueFalse' );
+CKEDITOR.replace( 'mtpcpEditor-trueFalse' );
+	  
 </script>

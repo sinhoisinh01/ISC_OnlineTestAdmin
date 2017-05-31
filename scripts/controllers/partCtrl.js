@@ -1,5 +1,5 @@
 //hong
-app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBuilder, PartFactory, Alertifier){
+app.controller("PartController",function($scope,$route,$http,$routeParams,DTOptionsBuilder, PartFactory, Alertifier){
 	$scope.name = "part";
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -30,6 +30,10 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 	$scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
+
+
+    
+
 
 	//Add new Part
 	$scope.newPart = function(part) {
@@ -65,4 +69,6 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 		});
 	}
 
+	
+		
 });
