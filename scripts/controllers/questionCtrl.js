@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 app.controller("QuestionController",function($scope,$http,$routeParams,$route,questionFactory,PartFactory,DTOptionsBuilder){
+=======
+app.controller("QuestionController",function($scope,$http,$routeParams,$route,DTOptionsBuilder, QuestionFactory){
+>>>>>>> f0e0ffae64cd9217c91f64d1e4f541b8c0d4cbae
   $scope.name = "question";
   $scope.isHomePage = false;
   $scope.isAddPage = false;
@@ -41,6 +45,18 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,qu
   var answerTypeId = "0";
 
 
+  $scope.questions = [];
+
+  if ($routeParams.part_id) {
+
+  } else {
+    QuestionFactory.findAll(function(response) {
+      console.log(response);
+      $scope.questions = response;
+
+    }, function(error) {});
+  }
+
   if($routeParams && $routeParams.id){
     for(var i = 0; i<$scope.questions.length;i++)
     {
@@ -77,11 +93,11 @@ $scope.addquestion = function(){
     }
     console.log($scope.selectPartforQ);
     // add  question
-    /*questionFactory.add($scope.partId,answerTypeId,$scope.question,function(sucess){
+    questionFactory.add($scope.partId,answerTypeId,$scope.question,function(sucess){
         
     },function(error){
 
-    });*/
+    });
 
   };
  
