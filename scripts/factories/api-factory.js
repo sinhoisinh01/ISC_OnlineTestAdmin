@@ -114,9 +114,22 @@ var API_URL = {
 	"UPDATE_USER_TYPE"  : "api/usertype/$1",
 	"DELETE_USER_TYPE"  : "api/usertype/$1",
 
-	"GET_PART_BY_SUBJECT" : "/api/subject/$1/parts",
+	"GET_PART_BY_SUBJECT" : "api/subject/$1/parts",
 	"GET_PART_BY_ID" : "api/subject/$1/part",
+
 	"CREATE_PART" : "api/subject/$1/part",
 	"UPDATE_PART" : "api/subject/$1/part/$2",
-	"DELETE_PART" : "api/part/$1"
+	"DELETE_PART" : "api/part/$1",
+
+	"GET_PART_FOR_Q" : "api/parts",
+
+
+	"CREATE_OPTION" : "api/option",
+	"CREATE_QUESTION" : "api/part/$1/answerType/$2/question",
+	
+	"GET_QUESTIONS_BY_PART" : "api/questions/$1",
+	"GET_QUESTIONS"     : "api/question",
+	"GET_QUESTION_BY_ID" : "api/question/$1",
+	"UPDATE_QUESTION" : "api/question/$1",
+	"DELETE_QUESTION" : "api/question/$1"
 };

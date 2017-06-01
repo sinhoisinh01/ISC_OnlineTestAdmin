@@ -1,5 +1,5 @@
 //hong
-app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBuilder, PartFactory, Alertifier){
+app.controller("PartController",function($scope,$route,$http,$routeParams,DTOptionsBuilder, PartFactory, Alertifier){
 	$scope.name = "part";
 	$scope.isHomePage = false;
 	$scope.isAddPage = false;
@@ -15,13 +15,13 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 	    "parDefault_level": "",
 	    "parOrder": "",
 	    "parNote": "",
-	    "imageGallery": ""
+	    "imageGallery": []
 	}
 
-	console.log(window.location.hostname);
-	console.log(window.location.pathname);
-	console.log(window.location.href);
-	getPartById();
+	if($routeParams.id)
+	{
+		getPartById();
+	}
 
 	if( $route.current.loadedTemplateUrl.includes("index.html") )
 		$scope.isHomePage = true;
@@ -36,24 +36,22 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 
 	//Add new Part
 	$scope.newPart = function(part) {
+		console.log(part);
 		PartFactory.create($routeParams.subjectId,part, function(data){
-			alertify.logPosition("bottom right");
-			    alertify.success("Add new part success");
+				Alertifier.toast("success","Save part success");
+			    setTimeout(function(){window.location.href="#!/subjects"},2000);
 			},function(error){
-				alertify.logPosition("bottom right");
-			    alertify.error(error);
+				Alertifier.toast("error",error);
 			});
 	}
 
 	//update Part
 	$scope.savePart = function(part){
-		console.log(part);
 		PartFactory.edit($routeParams.subjectId, $routeParams.id, part, function(data){
-			alertify.logPosition("bottom right");
-		    alertify.success("Save part success");
+		    Alertifier.toast("success","Save part success");
+		    setTimeout(function(){window.location.href="#!/subjects"},2000);
 		}, function(error){
-			alertify.logPosition("bottom right");
-		    alertify.error(error);
+			Alertifier.toast("error",error);	
 		});
 	}
 
@@ -63,9 +61,10 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 			console.log(data);
 			$scope.part = data;
 		}, function(error){
-			alertify.logPosition("bottom right");
-		    alertify.error(error);
+			Alertifier.toast("error",error);
 		});
 	}
 
+	
+		
 });

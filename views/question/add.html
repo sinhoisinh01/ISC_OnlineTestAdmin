@@ -23,6 +23,13 @@
           <option value="true-false">True/False</option>
           <option ng-if="singleOrPassage!='p'" value="text">Text in the blank</option>
         </select>
+        </br>
+        </br>
+
+
+        <select class="form-control" ng-controller = "QuestionController" id="select-part-forQ"  ng-model="selectPartforQ">
+          <option value="{{x.id}}" ng-repeat="x in list">{{x.parName}}</option>       
+       </select>
       </div>
       <div class="row" ng-if="answerTypeFileName">
         <div class="col-xs-12" style="margin-top:15px;">
@@ -36,6 +43,7 @@
   $(function(){
     //Initialize Select2 Elements
     $("#question-type-selector").select2();
+    $("#select-part-forQ").select2();
   });
 </script>
 

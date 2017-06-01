@@ -1,4 +1,4 @@
-app.controller("QuestionController",function($scope,$http,$routeParams,$route,DTOptionsBuilder){
+app.controller("QuestionController",function($scope,$http,$routeParams,$route,questionFactory,PartFactory,DTOptionsBuilder){
   $scope.name = "question";
   $scope.isHomePage = false;
   $scope.isAddPage = false;
@@ -8,60 +8,51 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
   else if( $route.current.loadedTemplateUrl.includes("add.html") )
     $scope.isAddPage = true;
   
-  $scope.question = null;
+
+  $scope.question = {
+    "queContent": "",
+    "queIsshuffle": false, //false,
+    "queScore":  "",//3,
+    "queOpt_Column": "", //2,
+    "queIsBank": false, //false,
+    "queLevel": "", //1,
+    "queMedia": "", //"gas",
+    "queReference": "" ,//"jkfsjdfh",
+    "queOrder": "",  //2,
+  };
+  
+//$scope.questions = {queIsBank : true};
+ 
+     
+    function load(){
+    PartFactory.findAllforQ(function(data){
+      $scope.list = data;        
+      }, function(error){});
+    }
+    load();
+ 
+
   $scope.answerType = 'default';
   $scope.answerTypeFileName = null;
   $scope.singleOrPassage = '';
   $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
-  $scope.questions = [
-    {
-      "id":1,
-      "content":"Tại sao nước biển lại mặn ?",
-      "type": 'Passage - True/False'
-    },{
-        "id":2,
-        "content":"Tại sao nước biển lại mặn ?",
-        "type": 'Multiple Choice'
-    },{
-        "id":3,
-        "content":"Tại sao nước biển lại mặn ?",
-        "type": 'True/False'
-    },{
-        "id":4,
-        "content":"Tại sao nước biển lại mặn ?",
-        "type": 'Text In The Blank'
-    },{
-        "id":5,
-        "content":"Tại sao nước biển lại mặn ",
-        "type": 'Passage - Multiple Choice'
-    },{
-        "id":6,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":7,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":8,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":9,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":10,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    },{
-        "id":11,
-        "content":"Tại sao nước biển lại mặn",
-        "type": 'Multiple Choice'
-    }
-  ];
+  var answerTypeId = "0";
+
+
+  $scope.questions = [];
+
+  if ($routeParams.part_id) {
+
+  } else {
+    QuestionFactory.findAll(function(response) {
+      console.log(response);
+      $scope.questions = response;
+
+    }, function(error) {});
+  }
+
   if($routeParams && $routeParams.id){
     for(var i = 0; i<$scope.questions.length;i++)
     {
@@ -83,6 +74,29 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
       $scope.answerTypeFileName = null;
     }
   }
+
+$scope.addquestion = function(){
+
+    // get Data form ckeditor
+    $scope.question.queContent = CKEDITOR.instances.mtpcEditor.getData();  
+    
+
+    // set answerTypeId
+    if($scope.answerType == "multiple-choice")
+      answerTypeId = "2";
+    else if($scope.answerType == "true-false"){
+      answerTypeId = "1";
+    }
+    console.log($scope.selectPartforQ);
+    // add  question
+    questionFactory.add($scope.partId,answerTypeId,$scope.question,function(sucess){
+        
+    },function(error){
+
+    });
+
+  };
+ 
 
 /*QuestionsMTPCController*/
   $scope.addChoice = function() {

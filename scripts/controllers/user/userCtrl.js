@@ -87,10 +87,10 @@ app.controller('UserController', function($scope, $route, $routeParams, DTOption
 		user.userDOB = new Date(user.userDOB).getTime();
 		userFactory.edit(id,user,
 		function (data){
-			alert('Edit Success');
+			Alertifier.alert("success","Edit successfully !");
 		},
 		function (error){
-			alert('Cant edit');
+			Alertifier.alert("error","Edit failed !");
 		});
 	};
 

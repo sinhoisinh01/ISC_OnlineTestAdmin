@@ -61,22 +61,22 @@ app.factory("Alertifier", function(alertify){
 		},
 		toast : function(type,message){
 			if(type === "confirm"){
-				alertify.delay(10000).log(message);
+				alertify.log(message);
 				jQuery(".alertify-logs div").removeClass("default").addClass("error");
 				jQuery(".alertify-logs").css("margin-left","calc(50% - "+(jQuery(".alertify-logs").width() / 2)+"px)");
 			}
 			else if(type === "error"){
-				alertify.delay(10000).log(message);
+				alertify.log(message);
 				jQuery(".alertify-logs div").removeClass("default").addClass("error");
 				jQuery(".alertify-logs").css("margin-left","calc(50% - "+(jQuery(".alertify-logs").width() / 2)+"px)");
 			}
 			else if(type === "success"){
-				alertify.delay(10000).log(message);
-				jQuery(".alertify-logs div").removeClass("default").addClass("error");
+				alertify.log(message);
+				jQuery(".alertify-logs div").removeClass("default").addClass("success");
 				jQuery(".alertify-logs").css("margin-left","calc(50% - "+(jQuery(".alertify-logs").width() / 2)+"px)");
 			}
 			else if(type === "warn"){
-				alertify.delay(10000).log(message);
+				alertify.log(message);
 				jQuery(".alertify-logs div").removeClass("default").addClass("error");
 				jQuery(".alertify-logs").css("margin-left","calc(50% - "+(jQuery(".alertify-logs").width() / 2)+"px)");
 			}

@@ -13,7 +13,7 @@
     <div class="box-body pad">
 	    <div class="box-body pad">
 	          <form>
-					<textarea name="mtpcEditor" id="mtpcEditor" rows="10" cols="80">
+					<textarea name="mtpcEditor" id="mtpcEditor" rows="10" cols="80" ng-model="question.queContent">
 		                This is my textarea to be replaced with CKEditor.
 		            </textarea>						            
 	          </form>
@@ -52,7 +52,7 @@
 			 	  			<label>Column of choice: </label>
 			 	  		</div>
 				 	  	<div class="col-md-5">
-				 	  		<select class="form-control">
+				 	  		<select class="form-control" ng-model="question.queOpt_Column">
 			                    <option>1</option>
 			                    <option>2</option>
 			                    <option>3</option>
@@ -64,19 +64,19 @@
 			 	<div class="col-md-6" style="padding-top: 15px;">
 			 		<div class="col-md-5" style="padding-right: 0px;">
 			 				<label>Score: </label>
-			 				<input type="number" name="score" placeholder="Score" width="100px">
+			 				<input type="number" name="score" placeholder="Score" width="100px" ng-model="question.queScore">
 			 		</div>
 			 		<div class="col-md-3">
 			 			<div class="form-group">
 			                <label>
-			                  <input type="checkbox" class="flat-red" checked>
+			                  <input type="checkbox"  ng-model="question.queIsBank" >
 			                   Is Bank
 			                </label>
 			              </div>
 			 		</div>
 			 		<div class="col-md-4">
 			 			<label>
-		                  <input type="checkbox" class="flat-red">
+		                  <input type="checkbox" ng-model="question.queIsshuffle" >
 		                  Shuffle Choices
 		                </label>
 			 		</div>
@@ -85,7 +85,7 @@
 	      	 <div class="col-md-12">
 	      	 	<div class="col-md-12">
 	      	 			<label>Reference : </label>
-	          	 		<input type="text" name="reference" id="reference" class="form-control">
+	          	 		<input type="text" name="reference" id="reference" class="form-control" ng-model="question.queReference">
 	      	 	</div>
 	      	 	<div class="col-md-12">
 	      	 		<div class="col-md-3">
@@ -107,7 +107,7 @@
 	      	 	</div>
 	      	 	<div class="col-md-12">
 	      	 		<div class="pull-right">
-	      	 			<button class="btn btn-primary btn-flat margin">Save</button>
+	      	 			<button class="btn btn-primary btn-flat margin" ng-click="addquestion()">Save</button>
 	                	<button class="btn btn-warning btn-flat margin">Reset</button>
 	                	<button class="btn btn-default btn-flat margin">Back</button>
 	      	 		</div>
