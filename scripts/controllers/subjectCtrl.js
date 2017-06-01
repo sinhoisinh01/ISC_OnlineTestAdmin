@@ -28,6 +28,7 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	function load(){
 		SubjectFactory.findAll(function(data){
 			$scope.subjects = data;
+			console.log($scope.subjects);
 		},function(error){
 			location.href = "./login.html";
 		});

@@ -39,7 +39,7 @@ app.controller("PartController",function($scope,$route,$http,$routeParams,DTOpti
 		console.log(part);
 		PartFactory.create($routeParams.subjectId,part, function(data){
 				Alertifier.toast("success","Save part success");
-			    setTimeout(function(){window.location.href="#!/subjects"},2000);
+			    setTimeout(function(){window.location.href="#!/subjects"},1000);
 			},function(error){
 				Alertifier.toast("error",error);
 			});
@@ -49,10 +49,14 @@ app.controller("PartController",function($scope,$route,$http,$routeParams,DTOpti
 	$scope.savePart = function(part){
 		PartFactory.edit($routeParams.subjectId, $routeParams.id, part, function(data){
 		    Alertifier.toast("success","Save part success");
-		    setTimeout(function(){window.location.href="#!/subjects"},2000);
+		    setTimeout(function(){window.location.href="#!/subjects"},1000);
 		}, function(error){
 			Alertifier.toast("error",error);	
 		});
+	}
+
+	$scope.cancel = function(){
+		window.location.href = "#!/subjects";
 	}
 
 	//get Part By id

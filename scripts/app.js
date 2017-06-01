@@ -1,4 +1,4 @@
-var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap', 'ngCookies','angular-md5','ngAlertify']);
+var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap', 'ngCookies','angular-md5','ngAlertify','ui.tree']);
 app.constant("baseURL","http://localhost:8181/api/")
 app.constant("frontendBaseURL","http://localhost/onlinetest/")
 app.config(function($qProvider,$locationProvider,$routeProvider) {
