@@ -28,6 +28,7 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	function load(){
 		SubjectFactory.findAll(function(data){
 			$scope.subjects = data;
+			console.log($scope.subjects);
 		},function(error){
 			location.href = "./login.html";
 		});
@@ -125,18 +126,23 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	};
 
 	$scope.openPartsOfSubject = function(subject) {
+	  $scope.subjectPartBox = {};
+	  if(jQuery("#part-table_wrapper").length > 0){
+	  	jQuery("#part-table_wrapper").remove();
+	  }
 	  $scope.subjectPartBox.showParts = true;
 	  $scope.subjectPartBox.cssClass = "col-md-6";
 	  $scope.subjectPartBox.partBoxTitle = subject.subName;
 	  $scope.subjectPartBox.subjectId = subject.id;
 	  PartFactory.findAll(subject.id, function(data) {
-	  	$scope.subjectPartBox.parts = data;
+	  	$scope.subjectPartBox.parts = data;	
 	  	if (data.length == 0) {
 	  	  $scope.subjectPartBox.showPartsTable = false;
 	  	}
 	  	else {
 	  	  $scope.subjectPartBox.showPartsTable = true;
 	  	}
+	  	console.log($scope.subjectPartBox);
 	  }, function() {});
 	};
 
@@ -144,7 +150,6 @@ app.controller('SubjectController', function($scope, $route, $uibModal, SubjectF
 	  console.log(Alertifier);
 	  Alertifier.confirm('warn', 'All questions in this part will lost. Are you sure to delete this part?', 
 	  	function() { 
-	  	  alertify.success("Yes, I am");
 	  	  PartFactory.remove(id, function(data) {
   		  	length = $scope.subjectPartBox.parts.length;
   		  	for(i = 0; i < length; i++) {

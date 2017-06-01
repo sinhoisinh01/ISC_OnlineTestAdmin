@@ -9,30 +9,20 @@ app.factory("userTypeFactory",function(APIFactory){
 			return APIFactory.get( APIFactory.apiName("GET_USER_TYPE"),null,success,fail );
 		},
 
-
-		findByid : function(id){
-			
-			return $http.get(url + "/" + id + "?access_token=" + token );
+		findByid : function( id, success = null, fail = null ){
+      		return APIFactory.get(APIFactory.apiName("GET_USER_TYPE_BY_ID"),[id],success,fail);
 		},
 
-		deleteUserType : function(id){
-			return $http.delete(url + "/" + id + "?access_token=" + token );
+		deleteUserType : function(id,success = null, fail = null){
+			return APIFactory.delete(APIFactory.apiName("DELETE_USER_TYPE"),[id],success,fail);
 		},
 
-		saveUserType : function(id,userType){
-			return $http.put(url + "/" + id + "?access_token=" + token ,userType,{
-    			headers : {
-        			'Content-Type' : 'application/json',
-    			}
-			});
+		saveUserType : function(id,subject,success = null, fail = null){
+			return APIFactory.put(APIFactory.apiName("UPDATE_USER_TYPE"),[id],subject,success,fail);
 		},
 
-
-
-		createUserType : function(userType){
-			return $http.post(url  + "/?access_token=" + token ,userType);
+		createUserType : function(subject,success = null, fail = null) {
+			return APIFactory.post(APIFactory.apiName("CREATE_USER_TYPE"),null,subject,success,fail);
 		}
-
-
 	}
 });

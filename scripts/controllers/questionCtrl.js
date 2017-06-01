@@ -1,4 +1,6 @@
-app.controller("QuestionController",function($scope, $http, $routeParams, $route, $uibModal, DTOptionsBuilder, PartFactory, QuestionFactory, ImageGalleryFactory){
+
+app.controller("QuestionController",function($scope, $http, $routeParams, $route,Alertifier, $uibModal, DTOptionsBuilder, PartFactory, QuestionFactory, ImageGalleryFactory){
+
   $scope.name = "question";
   $scope.isHomePage = false;
   $scope.isAddPage = false;
@@ -26,6 +28,7 @@ app.controller("QuestionController",function($scope, $http, $routeParams, $route
     "queReference": "" ,//"jkfsjdfh",
     "queOrder": "",  //2,
   };
+
 //$scope.questions = {queIsBank : true};
  
      
@@ -49,7 +52,11 @@ app.controller("QuestionController",function($scope, $http, $routeParams, $route
   /*$scope.questions = [];
 
   if ($routeParams.part_id) {
+    QuestionFactory.findByPartId($routeParams.part_id, function(response) {
+      console.log(response);
+      $scope.questions = response;
 
+    }, function(error) {});
   } else {
     QuestionFactory.findAll(function(response) {
       console.log(response);
@@ -69,6 +76,24 @@ app.controller("QuestionController",function($scope, $http, $routeParams, $route
     }
     console.log($scope.question);
   }
+
+
+    $scope.removeQuestion = function(question_id) {
+      Alertifier.confirm("warn","Are you sure you want to remove this question ?",function(){
+        QuestionFactory.remove(question_id,function(data){
+          for(i = 0; i < $scope.questions.length; i++) {
+            if ( $scope.questions[i].id == question_id ) {
+              $scope.questions.splice(i, 1);
+            }
+          }
+        },function(error){
+
+        });
+      },function(){
+
+      });
+    };
+
   $scope.createQuestionByType = function() {
     if( $scope.answerType ) {
       $scope.answerTypeFileName = ($scope.answerType + $scope.singleOrPassage);
@@ -111,10 +136,10 @@ $scope.addquestion = function(){
 
     // add  question
     QuestionFactory.add($scope.partId,answerTypeId,$scope.question,function(sucess){
+
         alertify.logPosition("bottom right");
         alertify.success("Add new question success");
         setTimeout(function(){window.location.href="#!/questions"},2000);
-
     },function(error){
         alertify.logPosition("bottom right");
         alertify.error(error);

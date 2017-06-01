@@ -62,15 +62,14 @@
           <h3 class="box-title" ng-bind="subjectPartBox.partBoxTitle"></h3>
         </div>
         <button class="btn btn-default" role="button" ng-click="addPart(subject.id)">Add New Part</button>
-        <center ng-if="subjectPartBox.parts.length == 0">Chưa có dữ liệu</center>
-        <table id="part-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover" ng-if="subjectPartBox.parts.length > 0">
+        <center ng-if="!subjectPartBox.showPartsTable">Chưa có dữ liệu</center>
+        <table id="part-table" datatable="ng" dt-options="dtOptions" class="table table-bordered table-striped table-hover" ng-if="subjectPartBox.showPartsTable">
           <thead>
             <tr>
               <th class="col-sm-1">#</th>
               <th class="col-sm-2">Id</th>
               <th>Name</th>
-              <th class="col-sm-2">Level</th>
-              <th class="col-sm-3"></th>
+              <th class="col-sm-5"></th>
             </tr>
           </thead>
           <tbody>
@@ -78,13 +77,16 @@
               <td class="col-sm-1" ng-bind="$index + 1"></td>
               <td class="col-sm-2" ng-bind="part.parId"></td>
               <td ng-bind="part.parName"></td>
-              <td class="col-sm-2" ng-bind="part.parDefault_level"></td>
-              <td class="col-sm-3">
+              <td class="col-sm-5">
                 <a class="pull-right btn btn-danger btn-xs" ng-click="deletePart(part.id);">
                   <span class="glyphicon glyphicon-remove"></span>
                 </a>
                 <a class="pull-right btn btn-primary btn-xs" ng-click="editPart(part.id)">
                   <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                <a class="pull-right btn btn-info btn-xs"
+                 href="#!/question/part/{{part.id}}">
+                  View Questions
                 </a>
               </td>
             </tr>
@@ -94,8 +96,7 @@
               <th class="col-sm-1">#</th>
               <th class="col-sm-2">Id</th>
               <th>Name</th>
-              <th class="col-sm-2">Level</th>
-              <th class="col-sm-3"></th>
+              <th class="col-sm-5"></th>
             </tr>
           </tfoot>
         </table>

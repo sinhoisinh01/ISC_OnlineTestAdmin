@@ -15,10 +15,13 @@ app.controller("PartController",function($scope,$route,$http,$routeParams,DTOpti
 	    "parDefault_level": "",
 	    "parOrder": "",
 	    "parNote": "",
-	    "imageGallery": ""
+	    "imageGallery": []
 	}
 
-	getPartById();
+	if($routeParams.id)
+	{
+		getPartById();
+	}
 
 	if( $route.current.loadedTemplateUrl.includes("index.html") )
 		$scope.isHomePage = true;
@@ -31,31 +34,29 @@ app.controller("PartController",function($scope,$route,$http,$routeParams,DTOpti
         .withDisplayLength(10)
         .withOption('bLengthChange', false);
 
-
-    
-
-
 	//Add new Part
 	$scope.newPart = function(part) {
-		PartFactory.create($routeParams.id,part, function(data){
-			alertify.logPosition("bottom right");
-			    alertify.success("Add new part success");
+		console.log(part);
+		PartFactory.create($routeParams.subjectId,part, function(data){
+				Alertifier.toast("success","Save part success");
+			    setTimeout(function(){window.location.href="#!/subjects"},1000);
 			},function(error){
-				alertify.logPosition("bottom right");
-			    alertify.error(error);
+				Alertifier.toast("error",error);
 			});
 	}
 
 	//update Part
 	$scope.savePart = function(part){
-		console.log(part);
 		PartFactory.edit($routeParams.subjectId, $routeParams.id, part, function(data){
-			alertify.logPosition("bottom right");
-		    alertify.success("Save part success");
+		    Alertifier.toast("success","Save part success");
+		    setTimeout(function(){window.location.href="#!/subjects"},1000);
 		}, function(error){
-			alertify.logPosition("bottom right");
-		    alertify.error(error);
+			Alertifier.toast("error",error);	
 		});
+	}
+
+	$scope.cancel = function(){
+		window.location.href = "#!/subjects";
 	}
 
 	//get Part By id
@@ -64,8 +65,7 @@ app.controller("PartController",function($scope,$route,$http,$routeParams,DTOpti
 			console.log(data);
 			$scope.part = data;
 		}, function(error){
-			alertify.logPosition("bottom right");
-		    alertify.error(error);
+			Alertifier.toast("error",error);
 		});
 	}
 

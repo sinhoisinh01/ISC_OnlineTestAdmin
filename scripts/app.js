@@ -1,4 +1,4 @@
-var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap', 'ngCookies','angular-md5','ngAlertify']);
+var app = angular.module('onlineTestAdmin', ['ngRoute','datatables','ui.bootstrap', 'ngCookies','angular-md5','ngAlertify','ui.tree']);
 app.constant("baseURL","http://localhost:8181/api/")
 app.constant("frontendBaseURL","http://localhost/onlinetest/")
 app.config(function($qProvider,$locationProvider,$routeProvider) {
@@ -63,8 +63,8 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 			templateUrl: "views/question/index.html",
 			controller: "QuestionController"
 		})
-		.when("/question/:part_id",{
-			templateUrl: "views/question/detail.html",
+		.when("/question/part/:part_id",{
+			templateUrl: "views/question/index.html",
 			controller: "QuestionController"
 		})
 		.when("/question/get/:id",{
