@@ -18,6 +18,9 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 	    "imageGallery": ""
 	}
 
+	console.log(window.location.hostname);
+	console.log(window.location.pathname);
+	console.log(window.location.href);
 	getPartById();
 
 	if( $route.current.loadedTemplateUrl.includes("index.html") )
@@ -33,7 +36,7 @@ app.controller("PartController",function($scope,$route,$routeParams,DTOptionsBui
 
 	//Add new Part
 	$scope.newPart = function(part) {
-		PartFactory.create($routeParams.id,part, function(data){
+		PartFactory.create($routeParams.subjectId,part, function(data){
 			alertify.logPosition("bottom right");
 			    alertify.success("Add new part success");
 			},function(error){
