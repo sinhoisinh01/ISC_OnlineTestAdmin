@@ -8,6 +8,10 @@ app.factory('QuestionFactory', function(APIFactory){
 			return APIFactory.get( APIFactory.apiName("GET_QUESTIONS"),null,success,fail );
 		},
 
+		findByPartId : function( part_id, success = null, fail = null ){
+      		return APIFactory.get(APIFactory.apiName("GET_QUESTIONS_BY_PART"),[part_id],success,fail);
+		},
+
 		findById : function( id, success = null, fail = null ){
       		return APIFactory.get(APIFactory.apiName("GET_QUESTION_BY_ID"),[id],success,fail);
 		},
