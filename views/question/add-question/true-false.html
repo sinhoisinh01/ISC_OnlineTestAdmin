@@ -12,20 +12,15 @@
 	<!-- /.box-header -->
 	<div class="box-body pad">
 		<form>
-			<textarea name="mtpcpEditor-trueFalse" id="mtpcpEditor-trueFalse" rows="10" cols="80" ng-model="question.queContent"  >
+			<textarea name="mtpcpEditorTF" id="mtpcpEditorTF" rows="10" cols="80" ng-model="question.queContent"  >
                 This is my textarea to be replaced with CKEditor.
             </textarea>						            
 		</form>
      <div class="col-md-12">
       	<div class="col-md-3">
       	  		<div class="col-md-6">
-      	  			<button class="btn btn-default margin">
+      	  			<button class="btn btn-default margin" ng-click="openImage()">
 	 		  			<i class="fa fa-fw fa-cloud-upload"></i> Images
-	 		  		</button>
-      	  		</div>
-      	  		<div class="col-md-6">
-      	  			<button class="btn btn-default margin">
-	 		  			<i class="glyphicon glyphicon-eye-open"></i> Images
 	 		  		</button>
       	  		</div>
 	 	</div>
@@ -100,6 +95,6 @@
 
 	});
 
-CKEDITOR.replace( 'mtpcpEditor-trueFalse' );
+CKEDITOR.replace( 'mtpcpEditorTF' );
 	  
 </script>

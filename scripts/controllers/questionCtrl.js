@@ -1,17 +1,19 @@
-<<<<<<< HEAD
-app.controller("QuestionController",function($scope,$http,$routeParams,$route,questionFactory,PartFactory,DTOptionsBuilder){
-=======
-app.controller("QuestionController",function($scope,$http,$routeParams,$route,DTOptionsBuilder, QuestionFactory){
->>>>>>> f0e0ffae64cd9217c91f64d1e4f541b8c0d4cbae
+app.controller("QuestionController",function($scope, $http, $routeParams, $route, $uibModal, DTOptionsBuilder, PartFactory, QuestionFactory, ImageGalleryFactory){
   $scope.name = "question";
   $scope.isHomePage = false;
   $scope.isAddPage = false;
   $scope.isEditPage = false;
+
+  $scope.images = [];
+  $scope.imageChose = [];
+  $scope.currentImage;
+
+
   if( $route.current.loadedTemplateUrl.includes("index.html") )
     $scope.isHomePage = true;
   else if( $route.current.loadedTemplateUrl.includes("add.html") )
     $scope.isAddPage = true;
-  
+  $scope.partId = null;
 
   $scope.question = {
     "queContent": "",
@@ -24,7 +26,6 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
     "queReference": "" ,//"jkfsjdfh",
     "queOrder": "",  //2,
   };
-  
 //$scope.questions = {queIsBank : true};
  
      
@@ -45,7 +46,7 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
   var answerTypeId = "0";
 
 
-  $scope.questions = [];
+  /*$scope.questions = [];
 
   if ($routeParams.part_id) {
 
@@ -56,7 +57,7 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
 
     }, function(error) {});
   }
-
+*/
   if($routeParams && $routeParams.id){
     for(var i = 0; i<$scope.questions.length;i++)
     {
@@ -81,21 +82,42 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,DT
 
 $scope.addquestion = function(){
 
-    // get Data form ckeditor
-    $scope.question.queContent = CKEDITOR.instances.mtpcEditor.getData();  
-    
+     $scope.question.queContent = "";  
 
+    // get Data form ckeditor 
+     console.log($scope.question);
+    
     // set answerTypeId
-    if($scope.answerType == "multiple-choice")
+    if($scope.answerType == "multiple-choice"){
       answerTypeId = "2";
-    else if($scope.answerType == "true-false"){
-      answerTypeId = "1";
+
+       $scope.question.queContent = CKEDITOR.instances.mtpcEditor.getData(); 
     }
-    console.log($scope.selectPartforQ);
+    else if($scope.answerType == "true-false"){
+      
+      answerTypeId = "1";
+
+      $scope.question.queContent = CKEDITOR.instances.mtpcpEditorTF.getData(); 
+         
+    }
+    $scope.partId = jQuery("#select-part-forQ").val();
+
+    if($scope.partId === "? undefined:undefined ?" || $scope.partId === null){
+       alertify.logPosition("bottom right");
+       alertify.error("Please select part");
+      return 0;
+    }
+
+
     // add  question
-    questionFactory.add($scope.partId,answerTypeId,$scope.question,function(sucess){
-        
+    QuestionFactory.add($scope.partId,answerTypeId,$scope.question,function(sucess){
+        alertify.logPosition("bottom right");
+        alertify.success("Add new question success");
+        setTimeout(function(){window.location.href="#!/questions"},2000);
+
     },function(error){
+        alertify.logPosition("bottom right");
+        alertify.error(error);
 
     });
 
@@ -149,4 +171,73 @@ $scope.addquestion = function(){
     answers[length-1].remove();
   };
 /*--------------*/
+$scope.openImage= function(){
+  $scope.partId = jQuery("#select-part-forQ").val();
+  ImageGalleryFactory.findAllImages($scope.partId,(data)=>{
+    $scope.images = data;
+    console.log($scope.images);
+    $uibModal.open({
+          templateUrl: 'views/question/add-question/image-gallery.html',
+          scope: $scope,
+          size: 'lg'
+    }).result.then(function(){
+
+    });
+  },(error)=>{
+    window.location.href = "./";
+  });
+  }
+   $scope.chooseImage = function(event,index){
+    var ele = event.target;
+    if(jQuery(ele).not("span.full-size").length !== 0){
+      if(!jQuery(ele).hasClass("image-item"))
+        ele = jQuery(ele).parent();
+      if(jQuery(ele).hasClass("image-item")){
+        if(jQuery(ele).hasClass("choose")){
+          jQuery(ele).removeClass("choose");
+          $scope.imageChose.splice($scope.imageChose.indexOf(index),1);
+        }
+        else {
+          jQuery(ele).addClass("choose");
+          $scope.currentImage =  $scope.images[index].imageURL;
+          $scope.question.queMedia = $scope.currentImage;
+          $scope.imageChose.push(index);
+        }
+      }
+    }
+  }
+  $scope.viewFullSize = function(index){
+    $scope.currentImage = $scope.images[index];
+    $uibModal.open({
+            templateUrl: 'views/question/add-question/image-full-size.html',
+            scope: $scope,
+            size: 'lg'
+    }).result.then(function(){
+
+    });
+  }
+  $scope.showViewFullSize = function(event,index){
+    var ele = event.target;
+    if(!jQuery(ele).hasClass("image-item"))
+      ele = jQuery(ele).parent();
+    if(jQuery(ele).hasClass("image-item")){
+      if(event.type === "mouseover"){
+        if(!jQuery(ele).hasClass("hovering"))
+        {
+          jQuery(ele).addClass("hovering");
+          jQuery(ele).append("<span class='full-size'>&#128065;</span>");
+          jQuery(ele).find("span.full-size").on("click",() => {
+            $scope.viewFullSize(index);
+          });
+        }
+      }
+      else if(event.type === "mouseleave"){
+        if(jQuery(ele).hasClass("hovering")){
+          jQuery(ele).find("span.full-size").off("click");
+          jQuery(ele).find("span.full-size").remove();
+          jQuery(ele).removeClass("hovering");
+        }
+      }
+    }
+  }
 });

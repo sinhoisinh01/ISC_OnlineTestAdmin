@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <button type="button" ng-click="$dismiss()" class="close">&times;</button>
+    <h2 class="modal-title">
+      Image Gallery
+    </h2>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-lg-2 col-md-3 col-sm-6" ng-repeat="image in images track by $index">
+      <div class="image-item" ng-click="chooseImage($event,$index)" ng-mouseover="showViewFullSize($event,$index)" ng-mouseleave="showViewFullSize($event,$index)">
+        <img ng-src="{{image.imageURL}}" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+   <button type="button" class="btn btn-default pull-right" ng-click="$dismiss()">Close</button>
+  <button type="submit" class="btn btn-primary pull-right" ng-click="$close(currentImage);">
+          Choose
+  </button>
+</div>

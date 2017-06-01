@@ -54,6 +54,11 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 			controller : "ImageGalleryController"
 		})
 
+		.when("/question/add",{
+			templateUrl: "views/question/add.html",
+			controller: "QuestionController"
+		})
+
 		.when("/questions",{
 			templateUrl: "views/question/index.html",
 			controller: "QuestionController"
@@ -66,10 +71,7 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 			templateUrl: "views/question/detail.html",
 			controller: "QuestionController"
 		})
-		.when("/question/add",{
-			templateUrl: "views/question/add.html",
-			controller: "QuestionController"
-		})
+		
 		.when("/question/add/trueFalse", {
 			templateUrl : "views/question/add-question/true-false.html",
 			controller : "QuestionController"
