@@ -31,7 +31,11 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,Al
   $scope.questions = [];
 
   if ($routeParams.part_id) {
+    QuestionFactory.findByPartId($routeParams.part_id, function(response) {
+      console.log(response);
+      $scope.questions = response;
 
+    }, function(error) {});
   } else {
     QuestionFactory.findAll(function(response) {
       console.log(response);

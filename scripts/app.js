@@ -58,8 +58,8 @@ app.config(function($qProvider,$locationProvider,$routeProvider) {
 			templateUrl: "views/question/index.html",
 			controller: "QuestionController"
 		})
-		.when("/question/:part_id",{
-			templateUrl: "views/question/detail.html",
+		.when("/question/part/:part_id",{
+			templateUrl: "views/question/index.html",
 			controller: "QuestionController"
 		})
 		.when("/question/get/:id",{
