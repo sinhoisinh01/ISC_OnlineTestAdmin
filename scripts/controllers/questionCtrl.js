@@ -1,4 +1,4 @@
-app.controller("QuestionController",function($scope,$http,$routeParams,$route,questionFactory,PartFactory,DTOptionsBuilder){
+app.controller("QuestionController",function($scope,$http,$routeParams,$route,Alertifier,QuestionFactory,PartFactory,DTOptionsBuilder){
   $scope.name = "question";
   $scope.isHomePage = false;
   $scope.isAddPage = false;
@@ -7,19 +7,6 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,qu
     $scope.isHomePage = true;
   else if( $route.current.loadedTemplateUrl.includes("add.html") )
     $scope.isAddPage = true;
-  
-
-  $scope.question = {
-    "queContent": "",
-    "queIsshuffle": false, //false,
-    "queScore":  "",//3,
-    "queOpt_Column": "", //2,
-    "queIsBank": false, //false,
-    "queLevel": "", //1,
-    "queMedia": "", //"gas",
-    "queReference": "" ,//"jkfsjdfh",
-    "queOrder": "",  //2,
-  };
   
 //$scope.questions = {queIsBank : true};
  
@@ -64,6 +51,24 @@ app.controller("QuestionController",function($scope,$http,$routeParams,$route,qu
     }
     console.log($scope.question);
   }
+
+
+    $scope.removeQuestion = function(question_id) {
+      Alertifier.confirm("warn","Are you sure you want to remove this question ?",function(){
+        QuestionFactory.remove(question_id,function(data){
+          for(i = 0; i < $scope.questions.length; i++) {
+            if ( $scope.questions[i].id == question_id ) {
+              $scope.questions.splice(i, 1);
+            }
+          }
+        },function(error){
+
+        });
+      },function(){
+
+      });
+    };
+
   $scope.createQuestionByType = function() {
     if( $scope.answerType ) {
       $scope.answerTypeFileName = ($scope.answerType + $scope.singleOrPassage);
@@ -89,7 +94,7 @@ $scope.addquestion = function(){
     }
     console.log($scope.selectPartforQ);
     // add  question
-    questionFactory.add($scope.partId,answerTypeId,$scope.question,function(sucess){
+    QuestionFactory.add($scope.partId,answerTypeId,$scope.question,function(sucess){
         
     },function(error){
 

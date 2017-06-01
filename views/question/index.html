@@ -15,12 +15,12 @@
           <tbody>
             <tr data-ng-repeat="question in questions">
               <td data-ng-bind="($index+1)"></td>
-              <td><a href="#!/question/get/{{question.id}}" data-ng-bind="question.content"></a></td>
-              <td data-ng-bind="question.level"></td>
-              <td data-ng-bind="question.type"></td>
+              <td><a href="#!/question/get/{{question.id}}" data-ng-bind="question.queContent"></a></td>
+              <td data-ng-bind="question.queLevel"></td>
+              <td data-ng-bind="question.answerType.anstName"></td>
               <td>
                 <a class="btn"><i class="fa fa-wrench"></i></a>
-                <a class="btn"><i class="fa fa-trash"></i></a>
+                <a class="btn" ng-click="removeQuestion(question.id);"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
           </tbody>
